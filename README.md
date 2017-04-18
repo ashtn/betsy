@@ -50,34 +50,34 @@ Build an online system for listing, selling, reviewing, and buying a wide variet
 #### Guest User (Unauthenticated)
 As a guest to the website (not signed in) I **can**:
 
-- Browse all products
-- Browse products by category
-- Browse products by merchant (users)
-- View any individual product with additional details
-- Leave a review for a product providing:
-    - A Text review
-    - A rating out of 5
-- Add in-stock products to my cart
-- Remove products from my cart
-- Change the quantity of an existing product in my cart
-- Purchase the items in my cart, providing:
-    - Email Address
-    - Mailing Address
-    - Name on credit card
-    - Credit card number
-    - Credit cart expiration
-    - Credit Card CVV (security code)
-    - Billing zip code
-- Purchasing an order makes the following changes:
-    - Reduces the number of inventory for each product
-    - Changes the order state from "pending" to "paid"
-    - Clears the current cart
-- After purchasing an order, I can view a confirmation screen including:
-    - Each item in the order with a quantity and line-item subtotal
-    - A link to the item description page
-    - Order total price
-    - DateTime the order was placed
-    - The current status of the order
+> - Browse all products **
+> - Browse products by category
+> - Browse products by merchant (users)
+> - View any individual product with additional details
+> - Leave a review for a product providing:
+    > - A Text review
+     >- A rating out of 5
+> - Add in-stock products to my cart
+> - Remove products from my cart
+> - Change the quantity of an existing product in my cart
+> - Purchase the items in my cart, providing:
+    >  Email Address
+    > - Mailing Address
+    > - Name on credit card
+    > - Credit card number
+    > - Credit cart expiration
+    > - Credit Card CVV (security code)
+    > - Billing zip code
+> - Purchasing an order makes the following changes:
+    > - Reduces the number of inventory for each product
+    > - Changes the order state from "pending" to "paid"
+    > - Clears the current cart
+> - After purchasing an order, I can view a confirmation screen including:
+    > - Each item in the order with a quantity and line-item subtotal
+    > - A link to the item description page
+    > - Order total price
+    > - DateTime the order was placed
+    > - The current status of the order
 - Sign up to be a merchant using OAuth
     - Every merchant must have a username
 - Sign in to my merchant account using OAuth
