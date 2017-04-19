@@ -30,10 +30,10 @@
 >  1. Create a new rails app using `rails new .`
 >  1. Add all other team members as collaborators
 >  1. Each team member should clone the repo to their computer
-1. Figure out your workflow for the project, re: Git and Task management
-  - avoid working on the same file as a team member
-  - avoid merging to master at night
-  - branch naming convention: initials/branch_name
+> 1. Figure out your workflow for the project, re: Git and Task management
+  > - avoid working on the same file as a team member
+  > - avoid merging to master at night
+  > - branch naming convention: initials/branch_name
 >  1. Determine who will be the Stand Up Leader and Task Leader for the first week
 > 1. Create a Trello board and ensure that all team members and instructors have access
 > 1. Review the User Stories below and create Trello tasks to represent them
