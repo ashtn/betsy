@@ -14,8 +14,8 @@
 - Group project ownership
 
 ## Guidelines
-- Groups of three or four will collaborate in pairs or individually and will report to their assigned Project Manager (one of the instructors)
-- Use a task manager like [Trello](http://trello.com) to track your team's efforts
+>- Groups of three or four will collaborate in pairs or individually and will report to their assigned Project Manager (one of the instructors)
+>- Use a task manager like [Trello](http://trello.com) to track your team's efforts
 - Build a logical user-flow that moves across multiple controllers and models
 - Use HTML/CSS and Foundation to style your website
 
@@ -27,14 +27,14 @@
 > 1. As a group decide on an app name (this may help lead the aesthetic)
 > 1. As a group decide on a team name (this will amuse your instructors)
 > 1. Have one person on your team fork/clone the project master as per usual
->  1. Create a new rails app using `rails new .`
->  1. Add all other team members as collaborators
->  1. Each team member should clone the repo to their computer
-> 1. Figure out your workflow for the project, re: Git and Task management
-  > - avoid working on the same file as a team member
-  > - avoid merging to master at night
-  > - branch naming convention: initials/branch_name
->  1. Determine who will be the Stand Up Leader and Task Leader for the first week
+>     1. Create a new rails app using `rails new .`
+>     1. Add all other team members as collaborators
+>     1. Each team member should clone the repo to their computer
+>     1. Figure out your workflow for the project, re: Git and Task management
+>         - *avoid working on the same file as a team member*
+>         - *avoid merging to master at night*
+>         - *branch naming convention: initials/branch_name*
+> 1. Determine who will be the Stand Up Leader and Task Leader for the first week
 > 1. Create a Trello board and ensure that all team members and instructors have access
 > 1. Review the User Stories below and create Trello tasks to represent them
 > 1. Slack your team name, app name, and link to your trello board to your Project Manager
@@ -58,29 +58,29 @@ As a guest to the website (not signed in) I **can**:
 > - Browse products by merchant (users)
 > - View any individual product with additional details
 > - Leave a review for a product providing:
-    > - A Text review
-     >- A rating out of 5
+>   - A Text review
+>   - A rating out of 5
 > - Add in-stock products to my cart
 > - Remove products from my cart
 > - Change the quantity of an existing product in my cart
 > - Purchase the items in my cart, providing:
-    >  Email Address
-    > - Mailing Address
-    > - Name on credit card
-    > - Credit card number
-    > - Credit cart expiration
-    > - Credit Card CVV (security code)
-    > - Billing zip code
+>   - Email Address
+>   - Mailing Address
+>   - Name on credit card
+>   - Credit card number
+>   - Credit cart expiration
+>   - Credit Card CVV (security code)
+>   - Billing zip code
 > - Purchasing an order makes the following changes:
-    > - Reduces the number of inventory for each product
-    > - Changes the order state from "pending" to "paid"
-    > - Clears the current cart
+>   - Reduces the number of inventory for each product
+>   - Changes the order state from "pending" to "paid"
+>   - Clears the current cart
 > - After purchasing an order, I can view a confirmation screen including:
-    > - Each item in the order with a quantity and line-item subtotal
-    > - A link to the item description page
-    > - Order total price
-    > - DateTime the order was placed
-    > - The current status of the order
+>   - Each item in the order with a quantity and line-item subtotal
+>   - A link to the item description page
+>   - Order total price
+>   - DateTime the order was placed
+>   - The current status of the order
 - Sign up to be a merchant using OAuth
     - Every merchant must have a username
 - Sign in to my merchant account using OAuth
@@ -136,57 +136,58 @@ As a signed-in user, I **cannot**:
 Many of our models will have attributes that are required for our application to use and display data consistently. Each model will have attributes with requirements for a valid record. The requirements are summarized below:
 
 #### Merchant
-- Username must be present
-- Username must be unique
-- Email Address must be present
-- Email Address must be unique
+>- Username must be present
+>- Username must be unique
+>- Email Address must be present
+>- Email Address must be unique
 
 #### Product
-- Name must be present
-- Name must be unique
-- Price must be present
-- Price must be a number
-- Price must be greater than 0
-- Product must belong to a User
+>- Name must be present
+>- Name must be unique
+>- Price must be present
+>- Price must be a number
+>- Price must be greater than 0
+>- Product must belong to a User
 
 #### Order
-- An Order must have one or more Order Items
+>- An Order must have one or more Order Items
 
 #### OrderItem
-- Must belong to a Product
-- Must belong to an Order
-- Quantity must be present
-- Quantity must be an integer
-- Quantity must be greater than 0
+>- Must belong to a Product
+>- Must belong to an Order
+>- Quantity must be present
+>- Quantity must be an integer
+>- Quantity must be greater than 0
 
 #### Review
-- Rating must be present
-- Rating must be an integer
-- Rating must be between 1 and 5
+>- Rating must be present
+>- Rating must be an integer
+>- Rating must be between 1 and 5
 
 ## Submission Guidelines
 Your final project must be deployed to [Heroku](http://heroku.com). Your team will open a single pull request for the entire project. Include the link to your Heroku deployment in the PR's description, as well as the team name and the names of all members.
 
 ## Team Leaders
-Each team will have team leaders who are responsible for keeping track of each team member's contributions. Rotate leader roles at the beginning of each week; every team member should be in at least one leader role during the project.
+> Each team will have team leaders who are responsible for keeping track of each team member's contributions. Rotate leader roles at the beginning of each week; every team member should be in at least one leader role during the project.
 
-- Stand Up Leader
-  - Notifies team members about meeting schedule and ensures that everyone is present and ready
-  - Takes notes about each person's daily report in Stand Up
-  - Keeps the meeting moving
-- Task Leader
-  - Leads discussion on task assignment
-    - Decide if a task should be completed alone or in a pair
-    - Assign tasks based on...
-      - Individual comfort
-      - Desire
-      - Ability
-  - Ensures the task list stays up to date
+> - Stand Up Leader
+>   - Notifies team members about meeting schedule and ensures that everyone is present and ready
+>   - Takes notes about each person's daily report in Stand Up
+>   - Keeps the meeting moving
+
+> - Task Leader
+>   - Leads discussion on task assignment
+>   - Decide if a task should be completed alone or in a pair
+>   - Assign tasks based on...
+>     - Individual comfort
+>     - Desire
+>     - Ability
+>   - Ensures the task list stays up to date
 
 ## Stand Up Meetings
-The Project Manager for your team will determine the timing for all Stand Up meetings. Because PMs are managing multiple projects at once this time will be different for each team, and may change from day to day. The meeting schedule will be communicated to the Stand Up Leader as soon as it is determined.
+>The Project Manager for your team will determine the timing for all Stand Up meetings. Because PMs are managing multiple projects at once this time will be different for each team, and may change from day to day. The meeting schedule will be communicated to the Stand Up Leader as soon as it is determined.
 
-At the end of each day, your team's assigned Project Manager will review the Trello board for all tasks discussed during that day's Stand Up meeting.
+>At the end of each day, your team's assigned Project Manager will review the Trello board for all tasks discussed during that day's Stand Up meeting.
 
 ## Weekly Demos
 In a real world work environment, a team's success is measured by their product as opposed to each individual's contribution.
