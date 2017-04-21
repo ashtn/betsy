@@ -1,30 +1,49 @@
-<h1>Items#index</h1>
-<p><% @items.each do |item| %></p>
+
 <table>
-<thead>
+  <thead>
+    <th>
+      Item
+    </th>
+    <th>
+      Price
+    </th>
+    <th>
+      Qty in Stock
+    </th>
+    <th>
+
+    </th>
+    <th>
+
+    </th>
+  </thead>
+<% @items.each do |item| %>
   <tr>
     <td>
       <%=link_to "#{item.name.capitalize}", item_path(item.id), method: :get%>
     </td>
     <td>
+      <%= "#{item.price}"%>
+    </td>
+    <td>
+      <%= "#{item.inventory}"%>
+    </td>
+    <td>
       <%= link_to "Update", edit_item_path(item.id), method: :get %>
     </td>
     <td>
-        <%= link_to "Add_to_cart", add_to_cart_path(item.id),  method: :patch%>
+        <%= link_to "Cart", add_to_cart_path(item.id),  method: :patch%>
     </td>
     <% if session[:id] %>
     <td>
       <%= link_to "Delete", item_path(item.id), method: :delete %>
     </td>
-    <td>
-      <%= link_to "Delete", item_path(item.id), method: :delete %>
-    </td>
     <%end%>
   </tr>
-</thead>
+  <%end%>
+
 </table>
-</p>
-<%end%>
+
 
 
 

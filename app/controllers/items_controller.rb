@@ -1,23 +1,6 @@
 class ItemsController < ApplicationController
 
-  # before_action :find_item, only: [:show, :edit, :update]
-  # skip_before_action :require_login, only: [:index]
-
-  def new
-    @item = Item.new
-  end
-
-  def create
-    @item = Item.create item_params
-    unless @item.id == nil
-      flash[:success] = "Item added successfully"
-      redirect_to items_path
-
-    else
-      flash.now[:error] = "Error has occured"
-      render "new"
-    end
-  end
+  # before_action :find_item, only: [:show, :edit]
 
   def index
     if params[:category_id]
@@ -36,6 +19,27 @@ class ItemsController < ApplicationController
       # render_404
     end
   end
+
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.create item_params
+    unless @item.id == nil
+      flash[:success] = "Item added successfully"
+      redirect_to items_path
+
+    else
+      flash.now[:error] = "Error has occured"
+      render "new"
+    end
+  end
+
+
+
+
 
   def edit
     @item=Item.find_by(id: params[:id])
@@ -63,6 +67,7 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
+
     # Order.new(item.id)
     # item.order.status = "in cart"
 
