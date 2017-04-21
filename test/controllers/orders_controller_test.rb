@@ -60,7 +60,7 @@ describe OrdersController do
 
           must_respond_with :success
 
-          Order.all.must_equal []
+          Order.find_by_session_id(1).status.must_equal "pending"
       end
   end
 end

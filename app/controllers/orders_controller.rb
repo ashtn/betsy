@@ -41,6 +41,10 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def new
+    @order = Order.new
+  end
+
   private
 
   def order_params
