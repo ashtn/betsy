@@ -1,0 +1,23 @@
+
+<ul>
+
+  <% @order.errors.each do
+    |field, msg| %>
+    <li>
+      <%= field %> <%= msg %>
+    </li>
+    <% end %>
+</ul>
+
+
+<%= form_for @order, method: form_method do |f| %>
+
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+
+  <%= f.label :total %>
+  <%= f.text_field :total %>
+
+  <%= f.submit action_name %>
+
+<% end %>

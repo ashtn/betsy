@@ -15,6 +15,9 @@ class OrdersController < ApplicationController
   end
 
   def update
+
+    @order = Order.find_by_session_id(order_params[:session_id])
+
     @order.status = order_params[:status]
 
     if @order.save
@@ -25,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    Order.destroy(params[:id])
+    Order.destroy(params[:session_id])
 
     redirect_to orders_path
   end
