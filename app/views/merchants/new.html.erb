@@ -1,2 +1,24 @@
 <h1>Merchants#new</h1>
 <p>Find me in app/views/merchants/new.html.erb</p>
+
+<ul class="errors">
+  <% if @merchant.errors.any? %>
+    <% @merchant.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+      <% end %>
+  <% end %>
+</ul>
+
+
+<%= form_for @merchant, method: :post do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.submit %>
+
+<% end %>
