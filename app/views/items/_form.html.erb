@@ -1,0 +1,31 @@
+<% if !@item.nil? %>
+<ul>
+
+  <% @item.errors.each do |field, message| %>
+  <li>
+    <%= field %> <%= message %>
+  </li>
+  <% end %>
+</ul>
+
+<%= form_for @item do |f| %>
+
+<%= f.label :name %></br>
+<%= f.text_field :name %></br>
+
+<%= f.label :price %></br>
+<%= f.text_field :price %></br>
+
+<%= f.label :description %></br>
+<%= f.text_field :description %></br>
+
+<%= f.label :Amount_in_Stock %></br>
+<%= f.text_field :inventory %></br>
+
+
+<%= f.submit action_name, :class => "button" %>
+
+<% end %>
+
+
+<%end%>

@@ -54,10 +54,19 @@ class ItemsController < ApplicationController
     redirect_to items_path
   end
 
+  def add_to_cart
+    # Order.new(item.id)
+    # item.order.status = "in cart"
+
+
+    # where(session: (session[:id]).order(vote_count: :desc).limit(10)
+    # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    end
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:title, :author_id, :description, :isbn)
+    params.require(:item).permit(:name, :description)
   end
 
   def find_item
@@ -67,6 +76,12 @@ class ItemsController < ApplicationController
 
 
 
+  private
+    def find_user
+      if session[:user_id]
+        @login_user = User.find_by(id: session[:user_id])
+      end
+    end
 
 
   # def index

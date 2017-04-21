@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'categories/create'
   get 'categories/new'
 
+  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
+
   resources :items
 
   resources :categories do

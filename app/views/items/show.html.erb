@@ -12,5 +12,8 @@
 </section>
 
 <section>
+
+  #add to cart goes nowhere right now
+  <%= link_to "Add to Cart", edit_item_path(@item.id), method: :get%>
   <%= link_to "Review this item", reviews_new_path(@item.id), method: :get%>
 </section>
