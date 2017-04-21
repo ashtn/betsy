@@ -35,27 +35,28 @@ describe OrdersController do
 
   describe "update" do
     it "should update an order given valid data" do
-      # Order.destroy_all
       order_data = {
         order: {
           session_id: 1,
           status: "paid",
           total: 25.89}
         }
-        put orders_path(1), params: order_data
+
+        put order_path(:id), params: order_data
 
         must_respond_with :redirect
+
+        Order.find_by_session_id(1).status.must_equal "paid"
     end
 
       it "shouldn't update an order given invalid data" do
-        # Order.destroy_all
         order_data = {
           order: {
             session_id: 1,
             status: "you",
             total: 25.89}
           }
-          put orders_path(1), params: order_data
+          put order_path(:id), params: order_data
 
           must_respond_with :error
 
