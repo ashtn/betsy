@@ -1,2 +1,16 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<h1><%= @item.name %></h1>
+<section>
+
+
+<!-- image here -->
+
+<h3>Description</h3>
+<p>
+  <%= @item.description %>
+</p>
+
+</section>
+
+<section>
+  <%= link_to "Review this item", reviews_new_path(@item.id), method: :get%>
+</section>
