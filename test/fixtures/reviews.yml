@@ -3,11 +3,29 @@
 one:
   merchant_id: 1
   item_id: 1
-  review: MyString
-  rating: 1
+  review: Best product I've ever used!
+  rating: 5
 
 two:
   merchant_id: 1
   item_id: 1
-  review: MyString
-  rating: 1
+  review: blah blah blah blah blah blah
+  rating: 2
+
+three:
+  merchant_id: 1
+  item_id: 1
+  review: yay
+  rating: 2
+
+four:
+  merchant_id: 1
+  item_id: 1
+  review: More reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviews
+  rating: 3
+
+five:
+  merchant_id: 1
+  item_id: 1
+  review: 
+  rating: 4

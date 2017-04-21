@@ -12,18 +12,14 @@ Rails.application.routes.draw do
 
   get 'merchants/new'
   get 'merchants/create'
-
   get 'merchants/index'
   get 'merchants/show'
-
-  get 'categories/create'
-  get 'categories/new'
 
   patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   resources :items
 
-  resources :categories do
+  resources :categories, except: [:edit, :update, :destroy] do
     get '/items', to: 'items#index'
   end
 
