@@ -8,12 +8,26 @@
 <p>
   <%= @item.description %>
 </p>
+<p>
+
+  $<%= @item.price%>
+</p>
 
 </section>
 
 <section>
+  <p>
 
-  #add to cart goes nowhere right now
+
+  <!-- add to cart goes nowhere right now -->
   <%= link_to "Add to Cart", edit_item_path(@item.id), method: :get%>
-  <%= link_to "Review this item", reviews_new_path(@item.id), method: :get%>
+    </p>
+    <p>
+
+  <%= link_to "Review this item", reviews_new_path(@item), method: :get%>
+    </p>
+    <p>
+  <%= link_to "Update", edit_item_path(@item.id), method: :get %>
+
+    </p>
 </section>

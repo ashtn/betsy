@@ -37,11 +37,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @item=Item.find_by(id: params[:id])
+    # if @item.nil?
+    #   head :not_found
+    # else
+    #   params[:category] = @item.category
+    # end
+  end
 
   def update
-    @item.title = item_params[:title]
-    @item.author = Author.find(item_params[:author_id])
+    @item = Item.find_by(id: params[:id])
+
+    @item.name = item_params[:name]
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -66,7 +74,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description)
+    params.require(:item).permit(:name, :description, :price, :inventory)
   end
 
   def find_item
