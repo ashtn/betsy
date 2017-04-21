@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+# Price must be a number
+# Price must be greater than 0
+
 
   # before_action :find_item, only: [:show, :edit]
 
