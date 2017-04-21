@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+a:
   session_id: 1
-  status: MyString
-  total: 1.5
+  status: "pending"
+  total: 20
 
-two:
-  session_id: 1
-  status: MyString
-  total: 1.5
+b:
+  session_id: 2
+  status: "paid"
+  total: 25.59

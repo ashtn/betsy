@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
-  
+
+  # do we need a show method ?
+
   def create
     @order = Order.create order_params
 
