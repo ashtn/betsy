@@ -13,6 +13,8 @@ describe OrdersController do
         post orders_path, params: order_data
 
         must_respond_with :redirect
+
+        Order.all.length.must_equal 1
     end
 
       it "shouldn't create an order given invalid data" do
@@ -25,7 +27,7 @@ describe OrdersController do
           }
           post orders_path, params: order_data
 
-          must_respond_with :error
+          must_respond_with :success
 
           Order.all.must_equal []
       end
