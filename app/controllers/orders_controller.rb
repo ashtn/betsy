@@ -21,6 +21,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit
+    @order = Order.find(params[:id])
+  end
+
   def update
 
     @order = Order.find_by_session_id(order_params[:session_id])
