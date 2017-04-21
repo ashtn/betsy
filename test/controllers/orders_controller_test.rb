@@ -58,7 +58,7 @@ describe OrdersController do
           }
           put order_path(:id), params: order_data
 
-          must_respond_with :error
+          must_respond_with :success
 
           Order.all.must_equal []
       end

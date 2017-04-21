@@ -1,6 +1,13 @@
 class OrdersController < ApplicationController
 
-  # do we need a show method ?
+  def index
+    @orders = Order.all
+  end
+
+  def show
+    @result_order = Order.find(params[:id])
+  end
+
 
   def create
     @order = Order.create order_params
@@ -23,6 +30,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to order_path
     else
+      flash.now[:error] = "Error has occured!"
       render "edit"
     end
   end
