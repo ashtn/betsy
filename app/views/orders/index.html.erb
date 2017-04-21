@@ -6,7 +6,7 @@
     <% @orders.each do |order| %>
 
     <li><%= link_to order.id, order_path(order.id) %>
-      <%= order.id.total %>
+      <%= @order.id.total %>
     </li>
 
     <% end %>

@@ -1,6 +1,7 @@
 require "test_helper"
 
 describe OrdersController do
+
   describe "create" do
     it "should create an order given valid data" do
       Order.destroy_all
