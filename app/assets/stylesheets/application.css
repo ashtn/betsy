@@ -13,3 +13,123 @@
  *= require_tree .
  *= require_self
  */
+ /* Dropdown Button */
+
+ header {
+   background-color: #a99ed8;
+   clear: both;
+   color: white;
+ }
+
+ img:hover {
+   box-shadow: 3px 3px 10px 5px #a99ed8;
+ }
+
+ header h1 {
+   font-size: 3em;
+   margin: 0px;
+ }
+
+ nav {
+   text-align: center;
+ }
+
+input  {
+  background-color: #f9f9ff;
+  border-radius: 5px;
+}
+
+input:hover {
+  background-color: #bbb1e7;
+}
+
+ nav div button.dropbtn {
+     background-color: #a99ed8;
+     color: white;
+     padding: 16px;
+     font-size: 16px;
+     border: none;
+     cursor: pointer;
+    }
+
+ /* The container <div> - needed to position the dropdown content */
+ nav div.dropdown {
+     position: relative;
+     display: inline-block;
+ }
+
+ /* Dropdown Content (Hidden by Default) */
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #bbb1e7;
+     min-width: 170px;
+     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     z-index: 1;
+
+ }
+
+ /* Links inside the dropdown */
+ .dropdown-content a {
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+      color: white;
+ }
+
+ .dropbtn a {
+   color: white;
+   text-decoration: none;
+ }
+
+ /* Change color of dropdown links on hover */
+ .dropdown-content a:hover {
+   background-color: #f1f1f1;
+   color: black;
+
+ }
+
+ /* Show the dropdown menu on hover */
+ .dropdown:hover .dropdown-content {
+
+     display: block;
+ }
+
+ /* Change the background color of the dropdown button when the dropdown content is shown */
+ .dropdown:hover .dropbtn {
+     background-color: #bbb1e7;
+
+ }
+
+html {
+   height: 100%;
+ }
+
+body {
+
+  text-align: center;
+  background-color: #e3e2f9;
+  padding-bottom: 10em;
+  height: 100%;
+
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+
+table {
+  margin-left:auto;
+  margin-right:auto;
+  padding-bottom: 5em;
+}
+
+
+footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height: 3em;
+    vertical-align: bottom;
+}
