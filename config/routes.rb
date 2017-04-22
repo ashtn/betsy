@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/logout'
 
-  get 'reviews/new'
-  post 'reviews', to: 'reviews#create'
-
   get 'merchants/new'
   get 'merchants/create'
   get 'merchants/index'
@@ -17,7 +14,9 @@ Rails.application.routes.draw do
 
   patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
-  resources :items
+  resources :items do
+    resources :reviews, only: [:new, :create]
+  end
 
   resources :categories, except: [:edit, :update, :destroy] do
     get '/items', to: 'items#index'

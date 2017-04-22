@@ -1,13 +1,15 @@
 class ReviewsController < ApplicationController
 
+  def index; end
+
   def new
     @item = Item.find(params[:item_id])
-    @review = @item.Review.new
+    @review = @item.reviews.new
   end
 
   def create
     @item = Item.find(params[:item_id])
-    @review = @item.Review.new(review_params)
+    @review = @item.reviews.new(review_params)
     if @review.save
       flash[:success] = "Review added successfully"
       redirect_to item_path(@item)
