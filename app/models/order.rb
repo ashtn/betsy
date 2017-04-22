@@ -6,13 +6,13 @@ class Order < ApplicationRecord
     validates :session_id, presence: true, uniqueness: true
     validates :total, presence: true, numericality: { only_float: true, greater_than: 0 }
 
-    def self.find_total
-      @subtotal = []
+  def self.find_total(order_items)
+    total = 0.0
 
-      @order_items.each do | item |
-        @subtotal << item.price
-      end
-      return @subtotal.sum
+    order_items.each do | item |
+      total += item.price
     end
-
+    return total
   end
+
+end

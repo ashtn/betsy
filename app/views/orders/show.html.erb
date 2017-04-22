@@ -3,17 +3,17 @@
 <h4>
   <ul>
     <li>
-      <%= @order.id %>
-      <%= @order.id.total %>
+      <%= @result_order.id %>
+      <%= @result_order.total %>
     </li>
   </ul>
 </h4>
 
 
-<%= link_to "Edit", edit_order_path(@order.id) %>
-<%= link_to "Delete", order_path(@order.id),
-  data: {confirm: "Are you sure you want to delete this order?"},   # this puts more stuff in the anchor tag that it creates
-  method: :delete #this tells us what http verb to use
+<%= link_to "Edit", edit_order_path(@result_order.id) %>
+<%= link_to "Delete", order_path(@result_order.id),
+  data: {confirm: "Are you sure you want to delete this order?"},
+  method: :delete
 %>
 <p>
   <%= link_to "Home", orders_path %>

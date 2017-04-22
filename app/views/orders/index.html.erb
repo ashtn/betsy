@@ -3,10 +3,10 @@
 
 <h4>
   <ul>
-    <% @orders.each do |order| %>
+    <% @orders.each do | order | %>
 
-    <li><%= link_to order.id, order_path(order.id) %>
-      <%= order.id.total %>
+    <li>Order id:<%= link_to order.id, order_path(order.id) %> Total:
+      $<%= order.total %>
     </li>
 
     <% end %>

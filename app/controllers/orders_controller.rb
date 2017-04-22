@@ -21,11 +21,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit
+    @order = Order.find(params[:id])
+  end
+
   def update
 
-    @order = Order.find_by_session_id(order_params[:session_id])
-
-    @order.status = order_params[:status]
+    @order = Order.find_by_id(params[:id])
 
     if @order.save
       redirect_to order_path
