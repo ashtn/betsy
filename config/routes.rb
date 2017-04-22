@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/logout'
 
   get 'reviews/new'
-  get 'reviews/create'
+  post 'reviews', to: 'reviews#create'
 
   get 'merchants/new'
   get 'merchants/create'
