@@ -8,7 +8,56 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+
+
+
+  <div id = "container" >
+
+
+  <header>
+    <h1>Besty</h1>
+  <nav>
+    <div class="dropdown">
+      <button class="dropbtn"><%= link_to "Home", items_path %></button>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn">Shop by Category</button>
+      <div class="dropdown-content">
+        <%= link_to "Show all", items_path %>
+        <% @categories.each do |category| %>
+        <%= link_to "#{category.name}", category_path(category.id) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn">Shop by Merchant</button>
+      <div class="dropdown-content">
+        <%= link_to "Show all", merchants_index_path %>
+        <% @merchants.each do |merchant| %>
+        <%= link_to "#{merchant.username}", merchants_show_path(merchant.id) %>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+
+
+</nav>
+
+<% flash.each do |name, message| %>
+<section class="row status <%= name %>"><h3><%= message %></h3></div>
+<% end %>
+</section>
+
+
+<body>
+  <%= yield %>
+</body>
+</html>
+  <div id = "footer">
+  <footer>&copy; 2017 Besties</footer>
+  </div>
+</div>
 </html>

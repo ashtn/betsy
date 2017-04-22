@@ -15,18 +15,16 @@ Rails.application.routes.draw do
   get '/merchants/new', to: 'merchants#new', as: 'new_merchant'
   get '/merchants/:id', to: 'merchants#show', as: 'merchant'
 
-  get 'categories/create'
-  get 'categories/new'
+
+  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   resources :items
 
-  resources :categories do
+  resources :categories, except: [:edit, :update, :destroy] do
     get '/items', to: 'items#index'
   end
 
-  get 'orders/create'
-  get 'orders/update'
-  get 'orders/destroy'
+  resources :orders
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
