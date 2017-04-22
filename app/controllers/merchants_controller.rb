@@ -1,4 +1,7 @@
 class MerchantsController < ApplicationController
+
+
+
   def index
     @merchants = Merchant.all
   end
@@ -8,10 +11,10 @@ class MerchantsController < ApplicationController
   end
 
   def create
-    @merchant = Merchant.new(params[:id])
+    @merchant = Merchant.new(merchant_params)
     if @merchant.save
       flash[:success] = "Successfuly created new Merchant"
-      redirect_to merchant_path(@merchant.id)
+      redirect_to merchants_path
     else
       flash.now[:error] = "Merchant could not be created"
       @merchant.errors.messages
@@ -20,16 +23,16 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @merchant = Merchant.find_by_id(params[:id])
+    if !@merchant
+      render_404 #find me in ApplicationController
+    end
   end
 
   private
 
   def merchant_params
-    params.require(:merchant).permit(:username, :email)
+    params.require(:merchant).permit(:username, :email)#, :uid, :provider)
   end
 
-  def find_merchant
-    # could be good to put 404 error here
-    @merchant = Merchant.find_by_id(params[:id])
-  end
 end
