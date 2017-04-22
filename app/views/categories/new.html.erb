@@ -1,2 +1,21 @@
 <h1>Categories#new</h1>
 <p>Find me in app/views/categories/new.html.erb</p>
+
+<ul class="errors">
+  <% if @category.errors.any? %>
+    <% @category.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+      <% end %>
+  <% end %>
+</ul>
+
+
+<%= form_for @category do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+
+<% end %>
