@@ -1,31 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  merchant_id: 1
-  item_id: 1
+  item: item_one
   review: Best product I've ever used!
   rating: 5
 
 two:
-  merchant_id: 1
-  item_id: 1
+  item: item_two
   review: blah blah blah blah blah blah
   rating: 2
 
 three:
-  merchant_id: 1
-  item_id: 1
+  item: item_one
   review: yay
   rating: 2
 
 four:
-  merchant_id: 1
-  item_id: 1
+  item: item_one
   review: More reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviews
   rating: 3
 
 five:
-  merchant_id: 1
-  item_id: 1
-  review: 
+  item: item_two
+  review: #having this blank might mess things up...not sure yet
   rating: 4
