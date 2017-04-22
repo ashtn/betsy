@@ -14,4 +14,15 @@ class Order < ApplicationRecord
       end
       return total
     end
+
+    def self.change_status
+      # if CC numbers are valid, order.id.status == "paid"
+    end
+
+    def self.inventory
+      if order.status == "paid"
+        order_item(item.id).inventory -= 1 # reduce that items inventory by one
+        # clear items from cart
+      end
+    end
 end
