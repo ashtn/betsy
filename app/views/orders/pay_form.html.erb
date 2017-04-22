@@ -1,0 +1,42 @@
+
+<ul>
+
+  <% @order.errors.each do
+    |field, msg| %>
+    <li>
+      <%= field %> <%= msg %>
+    </li>
+    <% end %>
+</ul>
+
+
+<%= form_for @order, method: :post, url: paid_path(@order.id) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :billing_address %>
+  <%= f.text_field :billing_address %>
+
+  <%= f.label :card_number %>
+  <%= f.text_field :card_number %>
+
+  <%= f.label :expiration_date %>
+  <%= f.text_field :expiration_date %>
+
+  <%= f.label :CCV %>
+  <%= f.text_field :CCV %>
+
+  <%= f.submit action_name %>
+
+<% end %>
+
+<p>
+  <%= link_to "Home", orders_path %>
+</p>

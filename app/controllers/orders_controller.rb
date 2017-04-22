@@ -47,6 +47,11 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def pay
+    @order = Order.find(params[:id])
+    render "pay_form"
+  end
+
   private
 
   def order_params
