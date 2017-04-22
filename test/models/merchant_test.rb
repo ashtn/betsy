@@ -50,9 +50,6 @@ describe Merchant do
         merchant.id?.must_equal true
         merchant.username.must_equal "TestUsernameThree"
         merchant.email.must_equal "TestEmailThree"
-        # has id = id
-        # has name = name s
-        # has email = email
       end
     end
   end

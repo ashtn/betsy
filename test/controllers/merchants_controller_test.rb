@@ -19,22 +19,21 @@ describe MerchantsController do
 
 
     it "Model data increases after creating merchant" do
-    proc {
-      post merchants_path, params: {merchant:
-        { username: "Test",
-          email: "test@test.com"
-          }}
-        }.must_change 'Merchant.count', 1
+      proc {
+        post merchants_path, params: {merchant:
+          { username: "Test",
+            email: "test@test.com"
+        }}
+      }.must_change 'Merchant.count', 1
     end
-
+    
 
     it 'should redirect after creating merchant ' do
-
-      post merchants_path, params: { merchant: { username: "Test", email: "test@test.com"}}
-
+      post merchants_path, params: { merchant:
+        { username: "Test", email: "test@test.com"
+        }}
       must_respond_with :redirect
     end
-
   end
 
   describe "show" do
@@ -50,8 +49,8 @@ describe MerchantsController do
     end
 
     it 'should show a 404 when merchant not found' do
-     get merchant_path(1)
-     must_respond_with :missing
-   end
+      get merchant_path(1)
+      must_respond_with :missing
+    end
   end
 end
