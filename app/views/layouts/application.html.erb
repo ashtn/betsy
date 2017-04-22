@@ -34,9 +34,9 @@
     <div class="dropdown">
       <button class="dropbtn">Shop by Merchant</button>
       <div class="dropdown-content">
-        <%= link_to "Show all", merchants_index_path %>
+        <%= link_to "Show all", merchants_path %>
         <% @merchants.each do |merchant| %>
-        <%= link_to "#{merchant.username}", merchants_show_path(merchant.id) %>
+        <%= link_to "#{merchant.username}", merchant_path(merchant.id) %>
         <% end %>
       </div>
     </div>
