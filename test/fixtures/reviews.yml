@@ -2,25 +2,25 @@
 
 one:
   item: item_one
-  review: Best product I've ever used!
+  description: Best product I've ever used!
   rating: 5
 
 two:
   item: item_two
-  review: blah blah blah blah blah blah
+  description: blah blah blah blah blah blah
   rating: 2
 
 three:
   item: item_one
-  review: yay
+  description: yay
   rating: 2
 
 four:
   item: item_one
-  review: More reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviews
+  description: More reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviewsMore reviews
   rating: 3
 
 five:
   item: item_two
-  review: #having this blank might mess things up...not sure yet
+  description: #having this blank might mess things up...not sure yet
   rating: 4
