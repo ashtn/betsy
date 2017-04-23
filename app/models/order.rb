@@ -10,23 +10,32 @@ class Order < ApplicationRecord
       total = 0.0
 
       order_items.each do | item |
-        total += item.price
+        total += (item.price * item.quantity)
       end
       return total
     end
 
-    def self.change_status
-      # if CC numbers are valid, order.id.status == "paid"
-      # will need a payment form that is accessed through a "pay" button on cart
-      # the pay button should also check inventory to make sure that we have enough in stock
+    def self.change_status(order_id) # "submit order" button on cart need to be linked to this method
+      order = Order.find_by_order_id(order_id)
+      order.status = "paid"
+      order.save
+
+      Order.inventory_adjust(order_id)
       # if everything is valid, it should send them to the conformation.html page
     end
 
-    def self.inventory
-      if order.status == "paid"
-        order_item(item.id).inventory -= 1 # reduce that items inventory by one
-        # clear items from cart
-      end
+    def self.inventory_adjust(order_id)
 
+      order_items = OrderItems.find_by_order_id(order_id)
+
+      order_items.each do | order_item |
+        item = Item.find_by_id(order_item.item_id)
+        if order_item.quantity <= item.inventory
+          item.inventory -= order_item.quantity # reduce that items inventory by one
+          item.save
+        else
+          # TODO: handle cases where we don't have enough inventory
+        end
+      end
     end
 end

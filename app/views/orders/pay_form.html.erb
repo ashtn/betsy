@@ -10,7 +10,7 @@
 </ul>
 
 
-<%= form_for @order, method: :post, url: paid_path(@order.id) do |f| %>
+<%= form_for Payment.new, method: :post, url: paid_path(@order.id) do |f| %>
 
   <%= f.label :name_on_card %>
   <%= f.text_field :name_on_card %>
@@ -21,11 +21,11 @@
   <%= f.label :phone_num %>
   <%= f.text_field :phone_num %>
 
-  <%= f.label :address %>
-  <%= f.text_field :address %>
+  <%= f.label :ship_address %>
+  <%= f.text_field :ship_address %>
 
-  <%= f.label :billing_address %>
-  <%= f.text_field :billing_address %>
+  <%= f.label :bill_address %>
+  <%= f.text_field :bill_address %>
 
   <%= f.label :card_number %>
   <%= f.text_field :card_number %>
