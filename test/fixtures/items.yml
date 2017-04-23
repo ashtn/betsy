@@ -1,17 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-item_one:
+
+chips:
   merchant_id: 1
-  name: MyString
-  description: MyString
-  price: 1.5
-  inventory: 1
-  photo: MyString
+  name: chips
+  description: tortilla
+  price: 4
+  inventory: 20
+  photo: somestring
 
 item_two:
   merchant_id: 1
-  name: MyString
-  description: MyString
+  name: potato
+  description: idaho gold
   price: 1.5
   inventory: 1
   photo: MyString

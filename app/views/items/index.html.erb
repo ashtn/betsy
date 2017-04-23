@@ -33,7 +33,7 @@
         <%= link_to "Cart", add_to_cart_path(item.id),  method: :patch%>
     </td>
     <%end%>
-    <% if session[:id] %>
+    <% if !session[:id] %>
     <td>
       <%= link_to "Update", edit_item_path(item.id), method: :get %>
     </td>

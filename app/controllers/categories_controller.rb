@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+
   def new
     @category = Category.new
   end
@@ -20,14 +21,19 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_id(params[:id])
-    if !@category
-      render_404
-    end
+    @items = Category.find_by(@item_category)
   end
+
+    #
+    # @category = Category.find_by_id(params[:id])
+    # if !@category
+    #   render_404
+    # end
+  # end
 
   private
   def category_params
     params.require(:category).permit(:name)
   end
+
 end
