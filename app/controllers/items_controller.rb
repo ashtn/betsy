@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
       # we are in our 'regular' route
       @items = Item.all
     end
+    
   end
 
   def show

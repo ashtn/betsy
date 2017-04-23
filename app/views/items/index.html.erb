@@ -11,6 +11,9 @@
       Qty in Stock
     </th>
     <th>
+      Average Rating
+    </th>
+    <th>
 
     </th>
     <th>
@@ -27,6 +30,9 @@
     </td>
     <td>
       <%= "#{item.inventory}"%>
+    </td>
+    <td>
+      <%= "#{item.average_rating}" %>
     </td>
     <% if !session[:id] %>
     <td>
