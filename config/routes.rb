@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-
+  root 'items#index'
 
   get 'auth/github/callback', to: 'sessions#create'
-
-  get '/login', to: 'sessions#login_form'
-  post '/login', to: 'sessions#login'
+  # get '/login', to: 'sessions#login_form'
+  # post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout'
 
   get '/merchants', to: 'merchants#index', as: 'merchants'

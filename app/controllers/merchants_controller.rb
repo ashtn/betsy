@@ -33,4 +33,7 @@ class MerchantsController < ApplicationController
     params.require(:merchant).permit(:username, :email)#, :uid, :provider)
   end
 
+  def find_merchant
+    @merchant = Merchant.find_by_id(params[:id])
+  end
 end

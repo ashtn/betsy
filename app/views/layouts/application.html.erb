@@ -39,18 +39,18 @@
         <%= link_to "#{merchant.username}", merchant_path(merchant.id) %>
         <% end %>
       </div>
-
-      <div class="dropdown">
-        <% if session[:merchant_id] %>
-          <p>
-            Logged in as <%= link_to "#{ Merchant.find_by_id(session[:merchant_id]).username }", merchant_path(session[:merchant_id]) %>
-          </p>
-          <%= link_to 'Logout!', logout_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Login!', login_path %>
-        <% end %>
-      </div>
     </div>
+    <div class="login-logout">
+      <% if current_merchant %>
+        <p>
+          Logged in as <%= link_to "#{ Merchant.find_by_id(current_merchant).username }", merchant_path(current_merchant) %>
+        </p>
+        <%= link_to 'Logout!', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Login!', login_path %>
+      <% end %>
+    </div>
+
   </header>
 
 
