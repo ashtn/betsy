@@ -1,2 +1,4 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<h2>New Review</h2>
+<h4>Review <%= Item.find(@review.item_id).name %></h3>
+
+<%= render partial: "form", locals: { action_name: "Add item", form_method: :post }%>

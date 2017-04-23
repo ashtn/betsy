@@ -1,0 +1,13 @@
+<%= form_for @review, method: form_method, url: item_path(@review.item_id) do |f| %>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select(1..5) %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.hidden_field :item_id, value: @review.item_id %>
+
+  <%= f.submit action_name, :class => "button" %>
+
+<% end %>
