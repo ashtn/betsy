@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :add_header_text
-
+  before_action :find_merchant
 
   def add_header_text
      @categories = Category.all
@@ -21,5 +21,13 @@ class ApplicationController < ActionController::Base
 
   def render_404
     render file: "#{ Rails.root }/public/404.html", status: 404
+  end
+
+  private
+
+  def find_merchant
+    if session[:merchant_id]
+      @login_user = Merchant.find_by(id: session[:merchant_id])
+    end
   end
 end
