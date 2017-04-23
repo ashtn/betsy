@@ -45,14 +45,14 @@ describe Order do
       purchased_order_items << order_items(:one)
       purchased_order_items << order_items(:two)
 
-      Order.find_total(purchased_order_items).must_equal 10
+      Order.find_total(purchased_order_items).must_equal 17.5
     end
 
     it "generates the correct total for one order item" do
       purchased_order_items = []
       purchased_order_items << order_items(:two)
 
-      Order.find_total(purchased_order_items).must_equal 6
+      Order.find_total(purchased_order_items).must_equal 1.5
     end
 
     it "generates the correct total for zero order items" do
@@ -68,6 +68,17 @@ describe Order do
         Order.change_status_to_paid(orders(:one).id).must_equal true
 
         Order.find_by_id(orders(:one).id).status.must_equal "paid"
+      end
+    end
+
+    describe 'inventory_adjust' do
+      it "adjusts inventory based on item quantity bought" do
+
+        Order.inventory_adjust(orders(:one).id)
+
+        Item.find_by_id(items(:chips).id).inventory.must_equal 16 # this locates the items in our fixtures and checks their inventory
+        Item.find_by_id(items(:item_two).id).inventory.must_equal 0
+
       end
     end
   end

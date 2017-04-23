@@ -3,9 +3,9 @@
 one:
   item: chips
   order: one
-  quantity: 1
+  quantity: 4
 
 two:
   item: item_two
   order: one
-  quantity: 4
+  quantity: 1

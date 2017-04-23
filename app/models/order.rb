@@ -29,7 +29,7 @@ class Order < ApplicationRecord
       order_items.each do | order_item |
         item = Item.find_by_id(order_item.item_id)
         if order_item.quantity <= item.inventory
-          item.inventory -= order_item.quantity # reduce that items inventory by one
+          item.inventory -= order_item.quantity # reduce that items inventory by the quantity bought
           item.save
         else
           # TODO: handle cases where we don't have enough inventory
