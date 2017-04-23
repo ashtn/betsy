@@ -10,7 +10,8 @@ class ReviewsController < ApplicationController
     @item = Item.find(params[:id])
     @review.item_id = @item.id
     if @review.save
-      #flash.now[:success] = "Review added successfully"
+      # flash isn't working atm
+      flash.now[:success] = "Review added successfully"
       redirect_to item_path(@item)
     else
       flash.now[:error] = "Error has occured"
