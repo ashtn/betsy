@@ -12,8 +12,11 @@
 
 <%= form_for @order, method: :post, url: paid_path(@order.id) do |f| %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.label :name_on_card %>
+  <%= f.text_field :name_on_card %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
 
   <%= f.label :phone_num %>
   <%= f.text_field :phone_num %>

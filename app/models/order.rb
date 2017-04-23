@@ -26,5 +26,6 @@ class Order < ApplicationRecord
         order_item(item.id).inventory -= 1 # reduce that items inventory by one
         # clear items from cart
       end
+
     end
 end
