@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+chips:
   merchant_id: 1
-  name: MyString
-  description: MyString
-  price: 1.5
-  inventory: 1
-  photo: MyString
+  name: chips
+  description: tortilla
+  price: 4
+  inventory: 20
+  photo: somestring
 
 two:
   merchant_id: 1

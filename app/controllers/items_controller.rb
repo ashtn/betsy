@@ -31,9 +31,8 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create item_params
     unless @item.id == nil
-      flash[:success] = "Item added successfully"
-      redirect_to items_path
 
+      redirect_to items_path, flash: {success: "Item added successfully"}
     else
       flash.now[:error] = "Error has occured"
       render "new"
@@ -98,26 +97,5 @@ class ItemsController < ApplicationController
         @login_user = User.find_by(id: session[:user_id])
       end
     end
-
-
-  # def index
-  #   @items = Item.all
-  # end
-  #
-  # def new
-  #   @item = Item.new
-  # end
-  #
-  # def create
-  # end
-  #
-  # def edit
-  # end
-  #
-  # def update
-  # end
-  #
-  # def show
-  # end
 
 end
