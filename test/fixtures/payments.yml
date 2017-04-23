@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_on_card: MyString
+  email: MyString
+  phone_num: MyString
+  ship_address: MyString
+  bill_address: MyString
+  card_number: MyString
+  expiration_date: MyString
+  CCV: MyString
+
+two:
+  name_on_card: MyString
+  email: MyString
+  phone_num: MyString
+  ship_address: MyString
+  bill_address: MyString
+  card_number: MyString
+  expiration_date: MyString
+  CCV: MyString
