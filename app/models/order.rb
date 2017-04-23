@@ -9,8 +9,9 @@ class Order < ApplicationRecord
     def self.find_total(order_items)
       total = 0.0
 
-      order_items.each do | item |
-        total += (item.price * item.quantity)
+      order_items.each do | order_item |
+        item = Item.find_by_id(order_item.item_id)
+        total += (item.price * order_item.quantity)
       end
       return total
     end
