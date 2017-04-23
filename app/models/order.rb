@@ -19,6 +19,7 @@ class Order < ApplicationRecord
       # if CC numbers are valid, order.id.status == "paid"
       # will need a payment form that is accessed through a "pay" button on cart
       # the pay button should also check inventory to make sure that we have enough in stock
+      # if everything is valid, it should send them to the conformation.html page
     end
 
     def self.inventory

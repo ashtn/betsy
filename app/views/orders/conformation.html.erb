@@ -1,10 +1,9 @@
-users are sent here from payment page (provided that all the info is valid)
 
 <h1>Order Conformation</h1>
 
 <h3>
-    <li>Order placed:<%= datetime %> Order total:
-      $<%= order.total %> Order Status: <%= order.status %>
+    <li>Order placed:<%= order.created_at %> Order total:
+      $<%= order.total %> Order status: <%= order.status %>
     </li>
 </h3>
 <h4>
