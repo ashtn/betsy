@@ -2,10 +2,10 @@
 
 one:
   item: chips
-  order_id: 1
+  order: one
   quantity: 1
 
 two:
   item: item_two
-  order_id: 2
+  order: one
   quantity: 4

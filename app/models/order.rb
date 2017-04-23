@@ -16,18 +16,15 @@ class Order < ApplicationRecord
       return total
     end
 
-    def self.change_status(order_id) # "submit order" button on cart need to be linked to this method
-      order = Order.find_by_order_id(order_id)
+    def self.change_status_to_paid(order_id) # "submit order" button on cart need to be linked to this method
+      order = Order.find_by_id(order_id)
       order.status = "paid"
       order.save
-
-      Order.inventory_adjust(order_id)
-      # if everything is valid, it should send them to the conformation.html page
     end
 
     def self.inventory_adjust(order_id)
 
-      order_items = OrderItems.find_by_order_id(order_id)
+      order_items = OrderItem.where(order_id: order_id)
 
       order_items.each do | order_item |
         item = Item.find_by_id(order_item.item_id)

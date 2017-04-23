@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def update
+  def update # TODO: actually update stuff
 
     @order = Order.find_by_id(params[:id])
 
