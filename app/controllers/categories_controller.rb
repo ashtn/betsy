@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
 
   def new
     @category = Category.new
