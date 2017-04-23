@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :reviews
 
 
-  validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
   validates :inventory, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :name, presence: true, uniqueness: true
 
