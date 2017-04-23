@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   get 'reviews/new'
   get 'reviews/create'
 
-  get 'merchants/new'
-  get 'merchants/create'
-  get 'merchants/index'
-  get 'merchants/show'
+  get '/merchants', to: 'merchants#index', as: 'merchants'
+  post '/merchants', to: 'merchants#create'
+  get '/merchants/new', to: 'merchants#new', as: 'new_merchant'
+  get '/merchants/:id', to: 'merchants#show', as: 'merchant'
+
 
   patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
