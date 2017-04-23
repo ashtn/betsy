@@ -1,17 +1,16 @@
 class ReviewsController < ApplicationController
 
-  def index; end
-
   def new
-    @item = Item.find(params[:item_id])
-    @review = @item.reviews.new
+    @review = Review.new
+    @review.item_id = params[:item_id]
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @review = @item.reviews.new(review_params)
+    @review = Review.new(review_params)
+    @item = Item.find(params[:id])
+    @review.item_id = @item.id
     if @review.save
-      flash[:success] = "Review added successfully"
+      #flash.now[:success] = "Review added successfully"
       redirect_to item_path(@item)
     else
       flash.now[:error] = "Error has occured"
@@ -21,6 +20,6 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.requiree(:review).permit(:rating, :review)
+    params.require(:review).permit(:rating, :description, :item_id)
   end
 end

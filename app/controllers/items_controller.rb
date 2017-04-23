@@ -18,6 +18,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find_by_id(params[:id])
+    @reviews = Review.where(item_id: @item.id)
+
     if !@item
       # render_404
     end

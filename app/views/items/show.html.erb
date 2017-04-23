@@ -24,7 +24,7 @@
     </p>
     <p>
 
-  <%= link_to "Review this item", new_item_review_path(@item), method: :get%>
+  <%= link_to "Review this item", new_item_review_path(@item.id), method: :get %>
 <!-- No path -->
     </p>
     <p>
@@ -39,4 +39,17 @@
   <%= link_to "Retire", edit_item_path(@item.id), method: :get %>
 <!-- no path  -->
     </p>
+</section>
+
+<!-- Review section... temporary location, hopeing it will prevent merge conflicts -->
+<section>
+<h4>Reviews</h4>
+<% if @reviews.count > 0%>
+  <% @reviews.each do |review| %>
+    <h4>Rating: <%= "#{review.rating}" %></h4>
+    <h4>Review: <%= "#{review.description}" %></h4>
+  <% end %>
+<% else %>
+    <p>Sorry, no reviews</p>
+<% end %>
 </section>
