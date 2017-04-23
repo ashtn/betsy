@@ -10,8 +10,8 @@ chips:
 
 two:
   merchant_id: 1
-  name: MyString
-  description: MyString
+  name: potato
+  description: idaho gold
   price: 1.5
   inventory: 1
   photo: MyString

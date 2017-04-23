@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create item_params
     unless @item.id == nil
-
       redirect_to items_path, flash: {success: "Item added successfully"}
     else
       flash.now[:error] = "Error has occured"

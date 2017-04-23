@@ -27,19 +27,20 @@ describe ItemsController do
   end
 
   it "should get create" do
-
+    get new_item_path
+    must_respond_with :success
   end
 
   it "should redirect to list after adding item" do
-  post items_path params: {item:
-    { title: "Salsa",
-      merchant_id: merchants(:one).id,
-      description: "Yummy",
-      price: 5,
-      inventory: 22
-    } }
-  must_redirect_to items_path
-end
+    post items_path params: {item:
+      { name: "Salsa",
+        merchant_id: merchants(:one).id,
+        description: "Yummy",
+        price: 5,
+        inventory: 22
+      } }
+    must_redirect_to items_path
+  end
 
   it "should get edit" do
     get edit_item_path(items(:chips).id)
@@ -47,7 +48,8 @@ end
   end
 
   it "should get update" do
-
+    get edit_item_path(items(:chips).id)
+    must_respond_with :success
   end
 
   it "should affect the model when creating an item" do
@@ -62,8 +64,6 @@ end
     }.must_change 'Item.count', 1
 
   end
-
-
 
   it "should delete an iten and redirect to items list" do
   delete item_path(items(:chips).id)
