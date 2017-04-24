@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-skip_before_action :require_login, only: [:index, :show]
+skip_before_action :require_login#, only: [:index, :show]
 
 # Price must be a number
 # Price must be greater than 0

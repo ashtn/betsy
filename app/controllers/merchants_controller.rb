@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-skip_before_action :require_login, only: [:index]
+skip_before_action :require_login, only: [:index, :login_form]
   def index
     @merchants = Merchant.all
   end
