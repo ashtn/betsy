@@ -37,7 +37,7 @@
       <div class="dropdown-content">
         <%= link_to "Show all", merchants_path %>
         <% @merchants.each do |merchant| %>
-        <%= link_to "#{merchant.username}", merchant_path(merchant.id) %>
+        <%= link_to "#{merchant.username}", merchant_items_path(merchant.id) %>
         <% end %>
       </div>
     </div>

@@ -27,6 +27,11 @@ skip_before_action :require_login, only: [:index, :new, :create]
     end
   end
 
+  def merchant_items
+    @items = Item.where(merchant_id: params[:id])
+    render "/items/index"
+  end
+
   private
 
   def merchant_params
