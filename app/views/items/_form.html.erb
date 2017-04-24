@@ -29,7 +29,8 @@
 <%= f.text_field :merchant_id %></br>
 
 <%= f.label :categories %></br>
-<%= f.text_field :category_ids %></br>
+<%= f.select :categories, options_for_select(["Snack", "Entertainment", "Recreation", "Toys"]), {}, {:multiple => true, :class => "chzn-select", :style => "width:150px;" } %></br>
+
 
 
 <%= f.submit action_name, :class => "button" %>
