@@ -46,6 +46,8 @@ GEM
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
     coderay (1.1.1)
@@ -57,10 +59,14 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+<<<<<<< HEAD
     dotenv (2.2.0)
     dotenv-rails (2.2.0)
       dotenv (= 2.2.0)
       railties (>= 3.2, < 5.1)
+=======
+    debug_inspector (0.0.2)
+>>>>>>> ba3c61b3e4ed576eb07f6eaee7d9340e14784ad6
     erubis (2.7.0)
     execjs (2.7.0)
     faraday (0.11.0)
@@ -204,6 +210,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   better_errors
+  binding_of_caller
   byebug
   coffee-rails (~> 4.2)
   dotenv-rails

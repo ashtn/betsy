@@ -1,2 +1,18 @@
-<h1>Merchants#show</h1>
+<h1> Items by: <%= @merchant.username %>(Merchants#show)</h1>
+
 <p>Find me in app/views/merchants/show.html.erb</p>
+
+<ul>
+
+<% @merchant.items.each do |item| %>
+
+  <li>
+    <%= link_to item.name, item_path(item.id) %> : $<%= sprintf('%.2f', item.price) %>
+  </li>
+
+<% end %>
+</ul>
+
+
+
+<%= link_to "Add New Item", new_item_path, method: :get %>

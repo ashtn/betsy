@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def update
+  def update # TODO: actually update stuff
 
     @order = Order.find_by_id(params[:id])
 
@@ -45,6 +45,11 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+  end
+
+  def pay
+    @order = Order.find(params[:id])
+    render "pay_form"
   end
 
   private

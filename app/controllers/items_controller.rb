@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+skip_before_action :require_login#, only: [:index, :show]
+
 # Price must be a number
 # Price must be greater than 0
 
@@ -14,7 +16,7 @@ class ItemsController < ApplicationController
       # we are in our 'regular' route
       @items = Item.all
     end
-    
+
   end
 
   def show
@@ -32,8 +34,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create item_params
-    unless @item.id == nil
+    @item = Item.new item_params
+    @item.merchant_id = find_merchant.id
+    @item.save
+    unless @item.merchant_id == nil
       redirect_to items_path, flash: {success: "Item added successfully"}
     else
       flash.now[:error] = "Error has occured"
@@ -83,7 +87,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :inventory)
+    params.require(:item).permit(:name, :description, :price, :inventory, :merchant_id)
   end
 
   def find_item

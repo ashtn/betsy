@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   end
 
   resources :orders
+  get '/orders/:id/pay', to: 'orders#pay', as: 'pay'
+  post '/orders/:id/pay', to: 'orders#paid', as: 'paid'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
