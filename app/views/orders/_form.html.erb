@@ -12,11 +12,13 @@
 
 <%= form_for @order, method: form_method do |f| %>
 
+  Order id:<%= @order.id %>
+
   <%= f.label :status %>
   <%= f.text_field :status %>
 
   <%= f.label :total %>
-  <%= f.text_field :total %>
+  <%= f.text_field :total, :disabled => true %>
 
   <%= f.submit action_name %>
 

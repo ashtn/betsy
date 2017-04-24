@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
 
     @order = Order.find_by_id(params[:id])
 
+    @order.status = order_params[:status]
     if @order.save
       redirect_to order_path
     else
