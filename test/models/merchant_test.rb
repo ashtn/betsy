@@ -56,7 +56,13 @@ describe Merchant do
 
   describe "Merchant Relationships" do
     it " Returns a list of items, given merchant with items" do
-      skip
+      merchant = merchants(:one)
+      puts "Merchant name #{merchant.username}"
+      merchant.ordered_items.each do |item|
+        puts "Order item: #{item.name}"
+        item.must_be_kind_of Item
+      end
+      #merchant.must_respond_to :ordered_items
     end
 
     it " Returns error message, when retriving items, given merchant with no items." do
