@@ -42,6 +42,7 @@
     </div>
 
 
+
       <div class="dropdown">
         <% if @login_form %>
           <button class="dropbtn">Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
@@ -64,16 +65,6 @@
 
       </div>
     </div>
-    <!-- <div class="login-logout">
-      <% if @login_merchant %>
-        <p>
-          Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
-        </p>
-        <%= link_to 'Logout!', logout_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Login using GitHub!', '/auth/github' %>
-      <% end %>
-    </div> -->
 
   </header>
 </nav>
