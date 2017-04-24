@@ -37,13 +37,10 @@ class SessionsController < ApplicationController
 
   def logout
     session.delete(:merchant_id)
-<<<<<<< HEAD
-    flash[:success] = "You have successfully logged out"
-    redirect_to items_path
-=======
+
     flash[:success] = "You have successfully loged out"
     redirect_to root_path
->>>>>>> a72546045f3bdc0db71ad406c002153783f92f19
+
   end
 
 end
