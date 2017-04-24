@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
   private
 
   def find_merchant
-    # if session[:merchant_id]
-      # @login_user = Merchant.find_by(id: session[:merchant_id])
-    # end
+    if session[:merchant_id]
+      @login_user = Merchant.find_by(id: session[:merchant_id])
+    end
   end
 end
