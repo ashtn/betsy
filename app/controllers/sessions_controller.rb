@@ -1,11 +1,24 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:create]
-  skip_before_action :require_login, only: [:login_form, :login]
+  #skip_before_action :require_login, only: [:login_form, :login]
 
   def login_form; end
 
   def create
     auth_hash = request.env['omniauth.auth']
+
+    merchant = Merchant.find_by(uid: auth_hash["uid"], provider: auth_hash["provider"])
+
+    if merchant.nil?
+      merchant = Merchant.create_from_github(auth_hash)
+      if merchant.nil?
+        flash[:error] = "Could not log in."
+        redirect_to root_path
+      end
+    end
+    session[:merchant_id] = merchant.id
+    flash[:success] = "Logged in successfully!"
+    redirect_to root_path
   end
 
   # def login
@@ -24,7 +37,7 @@ class SessionsController < ApplicationController
   def logout
     session.delete(:merchant_id)
     flash[:success] = "You have successfully loged out"
-    redirect_to items_path
+    redirect_to root_path
   end
 
 end

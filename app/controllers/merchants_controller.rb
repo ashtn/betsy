@@ -33,7 +33,7 @@ skip_before_action :require_login, only: [:index, :login_form]
     params.require(:merchant).permit(:username, :email)#, :uid, :provider)
   end
 
-  def find_merchant
-    @merchant = Merchant.find_by_id(params[:id])
-  end
+  # def find_merchant
+  #   @merchant = Merchant.find_by_id(params[:id])
+  # end
 end

@@ -14,13 +14,14 @@ class ApplicationController < ActionController::Base
   def require_login
     if !session[:merchant_id]
       flash[:warning] = "You must be logged in to view this page"
-      redirect_to items_path
+      redirect_to root_path
     end
   end
 
-  def current_merchant
-    @logged_in_merchant ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
-  end
+  # this is not working right now...
+  # def current_merchant
+  #   @logged_in_merchant ||= Merchant.find(session[:merchant_id]) if session[:merchant_id]
+  # end
 
   def render_404
     render file: "#{ Rails.root }/public/404.html", status: 404
@@ -29,8 +30,8 @@ class ApplicationController < ActionController::Base
   private
 
   def find_merchant
-    # if session[:merchant_id]
-      # @login_user = Merchant.find_by(id: session[:merchant_id])
-    # end
+    if session[:merchant_id]
+      @login_merchant = Merchant.find_by(id: session[:merchant_id])
+    end
   end
 end

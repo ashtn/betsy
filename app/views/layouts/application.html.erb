@@ -41,20 +41,16 @@
       </div>
     </div>
     <div class="login-logout">
-      <% if current_merchant %>
+      <% if @login_merchant %>
         <p>
-          Logged in as <%= link_to "#{ Merchant.find_by_id(current_merchant).username }", merchant_path(current_merchant) %>
+          Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
         </p>
         <%= link_to 'Logout!', logout_path, method: :delete %>
       <% else %>
-        <%= link_to 'Login!', login_path %>
+        <%= link_to 'Login using GitHub!', '/auth/github' %>
       <% end %>
     </div>
-
   </header>
-
-
-
 </nav>
 
 <% flash.each do |name, message| %>
