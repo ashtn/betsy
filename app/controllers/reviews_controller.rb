@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  skip_before_action :require_login
   def new
     @review = Review.new
     @review.item_id = params[:item_id]
