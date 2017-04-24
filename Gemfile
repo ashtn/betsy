@@ -60,6 +60,7 @@ group :development do
 end
 
 gem 'awesome_print'
+gem 'foundation-rails'
 
 gem "omniauth"
 gem "omniauth-github"
