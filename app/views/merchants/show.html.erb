@@ -2,17 +2,101 @@
 
 <p>Find me in app/views/merchants/show.html.erb</p>
 
-<ul>
 
-<% @merchant.items.each do |item| %>
 
-  <li>
-    <%= link_to item.name, item_path(item.id) %> : $<%= sprintf('%.2f', item.price) %>
-  </li>
 
-<% end %>
-</ul>
 
+<section>
+
+  <h3>testing total revenue:</h3>
+
+  $<%= sprintf('%.2f', @merchant.revenue_by_id(@merchant.id)) %>
+
+</section>
+============================================
+<section>
+
+  <h3> Testing all_orders_by_id :</h3>
+
+  <table>
+    <thead>
+      <th>
+        Order Id
+      </th>
+      <th>
+        order total
+      </th>
+    </thead>
+    <% @merchant.all_orders_by_id(@merchant.id).each do |order| %>
+    <tr>
+      <td>
+        <%=link_to "#{order.id}", order_path(order.id), method: :get%>
+      </td>
+      <td>
+        $<%= sprintf('%.2f', order.total)%>
+      </td>
+      <%end%>
+    </tr>
+  </table>
+</section>
+============================================
+
+<section>
+  <h3>testing merchant_order_items method:</h3>
+<table>
+  <thead>
+    <th>
+      Item
+    </th>
+    <th>
+      Price
+    </th>
+    <th>
+      Qty in Stock
+    </th>
+    <th>
+      Average Rating
+    </th>
+    <th>
+
+    </th>
+    <th>
+
+    </th>
+  </thead>
+
+<% @merchant.order_items_by_id(@merchant.id).each do |order_item| %>
+  <tr>
+    <td>
+      <%=link_to "#{Item.find(order_item.item_id).name.capitalize}", item_path(order_item.item_id), method: :get%>
+    </td>
+    <td>
+      $<%= sprintf('%.2f', Item.find(order_item.item_id).price)%>
+    </td>
+    <td>
+      <%= Item.find(order_item.item_id).inventory%>
+    </td>
+    <td>
+      <%= Item.find(order_item.item_id).average_rating %>
+    </td>
+
+    <%# if current_merchant %>
+    <td>
+      <%= link_to "Update", edit_item_path(Item.find(order_item.item_id)), method: :get %>
+    </td>
+    <td>
+      <%= link_to "Delete", item_path(Item.find(order_item.item_id)), method: :delete %>
+    </td>
+    <td>
+      <%= link_to "Retire", item_path(Item.find(order_item.item_id)), method: :delete %>
+    </td>
+    <%#end%>
+  </tr>
+  <%end%>
+
+</table>
+
+</section>
 
 
 <%= link_to "Add New Item", new_item_path, method: :get %>
