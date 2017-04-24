@@ -61,7 +61,21 @@ end
 
 #sample data
 
-#o = Oder.create(session_id: 1, status: nil, total: 45.00)
+#o = Order.create(session_id: 2, status: "paid", total: 45.00)
 
 
 # m = Merchant.create(username: "Ada", email: "email@test.com", uid: 1, provider: "github")
+
+
+# oi = item_id: nil, order_id: 1, quantity: nil,
+# merchant_id: Merchant.where(item_id: )>
+#
+#
+
+
+# item = Item.create(merchant_id: 7, name: "Green", description: "Beans Description", price: 10.00, inventory: 30, photo: nil)
+
+
+# oi = OrderItem.create(item_id: 1, order_id: 1, quantity: 5, merchant_id: 7)
+# oi = OrderItem.create(item_id: 2, order_id: 1, quantity: 4, merchant_id: 7)
+# oi = OrderItem.create(item_id: 3, order_id: 1, quantity: 3, merchant_id: 7)
