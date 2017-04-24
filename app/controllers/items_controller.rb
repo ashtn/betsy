@@ -5,7 +5,7 @@ skip_before_action :require_login, only: [:index, :show]
 # Price must be greater than 0
 
 
-  # before_action :find_item, only: [:show, :edit]
+  before_action :find_categories, only: [:show, :edit]
 
   def index
     if params[:category_id]
@@ -63,6 +63,8 @@ skip_before_action :require_login, only: [:index, :show]
     @item = Item.find_by(id: params[:id])
 
     @item.name = item_params[:name]
+    @item.category_ids = params[:item][:category_ids]
+    # raise
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -88,7 +90,7 @@ skip_before_action :require_login, only: [:index, :show]
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :inventory, :merchant_id)
+    params.require(:item).permit(:name, :description, :price, :inventory, :merchant_id, :category_ids)
   end
 
   def find_item
@@ -96,13 +98,20 @@ skip_before_action :require_login, only: [:index, :show]
   end
 
 
-
-
-  private
     def find_user
       if session[:merchant_id]
         @login_user = User.find_by(id: session[:user_id])
       end
+    end
+
+    def find_categories
+      @categories = Category.all
+      @categories_names = []
+      @categories.each do |category|
+        @categories_names << category.name
+      end
+      # raise
+      return @categories_names
     end
 
 end
