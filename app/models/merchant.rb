@@ -13,15 +13,23 @@ class Merchant < ApplicationRecord
     return items
   end
 
+
   def order_items_by_id(merchant_id)
     order_items = OrderItem.where(merchant_id: merchant_id)
     return order_items #order item objects
   end
 
+  def all_order_ids(merchant_id)
+    order_ids = order_items_by_id(merchant_id).map {| order_item | order_item.order_id }
+    return order_ids
+  end
+
+
   def all_orders_by_id(merchant_id)
-    orders = Order.where(id: OrderItem.where(merchant_id: merchant_id))
+    orders = all_order_ids(merchant_id).map {|id | Order.find id }
     return orders
   end
+
 
 
   def revenue_by_id(merchant_id)
@@ -33,6 +41,7 @@ class Merchant < ApplicationRecord
   end
 
   def revenue_by_status(status)
+    TODO 
   end
 
 
