@@ -1,30 +1,49 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login#, only: [:create]
-  # skip_before_action :require_login, only: [:login_form, :login]
+
+  skip_before_action :require_login, only: [:create]
+  #skip_before_action :require_login, only: [:login_form, :login]
 
   def login_form; end
 
   def create
-    # will be used for omniAuth and OAuth business
+    auth_hash = request.env['omniauth.auth']
+
+    merchant = Merchant.find_by(uid: auth_hash["uid"], provider: auth_hash["provider"])
+
+    if merchant.nil?
+      merchant = Merchant.create_from_github(auth_hash)
+      if merchant.nil?
+        flash[:error] = "Could not log in."
+        redirect_to root_path
+      end
+    end
+    session[:merchant_id] = merchant.id
+    flash[:success] = "Logged in successfully!"
+    redirect_to root_path
   end
 
-  def login
-    merchant = Merchant.find_by_username(params[:username])
-    if merchant
-      session[:merchant_id] = merchant.id
-      flash[:success] = "Welcome back #{ merchant.username }"
-      redirect_to items_path
-    else
-      flash.now[:error] = "Merchant not found"
-      render :login_form
-    end
-  end
+  # def login
+  #   merchant = Merchant.find_by_username(params[:username])
+  #   if merchant
+  #     session[:merchant_id] = merchant.id
+  #     flash[:success] = "Welcome back #{ merchant.username }"
+  #     redirect_to items_path
+  #   else
+  #     flash.now[:error] = "Merchant not found"
+  #     render :login_form
+  #   end
+  # end
 
 
   def logout
     session.delete(:merchant_id)
+<<<<<<< HEAD
     flash[:success] = "You have successfully logged out"
     redirect_to items_path
+=======
+    flash[:success] = "You have successfully loged out"
+    redirect_to root_path
+>>>>>>> a72546045f3bdc0db71ad406c002153783f92f19
   end
 
 end

@@ -40,32 +40,44 @@
         <% end %>
       </div>
     </div>
+<<<<<<< HEAD
 
 
       <div class="dropdown">
-        <% if session[:merchant_id] %>
-          <button class="dropbtn">Logged in as <%= link_to "#{ Merchant.find_by_id(session[:merchant_id]).username }", merchant_path(session[:merchant_id]) %>
+        <% if @login_form %>
+          <button class="dropbtn">Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
+
           </button>
         <% else %>
           <button class="dropbtn">Merchant Sign in</button>
         <% end %>
         <div class="dropdown-content">
-        <% if session[:merchant_id] %>
+        <% if @login_merchant %>
           <p>
           </p>
           <%= link_to 'Logout', logout_path, method: :delete %>
-          <%= link_to "My Account", merchant_path(session[:merchant_id]), method: :get%>
+          <%= link_to "My Account", merchant_path(@login_merchant.id), method: :get%>
         <% else %>
-          <%= link_to 'Login', login_path %>
+            <%= link_to 'Login using GitHub!', '/auth/github' %>
             <%= link_to 'Create new', new_merchant_path, method: :get%>
         <% end %>
 
 
-      </div>    </div>
+      </div>
+    </div>
+=======
+    <!-- <div class="login-logout">
+      <% if @login_merchant %>
+        <p>
+          Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
+        </p>
+        <%= link_to 'Logout!', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Login using GitHub!', '/auth/github' %>
+      <% end %>
+    </div> -->
+>>>>>>> a72546045f3bdc0db71ad406c002153783f92f19
   </header>
-
-
-
 </nav>
 
 <% flash.each do |name, message| %>
