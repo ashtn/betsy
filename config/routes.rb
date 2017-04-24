@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   resources :items do
+
     resources :reviews, except: [:index, :show]
   end
 

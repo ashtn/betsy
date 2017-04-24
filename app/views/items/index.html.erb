@@ -34,12 +34,12 @@
     <td>
       <%= "#{item.average_rating}" %>
     </td>
-    <% if !session[:id] %>
+    <% if !session[:merchant_id] %>
     <td>
         <%= link_to "Cart", add_to_cart_path(item.id),  method: :patch%>
     </td>
     <%end%>
-    <% if !session[:id] %>
+    <% if session[:merchant_id] %>
     <td>
       <%= link_to "Update", edit_item_path(item.id), method: :get %>
     </td>
@@ -58,5 +58,6 @@
 
 
 
-
+<% if session[:merchant_id] %>
 <%= link_to "Add New Item", new_item_path, method: :get %>
+<% end %>
