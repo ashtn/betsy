@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-skip_before_action :require_login#, only: [:index, :show]
+skip_before_action :require_login, only: [:index, :show]
 
 # Price must be a number
 # Price must be greater than 0
@@ -100,7 +100,7 @@ skip_before_action :require_login#, only: [:index, :show]
 
   private
     def find_user
-      if session[:user_id]
+      if session[:merchant_id]
         @login_user = User.find_by(id: session[:user_id])
       end
     end
