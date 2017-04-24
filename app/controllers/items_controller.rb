@@ -76,11 +76,19 @@ skip_before_action :require_login, only: [:index, :show]
   end
 
   def add_to_cart
+    # if there is a :current_order_id aka this user has items in cart
+    if session[:current_order_id]
+      # calling the existing session 'order'
+      order = Order.find(session[:current_order_id])
+      # add item to order
+    else
+      # creates a new :current_order_id
+      order = Order.create(...)
+      # and add item to order
+      session[:current_order_id] = order.id
+    end
 
-    # Order.new(item.id)
-    # item.order.status = "in cart"
-
-
+    
     # where(session: (session[:id]).order(vote_count: :desc).limit(10)
     # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    end
   end
