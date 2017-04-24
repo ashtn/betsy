@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only: [:create]
-  skip_before_action :require_login, only: [:login_form, :login]
+  skip_before_action :require_login#, only: [:create]
+  # skip_before_action :require_login, only: [:login_form, :login]
 
   def login_form; end
 
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
   def logout
     session.delete(:merchant_id)
-    flash[:success] = "You have successfully loged out"
+    flash[:success] = "You have successfully logged out"
     redirect_to items_path
   end
 

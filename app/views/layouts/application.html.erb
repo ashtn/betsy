@@ -26,7 +26,7 @@
       <div class="dropdown-content">
         <%= link_to "Show all", items_path %>
         <% @categories.each do |category| %>
-        <%= link_to "#{category.name}", category_path(category.id) %>
+        <%= link_to "#{category.name}", category_items_path(category.id) %>
         <% end %>
       </div>
     </div>

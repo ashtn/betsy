@@ -11,7 +11,8 @@ skip_before_action :require_login#, only: [:index, :show]
     if params[:category_id]
       # we are in the nested route
       # retrieve items based on the genre
-      @items = Item.includes(:category).where(category: { id: params[:category_id]})
+      # @items = Item.includes(:category).where(category: { id: params[:category_id]})
+      @items = Item.includes(:categories).where(categories: { id: params[:category_id]})
     else
       # we are in our 'regular' route
       @items = Item.all
