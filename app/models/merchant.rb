@@ -61,7 +61,6 @@ end
 
 #sample data
 
-
 #o = Oder.create(session_id: 1, status: nil, total: 45.00)
 
 
