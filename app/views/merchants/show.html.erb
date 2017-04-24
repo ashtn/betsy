@@ -2,16 +2,38 @@
 
 <p>Find me in app/views/merchants/show.html.erb</p>
 
-<ul>
+<u>
 
-<% @merchant.items.each do |item| %>
-
+<li>
+  total revenue:
+</li>
+<li>
+  revenue by status:
+</li>
   <li>
-    <%= link_to item.name, item_path(item.id) %> : $<%= sprintf('%.2f', item.price) %>
+    Status reveue:
   </li>
+  <li>
+    Status reveue:
+  </li>
+<li>
+  Drop down select box to dispay orders by status: 
 
-<% end %>
-</ul>
+  if dropdown
+  dropdown.each do |order|
+
+  link_to Order.id order_path(id) : Order.revenue
+
+</li>
+<li>
+  total revenue:
+</li>
+<li>
+  total revenue:
+</li>
+</u>
+
+
 
 
 
