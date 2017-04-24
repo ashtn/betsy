@@ -54,12 +54,14 @@
           <p>
           </p>
           <%= link_to 'Logout', logout_path, method: :delete %>
+          <%= link_to "My Account", merchant_path(session[:merchant_id]), method: :get%>
         <% else %>
           <%= link_to 'Login', login_path %>
+            <%= link_to 'Create new', new_merchant_path, method: :get%>
         <% end %>
-          <%= link_to 'Create new', new_merchant_path, method: :get%>
-      </div>
-    </div>
+
+
+      </div>    </div>
   </header>
 
 
