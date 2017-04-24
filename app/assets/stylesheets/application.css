@@ -18,9 +18,9 @@
  /* Dropdown Button */
 
  header {
-   background-color: #a99ed8;
+   /*background-color: #a99ed8;*/
    clear: both;
-   color: white;
+   /*color: white;*/
  }
 
  img:hover {
@@ -37,17 +37,17 @@
  }
 
 input  {
-  background-color: #f9f9ff;
+  /*background-color: #f9f9ff;*/
   border-radius: 5px;
 }
 
 input:hover {
-  background-color: #bbb1e7;
+  /*background-color: #bbb1e7;*/
 }
 
  nav div button.dropbtn {
-     background-color: #a99ed8;
-     color: white;
+     /*background-color: lightgrey;*/
+     /*color: white;*/
      padding: 16px;
      font-size: 16px;
      border: none;
@@ -64,7 +64,7 @@ input:hover {
  .dropdown-content {
      display: none;
      position: absolute;
-     background-color: #bbb1e7;
+     background-color: white;
      min-width: 170px;
      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
      z-index: 1;
@@ -76,7 +76,7 @@ input:hover {
      padding: 12px 16px;
      text-decoration: none;
      display: block;
-      color: white;
+      /*color: white;*/
  }
 
  .dropbtn a {
@@ -86,52 +86,23 @@ input:hover {
 
  /* Change color of dropdown links on hover */
  .dropdown-content a:hover {
-   background-color: #f1f1f1;
+   background-color: lightgrey;
    color: black;
 
  }
 
  /* Show the dropdown menu on hover */
  .dropdown:hover .dropdown-content {
-
      display: block;
  }
 
  /* Change the background color of the dropdown button when the dropdown content is shown */
  .dropdown:hover .dropbtn {
-     background-color: #bbb1e7;
+     background-color: lightgrey;
 
  }
+ .home a {
+     /*background-color: lightgrey;*/
+     color: black;
 
-html {
-   height: 100%;
  }
-
-body {
-
-  text-align: center;
-  background-color: #e3e2f9;
-  padding-bottom: 10em;
-  height: 100%;
-
-}
-
-#container {
-   min-height:100%;
-   position:relative;
-}
-
-table {
-  margin-left:auto;
-  margin-right:auto;
-  padding-bottom: 5em;
-}
-
-
-footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height: 3em;
-    vertical-align: bottom;
-}

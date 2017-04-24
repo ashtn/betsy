@@ -19,7 +19,8 @@
     <h1>Besty</h1>
   <nav>
     <div class="dropdown">
-      <button class="dropbtn"><%= link_to "Home", items_path %></button>
+      <button class="dropbtn home">  <%= link_to "Home", items_path %></button>
+      <div class="dropdown-content"></div>
     </div>
 
     <div class="dropdown">
@@ -50,7 +51,7 @@
 
           </button>
         <% else %>
-          <button class="dropbtn">Merchant Sign in</button>
+          <button class="dropbtn">Merchant Account</button>
         <% end %>
         <div class="dropdown-content">
         <% if @login_merchant %>
@@ -65,6 +66,9 @@
 
 
       </div>
+    </div>
+    <div class="">
+      <button class=" cart">  <%= link_to "My Cart", items_path %></button>
     </div>
 
   </header>
