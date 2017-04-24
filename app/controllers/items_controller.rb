@@ -99,6 +99,13 @@ skip_before_action :require_login, only: [:index, :show]
     @item = Item.find_by_id(params[:id])
   end
 
+  # #added by AE
+  # def has_cart
+  #   if OrderItem.where(order_id: Order.where(session_id: session[:user_id]))
+  #     if Order.Where(status: "pending")
+  #     end
+  #   end
+  # end
 
     def find_user
       if session[:merchant_id]

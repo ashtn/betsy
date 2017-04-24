@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-skip_before_action :require_login, only: [:index, :new, :create]
+skip_before_action :require_login, only: [:index, :new, :create, :merchant_items]
   def index
     @merchants = Merchant.all
   end
@@ -25,6 +25,11 @@ skip_before_action :require_login, only: [:index, :new, :create]
     if !@merchant
       render_404 #find me in ApplicationController
     end
+  end
+
+  def merchant_items
+    @items = Item.where(merchant_id: params[:id])
+    render "/items/index"
   end
 
   private
