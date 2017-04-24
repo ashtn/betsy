@@ -39,6 +39,8 @@
         <%= link_to "#{merchant.username}", merchant_path(merchant.id) %>
         <% end %>
       </div>
+    </div>
+
 
       <div class="dropdown">
         <% if session[:merchant_id] %>
@@ -57,7 +59,6 @@
         <% end %>
           <%= link_to 'Create new', new_merchant_path, method: :get%>
       </div>
-    </div>
     </div>
   </header>
 
