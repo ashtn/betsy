@@ -82,10 +82,15 @@ class ItemsController < ApplicationController
     all = Order.all
     # session[:current_order_id] = 1
     # raise
-    if session[:current_order_id] == Order.all.last.id
+    if session[:current_user_id] == nil
+      session[:current_user_id] = (Order.all.last.session_id + 1)
+    end
+
+    if session[:current_user_id] == Order.all.last.session_id
 
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       #set order session id
+
     else
       order = Order.new
 
@@ -95,20 +100,20 @@ class ItemsController < ApplicationController
         order.total = 0.0
         order.save
       else
-        order.session_id = session[:current_order_id]
+        order.session_id = (Order.all.last.session_id + 1)
         order.status = "pending"
         order.total = 0.0
         order.save
 
       end
-      order.session_id = (all.last.id + 1)
+      order.save
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
 
-      OrderItem.where(order_id: (all.last.id)).each do |oi|
-      # OrderItem.where(order_id: session[:current_order_id]).each do |oi|
-        order.total += oi.item.price
-        order.save
-      end
+      # OrderItem.where(order_id: (all.last.id)).each do |oi|
+      # # OrderItem.where(order_id: session[:current_order_id]).each do |oi|
+      #   order.total += oi.item.price
+      #   order.save
+      # end
       # raise
     end
     # raise
@@ -118,9 +123,13 @@ class ItemsController < ApplicationController
 
 
   def show_cart
-    @order_items = OrderItem.where(order_id: OrderItem.last.order_id)
+    if session[:current_user_id] == Order.last.session_id
+    @order_items = OrderItem.where(order_id: Order.last.id)
+  else
+    @order_items = nil
   end
-
+    # raise
+  end
 
 
 
