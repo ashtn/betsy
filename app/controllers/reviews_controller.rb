@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
       flash.now[:success] = "Review added successfully"
       redirect_to item_path(@item)
     else
-      flash.now[:error] = "Error has occured"
+      flash.now[:error] = "Please select a rating."
       render :new
     end
   end
