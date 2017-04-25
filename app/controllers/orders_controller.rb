@@ -28,8 +28,6 @@ class OrdersController < ApplicationController
 
     @order = Order.find_by_id(params[:id])
 
-
-
     @order.status = order_params[:status]
     if @order.save
       redirect_to order_path
@@ -61,7 +59,8 @@ class OrdersController < ApplicationController
 
     if @payment.id != nil
       flash[:success] = "Payment successful!"
-      redirect_to confirmation_path
+      order_id = params[:id] # to clarify that this is an order ID, not payment ID
+      redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"
       @order = Order.find(params[:id])
