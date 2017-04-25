@@ -32,6 +32,13 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
     render "/items/index"
   end
 
+  def order_by_status
+    @merchant = Merchant.find_by_id(params[:id])
+    # @merchant.orders_by_status.where(status: params[:status])
+    render '_order_by_status'
+    #raise
+  end
+
   private
 
   def merchant_params
