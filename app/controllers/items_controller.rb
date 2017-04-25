@@ -158,6 +158,10 @@ class ItemsController < ApplicationController
      end
   end
 
+  def delete_order_item
+    order_item = OrderItem.find(params[:id])
+    order_item.destroy
+  end
 
 
 

@@ -34,12 +34,12 @@ Items in your cart:
         </td>
         <td>
           <%= form_for oi do | order_form | %>
-           <%= order_form.number_field :quantity %>
+           <%= order_form.number_field :quantity, min: 1, max: oi.item.inventory %>
 
-<td>
+        <td>
 
-  <%= order_form.submit %>
-</td>
+          <%= order_form.submit %>
+        </td>
           <% end %>
 
 
