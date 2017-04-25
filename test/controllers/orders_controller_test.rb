@@ -2,6 +2,13 @@ require "test_helper"
 
 describe OrdersController do
 
+  describe "new" do
+    it "should show the new order form" do
+      get new_order_path
+      must_respond_with :redirect
+    end
+  end
+
   describe "create" do
     it "should create an order given valid data" do
       Order.destroy_all
@@ -13,7 +20,7 @@ describe OrdersController do
         }
         post orders_path, params: order_data
 
-        must_respond_with :redirect
+        must_respond_with :redirect_to
 
         Order.all.length.must_equal 1
     end

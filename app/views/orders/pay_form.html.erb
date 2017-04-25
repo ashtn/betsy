@@ -1,7 +1,7 @@
 
 <ul>
 
-  <% @order.errors.each do
+  <% @payment.errors.each do
     |field, msg| %>
     <li>
       <%= field %> <%= msg %>
@@ -10,33 +10,33 @@
 </ul>
 
 
-<%= form_for Payment.new, method: :post, url: paid_path(@order.id) do |f| %>
+<%= form_for @payment, method: :post, url: paid_path(@order.id) do |f| %>
 
   <%= f.label :name_on_card %>
-  <%= f.text_field :name_on_card %>
+  <%= f.text_field :name_on_card, :placeholder => "Name as it appears on card" %>
 
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, :placeholder => "Email address" %>
 
   <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
+  <%= f.text_field :phone_num, :placeholder => "Phone number"%>
 
   <%= f.label :ship_address %>
-  <%= f.text_field :ship_address %>
+  <%= f.text_field :ship_address, :placeholder => "Shipping address" %>
 
   <%= f.label :bill_address %>
-  <%= f.text_field :bill_address %>
+  <%= f.text_field :bill_address, :placeholder => "Billing address" %>
 
   <%= f.label :card_number %>
-  <%= f.text_field :card_number %>
+  <%= f.text_field :card_number, :placeholder => "Credit card number" %>
 
   <%= f.label :expiration_date %>
-  <%= f.text_field :expiration_date %>
+  <%= f.text_field :expiration_date, :placeholder => "**/**"%>
 
   <%= f.label :CCV %>
-  <%= f.text_field :CCV %>
+  <%= f.text_field :CCV, :placeholder => "3 or 4 digit number" %>
 
-  <%= f.submit action_name %>
+  <%= f.submit "Pay" %>
 
 <% end %>
 

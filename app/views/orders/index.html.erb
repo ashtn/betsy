@@ -5,9 +5,9 @@
   <ul>
     <% @orders.each do | order | %>
 
-    <li>Order id:<%= link_to order.id, order_path(order.id) %> Total:
+    <p>Order id: <%= link_to order.id, order_path(order.id) %> Total:
       $<%= order.total %>
-    </li>
+    </p>
 
     <% end %>
   </ul>

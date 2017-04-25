@@ -1,0 +1,5 @@
+<h1>Package of the day!</h1>
+
+<% @featured_items.each do |item| %>
+  <%= link_to image_tag(item.photo, :alt => "item photo"), item_path(item.id) %>
+<% end %>

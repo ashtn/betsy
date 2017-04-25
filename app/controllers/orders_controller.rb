@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_action :require_login, only: [:pay, :paid]
+
 
   def index
     @orders = Order.all
@@ -7,7 +9,6 @@ class OrdersController < ApplicationController
   def show
     @result_order = Order.find(params[:id])
   end
-
 
   def create
     @order = Order.create order_params
@@ -49,8 +50,28 @@ class OrdersController < ApplicationController
   end
 
   def pay
+    @payment = Payment.new
+
     @order = Order.find(params[:id])
     render "pay_form"
+  end
+
+  def paid
+    @payment = Payment.create payment_params
+
+    # @payment.find_total(id)
+    # @payment.change_status_to_paid(id)
+    # @payment.inventory_adjust(id)
+
+    if @payment.id != nil
+      flash[:success] = "Payment successful!"
+      order_id = params[:id] # to clarify that this is an order ID, not payment ID
+      redirect_to confirmation_path(order_id)
+    else
+      flash.now[:error] = "Error has occured!"
+      @order = Order.find(params[:id])
+      render "pay_form"
+    end
   end
 
   private
@@ -58,4 +79,9 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:session_id, :status, :total)
   end
+
+  def payment_params
+    params.require(:payment).permit(:name_on_card, :email, :phone_num, :ship_address, :bill_address, :card_number, :expiration_date, :CCV )
+  end
+
 end

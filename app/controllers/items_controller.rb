@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
+
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart]
 
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
+
+  def root
+    @featured_items = Item.all.sample(3)
+  end
 
   def index
     if params[:category_id]
@@ -82,8 +87,18 @@ class ItemsController < ApplicationController
     all = Order.all
     # session[:current_order_id] = 1
     # raise
-    if session[:current_order_id] == Order.all.last.id
+    if Order.all.length == 0
+      session[:current_user_id] = 1
+      # order = Order.new
+      # order.session_id = 1
+      # order.save
+    end
 
+    if session[:current_user_id] == nil
+      session[:current_user_id] = (Order.all.last.session_id + 1)
+    end
+
+    if Order.all.length != 0 && session[:current_user_id] == Order.all.last.session_id
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       #set order session id
     else
@@ -95,20 +110,20 @@ class ItemsController < ApplicationController
         order.total = 0.0
         order.save
       else
-        order.session_id = session[:current_order_id]
+        order.session_id = (Order.all.last.session_id + 1)
         order.status = "pending"
         order.total = 0.0
         order.save
 
       end
-      order.session_id = (all.last.id + 1)
+      order.save
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
 
-      OrderItem.where(order_id: (all.last.id)).each do |oi|
-      # OrderItem.where(order_id: session[:current_order_id]).each do |oi|
-        order.total += oi.item.price
-        order.save
-      end
+      # OrderItem.where(order_id: (all.last.id)).each do |oi|
+      # # OrderItem.where(order_id: session[:current_order_id]).each do |oi|
+      #   order.total += oi.item.price
+      #   order.save
+      # end
       # raise
     end
     # raise
@@ -116,11 +131,32 @@ class ItemsController < ApplicationController
     redirect_to :back
   end
 
-
-  def show_cart
-    @order_items = OrderItem.where(order_id: OrderItem.last.order_id)
+  def remove_from_cart
+    OrderItem.destroy(params[:id])
   end
 
+
+
+  def show_cart
+    if session[:current_user_id] == Order.last.session_id
+      @order_items = OrderItem.where(order_id: Order.last.id)
+    else
+      @order_items = nil
+    end
+    # raise
+  end
+
+  def update_cart
+     order_item = OrderItem.find(params[:id])
+     if order_item.item.inventory >= params[:order_item][:quantity].to_i
+       order_item.quantity = params[:order_item][:quantity].to_i
+       order_item.save!
+       redirect_to cart_path
+     else
+       flash[:notice] = "Stock too Low!"
+       redirect_to cart_path
+     end
+  end
 
 
 
@@ -182,7 +218,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :inventory, :merchant_id, :category_ids)
+    params.require(:item).permit(:name, :description, :price, :inventory, :merchant_id, :category_ids, :photo)
   end
 
   def find_item

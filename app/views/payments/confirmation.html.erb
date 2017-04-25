@@ -1,0 +1,23 @@
+
+<h1>Order Confirmation</h1>
+
+<h3>
+    <p>Order placed: <%= @order.created_at.to_date %></p>
+      <p>Order total: $<%= @order.total %></p>
+      <p>Order status: <%= @order.status %></p>
+</h3>
+<h4>
+    <%= @items.each do | item | %>
+
+      <p>item image here<%=%></p>
+      <p><%=link_to item.description, item_path(item.id)%></p>
+      <p>QUANTITY PURCHASED HERE<%=%></p>
+      <p>Price: $<%=item.price%></p>
+    <% end %>
+
+</h4>
+
+
+<p><%= link_to "Orders", orders_path %></p>
+
+<p><%= link_to "Home", root_path %></p>

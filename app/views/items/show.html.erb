@@ -3,6 +3,11 @@
 
 
 <!-- image here -->
+<p>
+<% unless @item.photo == nil %>
+  <%= image_tag(@item.photo, :alt => "item photo") %>
+<% end %>
+</p>
 
 <h3>Description</h3>
 <p>
@@ -30,7 +35,7 @@
   <% if !session[:merchant_id] %>
 
   <p>
-  <%= link_to "Add to Cart", edit_item_path(@item.id), method: :get%>
+  <%= link_to "Add to Cart", add_to_cart_path(@item.id), method: :patch%>
     </p>
     <p>
 
@@ -55,7 +60,7 @@
 <% if @reviews.count > 0%>
   <% @reviews.each do |review| %>
     <h4>Rating: <%= "#{review.rating}" %></h4>
-    <h4>Review: <%= "#{review.description}" %></h4>
+    <h4><%= "#{review.description}" %></h4>
   <% end %>
 <% else %>
     <p>Sorry, no reviews</p>
