@@ -3,6 +3,9 @@
 
 
 <!-- image here -->
+<p>
+  <%= image_tag(@item.photo, :alt => "item photo")%>
+</p>
 
 <h3>Description</h3>
 <p>
@@ -55,7 +58,7 @@
 <% if @reviews.count > 0%>
   <% @reviews.each do |review| %>
     <h4>Rating: <%= "#{review.rating}" %></h4>
-    <h4>Review: <%= "#{review.description}" %></h4>
+    <h4><%= "#{review.description}" %></h4>
   <% end %>
 <% else %>
     <p>Sorry, no reviews</p>
