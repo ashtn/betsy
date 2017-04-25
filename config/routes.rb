@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/merchants/new', to: 'merchants#new', as: 'new_merchant'
   get '/merchants/:id', to: 'merchants#show', as: 'merchant'
   get '/merchants/items/:id', to: 'merchants#merchant_items', as: 'merchant_items'
+  get '/merchants/:id/:status', to: 'merchants#order_by_status', as: 'order_by_status'
 
 
 

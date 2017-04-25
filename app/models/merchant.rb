@@ -23,34 +23,49 @@ class Merchant < ApplicationRecord
     return items
   end
 
-  def order_items(merchant_id)
-    order_items = OrderItem.where(merchant_id: merchant_id)
+  def order_items
+    order_items = OrderItem.where(merchant_id: self.id)
     return order_items #order item objects
   end
 
-  def merchant_orders(merchant_id)
-    orders = order_items(merchant_id).map { |order_item| order_item.order }
-    return orders
+  def merchant_orders
+    orders = order_items.map { |order_item| order_item.order }
+    #raise
+    return orders.uniq #array
   end
 
-
-  def revenue_by_id(merchant_id)
+  def revenue
     #based on item's current price, with assumption price doesn't change
     total_revenue = 0
-    order_items(merchant_id).each do |order_item| total_revenue += order_item.item.price
+    order_items.each do |order_item| total_revenue += order_item.item.price
     end
     return total_revenue
   end
 
-
-  def order_by_status(status)
-    TODO # returns an integer
+  def orders_by_status(status)
+    #TODO # retuns order objects
+    orders = merchant_orders.select do |order|
+      order[:status] == status
+        #raise
+    end
+    return orders
   end
 
-  def revenue_by_status(status)
-    TODO #returns a float
+
+  def total_orders_by_status(status)
+    # TODO # returns an integer
+    return orders_by_status(status).length
   end
 
+  def revenue_by_status
+    # TODO #
+    merchant_orders
+  end
+
+  def order_status
+    status = %w(paid pending complete canceled)
+    return status
+  end
 
 
 end
