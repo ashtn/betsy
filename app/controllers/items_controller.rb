@@ -1,10 +1,8 @@
 class ItemsController < ApplicationController
-skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
 
-# Price must be a number
-# Price must be greater than 0
-
-
+  # Price must be a number
+  # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
 
   def index
@@ -80,14 +78,106 @@ skip_before_action :require_login, only: [:index, :show]
   end
 
   def add_to_cart
+    item = Item.find(params[:id])
+    all = Order.all
+    # session[:current_order_id] = 1
+    # raise
+    if session[:current_order_id] == Order.all.last.id
 
-    # Order.new(item.id)
-    # item.order.status = "in cart"
+      order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+      #set order session id
+    else
+      order = Order.new
 
+      if Order.all.length < 1
+        order.session_id = 1
+        order.status = "pending"
+        order.total = 0.0
+        order.save
+      else
+        order.session_id = session[:current_order_id]
+        order.status = "pending"
+        order.total = 0.0
+        order.save
 
-    # where(session: (session[:id]).order(vote_count: :desc).limit(10)
-    # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    end
+      end
+      order.session_id = (all.last.id + 1)
+      order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+
+      OrderItem.where(order_id: (all.last.id)).each do |oi|
+      # OrderItem.where(order_id: session[:current_order_id]).each do |oi|
+        order.total += oi.item.price
+        order.save
+      end
+      # raise
+    end
+    # raise
+    flash[:notice] = "Added to Cart!"
+    redirect_to :back
   end
+
+
+  def show_cart
+    @order_items = OrderItem.where(order_id: OrderItem.last.order_id)
+  end
+
+
+
+
+
+
+
+  # raise
+  # order = nil
+  # # if there is a :current_order_id aka this user has items in cart
+  # if session[:current_order_id]
+  #   # calling the existing session 'order'
+  #   order = Order.find(session[:current_order_id])
+  #   # add item to order
+  #
+  #   # OrderItem.create(item: find_item, order: order)
+  #   OrderItem.create(order_id: order.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 2 )
+  #
+  #   order.save!
+  #   # raise
+  # else
+  #   # creates a new :current_order_id
+  #   all = Order.all
+  #   order = Order.new
+  #   if Order.all.length == 0
+  #     order.session_id = 1
+  #   else
+  #     order.session_id = (all.last.id + 1)
+  #   end
+  #   order.status = "pending"
+  #   order.total = 1
+  #   order.save!
+  #   session[:current_order_id] = order.id
+  #   # and add item to order
+  #
+  # end
+  # # creating order row in the order items join table and also adding the item id to the join table
+  # order.order_items.create(item: find_item)
+
+  #order.total = params[:order][total => Order.find_total(order.order_items)]
+  #order.save!
+  # TODO: should actually redirect to cart
+
+
+
+  # where(session: (session[:id]).order(vote_count: :desc).limit(10)
+  # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    en
+
+
+
+
+  # Order.new(item.id)
+  # item.order.status = "in cart"
+
+
+  # where(session: (session[:id]).order(vote_count: :desc).limit(10)
+  # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    end
+  # end
 
   private
 
@@ -107,20 +197,22 @@ skip_before_action :require_login, only: [:index, :show]
   #   end
   # end
 
-    def find_user
-      if session[:merchant_id]
-        @login_user = User.find_by(id: session[:user_id])
-      end
+  def find_user
+    if session[:merchant_id]
+      @login_user = User.find_by(id: session[:user_id])
     end
+  end
 
-    def find_categories
-      @categories = Category.all
-      @categories_names = []
-      @categories.each do |category|
-        @categories_names << category.name
-      end
-      # raise
-      return @categories_names
+  def find_categories
+    @categories = Category.all
+    @categories_names = []
+    @categories.each do |category|
+      @categories_names << category.name
     end
-
+    # raise
+    return @categories_names
+  end
+  def order_params
+    params.require(:order).permit(:session_id, :status, :total)
+  end
 end

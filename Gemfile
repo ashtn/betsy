@@ -65,6 +65,8 @@ gem 'foundation-rails'
 gem "omniauth"
 gem "omniauth-github"
 
+gem 'simplecov', :require => false, :group => :test
+
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
