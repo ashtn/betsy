@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  root 'items#index'
-  get "items/cart", to: "items#show_cart", as: "cart"
-  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
+  get 'payments/new'
+
+  root 'items#root'
+  get '/items', to: 'items#index'
+  get "/items/cart", to: "items#show_cart", as: "cart"
+  patch '/item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   # get '/login', to: 'sessions#login_form'
   # post '/login', to: 'sessions#login'
