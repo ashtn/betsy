@@ -7,14 +7,14 @@
       <p>Order status: <%= @order.status %></p>
 </h3>
 <h4>
-      <%= @order_items.each do | item | %>
-      <ul>
-        <li><%=item img%></li>
-        <li><%=link_to item.description, item_path(item.id)%></li>
-        <li><%=item.quantity%></li>
-        <li><%=item.subtotal%></li>
+      <% @items.each do | item | %>
+
+        <p>item image here<%=item.photo%></p>
+        <p><%=link_to item.description, item_path(item.id)%></p>
+        <p>QUANTITY PURCHASED HERE<%=%></p>
+        <p>Price: $<%=item.price%></p>
         <% end %>
-      </ul>
+
 
 </h4>
 
