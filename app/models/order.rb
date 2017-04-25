@@ -5,10 +5,11 @@ class Order < ApplicationRecord
     validates :session_id, presence: true
     validates :total, presence: true, numericality: { only_float: true, greater_than: -1 }
 
-    def self.find_total(order_items)
+    def total_cost
+
       total = 0.0
 
-      order_items.each do | order_item |
+      self.order_items.each do | order_item |
         item = Item.find_by_id(order_item.item_id)
         total += (item.price * order_item.quantity)
       end
