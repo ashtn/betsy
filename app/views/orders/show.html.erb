@@ -10,15 +10,15 @@
 </h4>
 
 <h5>
-  <% if @payment != %>
+  <% if @payment != nil %>
   <ul>
-    <li>
-      Customer name: <%= @payment.name_on_card %>
-      Email address: <%= @payment.email %>
-      Mailing address: <%= @payment.ship_address %>
-      CC: <%= @payment.card_number %>
-      CC expiration date: <%= @payment.expiration_date %>
-    </li>
+
+      <p>Customer name: <%= @payment.name_on_card %></p>
+      <p>Email address: <%= @payment.email %></p>
+      <p>Mailing address: <%= @payment.ship_address %></p>
+      <p>CC: <%= @payment.card_number %></p>
+      <p>CC expiration date: <%= @payment.expiration_date %></p>
+
   </ul>
   <% end %>
 </h5>

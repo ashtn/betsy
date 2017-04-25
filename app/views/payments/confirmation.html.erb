@@ -3,13 +3,17 @@
 
 <h3>
     <p>Order placed: <%= @order.created_at.to_date %></p>
-      <p>Order total: $<%= @order.total_cost.round(2) %></p>
-      <p>Order status: <%= @order.status %></p>
+    <p>Order total: $<%= @order.total_cost.round(2) %></p>
 </h3>
-<h4>
-    <%= @items.each do | item | %>
+<h5>
+    <p>Order status: <%= @order.status %></p>
+    <p>Order id: <%= @order.id %></p>
+</h5>
 
-      <p>item image here<%=%></p>
+<h4>
+    <% @items.each do | item | %>
+
+      <p>PIC HERE: <%=item.photo%></p>
       <p><%=link_to item.description, item_path(item.id)%></p>
       <p>QUANTITY PURCHASED HERE<%=%></p>
       <p>Price: $<%=item.price%></p>
