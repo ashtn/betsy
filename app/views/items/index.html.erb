@@ -36,7 +36,7 @@
     </td>
     <% if !session[:merchant_id] %>
     <td>
-        <%= link_to "Cart", add_to_cart_path(item.id),  method: :patch%>
+        <%= link_to "Add to Cart", add_to_cart_path(item.id),  method: :post%>
     </td>
     <%end%>
     <% if session[:merchant_id] %>

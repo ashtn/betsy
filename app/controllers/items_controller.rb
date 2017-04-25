@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-skip_before_action :require_login, only: [:index, :show]
+skip_before_action :require_login, only: [:index, :show, :add_to_cart]
 
 # Price must be a number
 # Price must be greater than 0
@@ -76,19 +76,43 @@ skip_before_action :require_login, only: [:index, :show]
   end
 
   def add_to_cart
+    order = nil
     # if there is a :current_order_id aka this user has items in cart
     if session[:current_order_id]
       # calling the existing session 'order'
       order = Order.find(session[:current_order_id])
       # add item to order
+      
+      # OrderItem.create(item: find_item, order: order)
+      OrderItem.create(order_id: order.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 2 )
+
+      order.save!
+      # raise
     else
       # creates a new :current_order_id
-      order = Order.create(...)
-      # and add item to order
+      all = Order.all
+      order = Order.new
+      if Order.all.length == 0
+        order.session_id = 1
+      else
+        order.session_id = (all.last.id + 1)
+      end
+      order.status = "pending"
+      order.total = 1
+      order.save!
       session[:current_order_id] = order.id
-    end
+      # and add item to order
 
-    
+    end
+    # creating order row in the order items join table and also adding the item id to the join table
+    order.order_items.create(item: find_item)
+
+    #order.total = params[:order][total => Order.find_total(order.order_items)]
+    #order.save!
+    # TODO: should actually redirect to cart
+    redirect_to cart_path(session[:current_order_id])
+
+
     # where(session: (session[:id]).order(vote_count: :desc).limit(10)
     # order.where(session: session[:user_id]).where(work_id: params[:id]) == []    end
   end

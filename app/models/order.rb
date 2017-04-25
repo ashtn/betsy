@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   has_many :order_items
+  # before_save :find_total
 
   validates :status, presence: true, inclusion: { in: %w(pending paid complete cancelled),
     message: "%{value} is not a valid status" }
@@ -15,6 +16,9 @@ class Order < ApplicationRecord
       end
       return total
     end
+    # def find_total
+    #   Order.find_total(self.order_item)
+    # end
 
     def self.change_status_to_paid(order_id) # "submit order" button on cart need to be linked to this method
       order = Order.find_by_id(order_id)

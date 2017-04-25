@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/merchants/new', to: 'merchants#new', as: 'new_merchant'
   get '/merchants/:id', to: 'merchants#show', as: 'merchant'
 
-  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
+  post 'items/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
+  get '/cart/:session_id', to: 'items#add_to_cart', as: 'cart'
+
 
   resources :items do
 
