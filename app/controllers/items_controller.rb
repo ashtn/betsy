@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :update_cart]
+
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart]
 
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
+
+  def root
+    @featured_items = Item.all.sample(3)
+  end
 
   def index
     if params[:category_id]
