@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :update_cart]
 
   # Price must be a number
   # Price must be greater than 0
@@ -134,11 +134,18 @@ class ItemsController < ApplicationController
 
   def show_cart
     if session[:current_user_id] == Order.last.session_id
-    @order_items = OrderItem.where(order_id: Order.last.id)
-  else
-    @order_items = nil
-  end
+      @order_items = OrderItem.where(order_id: Order.last.id)
+    else
+      @order_items = nil
+    end
     # raise
+  end
+
+  def update_cart
+     order_item = OrderItem.find(params[:id])
+     order_item.quantity = params[:order_item][:quantity]
+     order_item.save!
+     redirect_to cart_path
   end
 
 
