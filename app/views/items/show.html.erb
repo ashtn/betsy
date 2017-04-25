@@ -4,7 +4,9 @@
 
 <!-- image here -->
 <p>
-  <%= image_tag(@item.photo, :alt => "item photo")%>
+<% unless @item.photo == nil %>
+  <%= image_tag(@item.photo, :alt => "item photo") %>
+<% end %>
 </p>
 
 <h3>Description</h3>
@@ -33,7 +35,7 @@
   <% if !session[:merchant_id] %>
 
   <p>
-  <%= link_to "Add to Cart", edit_item_path(@item.id), method: :get%>
+  <%= link_to "Add to Cart", add_to_cart_path(@item.id), method: :patch%>
     </p>
     <p>
 
