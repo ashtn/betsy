@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'items#index'
+  get "items/cart", to: "items#show_cart", as: "cart"
+  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   # get '/login', to: 'sessions#login_form'
   # post '/login', to: 'sessions#login'
@@ -12,12 +14,12 @@ Rails.application.routes.draw do
   get '/merchants/:id', to: 'merchants#show', as: 'merchant'
   get '/merchants/items/:id', to: 'merchants#merchant_items', as: 'merchant_items'
 
-  patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   resources :items do
 
     resources :reviews, except: [:index, :show]
   end
+
 
   post "/items/:id", to: "reviews#create"
 

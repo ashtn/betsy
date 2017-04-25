@@ -1,0 +1,17 @@
+<h1> YOUR CART</h1>
+<% if @order_items != nil%>
+<ul>
+
+  <% @order_items.each do |oi| %>
+
+  <li>
+  <%=  oi.item.name %>
+  </li>
+
+  <% end %>
+
+  </ul>
+<% else %>
+  Cart Empty
+<% end %>
+<%# raise %>
