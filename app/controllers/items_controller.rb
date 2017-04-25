@@ -82,18 +82,21 @@ class ItemsController < ApplicationController
     all = Order.all
     # session[:current_order_id] = 1
     # raise
-    if (Order.all.last.session_id) == nil
+    if Order.all.length == 0
       session[:current_user_id] = 1
+      # order = Order.new
+      # order.session_id = 1
+      # order.save
+
     end
 
     if session[:current_user_id] == nil
       session[:current_user_id] = (Order.all.last.session_id + 1)
     end
-
-    if session[:current_user_id] == Order.all.last.session_id
-
+    if Order.all.length != 0 && session[:current_user_id] == Order.all.last.session_id
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       #set order session id
+
 
     else
       order = Order.new
