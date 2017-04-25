@@ -57,6 +57,10 @@ class OrdersController < ApplicationController
   def paid
     @payment = Payment.create payment_params
 
+    @payment.find_total(id)
+    @payment.change_status_to_paid(id)
+    @payment.inventory_adjust(id)
+
     if @payment.id != nil
       flash[:success] = "Payment successful!"
       order_id = params[:id] # to clarify that this is an order ID, not payment ID
