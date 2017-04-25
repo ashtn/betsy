@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
   def root
-    @root = Item.all
+    @featured_items = Item.all.sample(3)
   end
 
   def index
