@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
 
   # Price must be a number
   # Price must be greater than 0
@@ -111,17 +111,15 @@ class ItemsController < ApplicationController
       end
       # raise
     end
-
-
-
     # raise
     flash[:notice] = "Added to Cart!"
     redirect_to :back
-
-
   end
 
 
+  def show_cart
+    @order_items = OrderItem.where(order_id: OrderItem.last.order_id)
+  end
 
 
 
