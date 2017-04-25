@@ -1,0 +1,68 @@
+<section>
+  <h3>testing order_items method:</h3>
+<table>
+  <thead>
+    <th>
+      Item
+    </th>
+    <th>
+      Price
+    </th>
+    <th>
+      Qty in Stock
+    </th>
+    <th>
+      Average Rating
+    </th>
+    <th>
+      Order ID
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+
+    </th>
+    <th>
+
+    </th>
+  </thead>
+
+<% @merchant.order_items.each do |order_item| %>
+  <tr>
+    <td>
+      <%=link_to "#{Item.find(order_item.item_id).name.capitalize}", item_path(order_item.item_id), method: :get%>
+    </td>
+    <td>
+      $<%= sprintf('%.2f', order_item.item.price )%>
+    </td>
+    <td>
+      <%= order_item.item.inventory%>
+    </td>
+    <td>
+      <%= order_item.item.average_rating %>
+    </td>
+    <td>
+      <%= link_to order_item.order_id, order_path(order_item.order_id) %>
+    </td>
+    <td>
+      <%= order_item.order.status %>
+    </td>
+
+    <%# if current_merchant %>
+    <td>
+      <%= link_to "Update", edit_item_path(order_item.item.id), method: :get %>
+    </td>
+    <td>
+      <%= link_to "Delete", item_path(order_item.item.id), method: :delete %>
+    </td>
+    <td>
+      <%= link_to "Retire", item_path(Item.find(order_item.item_id)), method: :delete %>
+    </td>
+    <%#end%>
+  </tr>
+  <%end%>
+
+</table>
+
+</section>
