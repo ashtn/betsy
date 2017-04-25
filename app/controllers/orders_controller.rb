@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
     @result_order = Order.find(params[:id])
   end
 
-
   def create
     @order = Order.create order_params
 
@@ -28,6 +27,8 @@ class OrdersController < ApplicationController
   def update
 
     @order = Order.find_by_id(params[:id])
+
+    
 
     @order.status = order_params[:status]
     if @order.save
@@ -51,6 +52,8 @@ class OrdersController < ApplicationController
   def pay
     @order = Order.find(params[:id])
     render "pay_form"
+
+    # if all fields pass validation, redirect to payment confirmation page
   end
 
   private

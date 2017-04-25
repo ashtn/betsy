@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'payments/new'
+
   root 'items#index'
 
   # get '/login', to: 'sessions#login_form'
