@@ -82,6 +82,10 @@ class ItemsController < ApplicationController
     all = Order.all
     # session[:current_order_id] = 1
     # raise
+    if (Order.all.last.session_id) == nil
+      session[:current_user_id] = 1
+    end
+
     if session[:current_user_id] == nil
       session[:current_user_id] = (Order.all.last.session_id + 1)
     end
