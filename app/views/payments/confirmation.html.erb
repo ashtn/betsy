@@ -2,9 +2,9 @@
 <h1>Order Confirmation</h1>
 
 <h3>
-    <li>Order placed:<%= @order.created_at %> Order total:
-      $<%= @order.total %> Order status: <%= @order.status %>
-    </li>
+    <p>Order placed: <%= @order.created_at.to_date %></p>
+      <p>Order total: $<%= @order.total %></p>
+      <p>Order status: <%= @order.status %></p>
 </h3>
 <h4>
       <%= @order_items.each do | item | %>
@@ -19,6 +19,6 @@
 </h4>
 
 
-<p>
-  <%= link_to "Home", orders_path %>
-</p>
+<p><%= link_to "Orders", orders_path %></p>
+
+<p><%= link_to "Home", root_path %></p>
