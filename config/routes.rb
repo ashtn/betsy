@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'items#root'
   get '/items', to: 'items#index'
   get "/items/cart", to: "items#show_cart", as: "cart"
+  patch '/item/cart/update_cart/:id', to: 'items#update_cart', as: "order_item"
   patch '/item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
 
   # get '/login', to: 'sessions#login_form'

@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
+
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart]
 
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
+
+  def root
+    @featured_items = Item.all.sample(3)
+  end
 
   def index
     if params[:category_id]
@@ -134,11 +139,23 @@ class ItemsController < ApplicationController
 
   def show_cart
     if session[:current_user_id] == Order.last.session_id
-    @order_items = OrderItem.where(order_id: Order.last.id)
-  else
-    @order_items = nil
-  end
+      @order_items = OrderItem.where(order_id: Order.last.id)
+    else
+      @order_items = nil
+    end
     # raise
+  end
+
+  def update_cart
+     order_item = OrderItem.find(params[:id])
+     if order_item.item.inventory >= params[:order_item][:quantity].to_i
+       order_item.quantity = params[:order_item][:quantity].to_i
+       order_item.save!
+       redirect_to cart_path
+     else
+       flash[:notice] = "Stock too Low!"
+       redirect_to cart_path
+     end
   end
 
 
