@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/merchants', to: 'merchants#create'
   get '/merchants/new', to: 'merchants#new', as: 'new_merchant'
   get '/merchants/:id', to: 'merchants#show', as: 'merchant'
+  get '/merchants/items/:id', to: 'merchants#merchant_items', as: 'merchant_items'
 
   post 'items/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
   get '/cart/:session_id', to: 'items#add_to_cart', as: 'cart'

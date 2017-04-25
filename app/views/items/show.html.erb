@@ -13,6 +13,14 @@
   $<%= @item.price%>
 </p>
 
+<ul>
+  <% @item.categories.each do |category| %>
+  <li><%= category.name %></li>
+  <% end %>
+
+</ul>
+
+
 </section>
 
 <section>
@@ -33,10 +41,6 @@
     <p>
   <%= link_to "Update", edit_item_path(@item.id), method: :get %>
 
-    </p>
-    <p>
-  <%= link_to "Add Category", edit_item_path(@item.id), method: :get %>
-<!-- no path -->
     </p>
     <p>
   <%= link_to "Retire", edit_item_path(@item.id), method: :get %>
