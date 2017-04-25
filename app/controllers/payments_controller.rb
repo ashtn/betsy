@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  skip_before_action :require_login, only: [:confirmation, :new]
 
   def confirmation
     @order = Order.find_by_id(params[:id])

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post "/items/:id", to: "reviews#create"
   delete "item/remove_from_cart", to: 'item#remove/from/cart', as: "remove_from_cart"
 
-  
+
   resources :categories, except: [:edit, :update, :destroy] do
     get '/items', to: 'items#index'
   end
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   resources :orders
   get '/orders/:id/pay', to: 'orders#pay', as: 'pay'
   post '/orders/:id/pay', to: 'orders#paid', as: 'paid'
+
+  get '/payments/:id/confirmation', to: 'payments#confirmation', as: 'confirmation'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

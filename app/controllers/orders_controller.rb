@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_action :require_login, only: [:pay, :paid]
+
 
   def index
     @orders = Order.all
@@ -57,9 +59,9 @@ class OrdersController < ApplicationController
   def paid
     @payment = Payment.create payment_params
 
-    @payment.find_total(id)
-    @payment.change_status_to_paid(id)
-    @payment.inventory_adjust(id)
+    # @payment.find_total(id)
+    # @payment.change_status_to_paid(id)
+    # @payment.inventory_adjust(id)
 
     if @payment.id != nil
       flash[:success] = "Payment successful!"
