@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/items/cart", to: "items#show_cart", as: "cart"
   patch '/item/cart/update_cart/:id', to: 'items#update_cart', as: "order_item"
   patch '/item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
+  delete 'item/:id/delete', to: 'item#remove_from_cart', as: "delete_order_item"
 
   # get '/login', to: 'sessions#login_form'
   # post '/login', to: 'sessions#login'
