@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
     @order = Order.find_by_id(params[:id])
 
-    
+
 
     @order.status = order_params[:status]
     if @order.save
@@ -50,10 +50,23 @@ class OrdersController < ApplicationController
   end
 
   def pay
+    @payment = Payment.new
+
     @order = Order.find(params[:id])
     render "pay_form"
+  end
 
-    # if all fields pass validation, redirect to payment confirmation page
+  def paid
+    @payment = Payment.create payment_params
+
+    if @payment.id != nil
+      flash[:success] = "Payment successful!"
+      redirect_to confirmation_path
+    else
+      flash.now[:error] = "Error has occured!"
+      @order = Order.find(params[:id])
+      render "pay_form"
+    end
   end
 
   private
@@ -61,4 +74,9 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:session_id, :status, :total)
   end
+
+  def payment_params
+    params.require(:payment).permit(:name_on_card, :email, :phone_num, :ship_address, :bill_address, :card_number, :expiration_date, :CCV )
+  end
+
 end
