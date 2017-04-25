@@ -1,12 +1,9 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
 
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
-  def root
-    @root = Item.all
-  end
 
   def index
     if params[:category_id]
@@ -90,17 +87,15 @@ class ItemsController < ApplicationController
       # order = Order.new
       # order.session_id = 1
       # order.save
-
     end
 
     if session[:current_user_id] == nil
       session[:current_user_id] = (Order.all.last.session_id + 1)
     end
+
     if Order.all.length != 0 && session[:current_user_id] == Order.all.last.session_id
       order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       #set order session id
-
-
     else
       order = Order.new
 
@@ -130,6 +125,11 @@ class ItemsController < ApplicationController
     flash[:notice] = "Added to Cart!"
     redirect_to :back
   end
+
+  def remove_from_cart
+    OrderItem.destroy(params[:id])
+  end
+
 
 
   def show_cart

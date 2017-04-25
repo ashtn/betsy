@@ -1,5 +1,11 @@
-<h6> YOUR CART</h6>
+
+<section>
+
 <% if @order_items != nil%>
+<p>
+<%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
+</p>
+<h6> YOUR CART</h6>
 Items in your cart:
 <table>
     <thead>
@@ -32,10 +38,10 @@ Items in your cart:
           <%= oi.quantity %>
         </td>
         <td>
-
+          update quantity
         </td>
         <td>
-          <%= link_to "remove from cart", delete %>
+          Delete<%#= link_to "Delete", item_path, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.item.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
         </td>
       </tr>
       <% end %>
@@ -43,10 +49,10 @@ Items in your cart:
 <% else %>
   Is Empty
 <% end %>
+
 <p>
 
 </p>
-<p>
+</section>
 
-</p>
 <%# raise %>
