@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/merchants/items/:id', to: 'merchants#merchant_items', as: 'merchant_items'
 
 
+
   resources :items do
 
     resources :reviews, except: [:index, :show]
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
 
 
   post "/items/:id", to: "reviews#create"
+  delete "item/remove_from_cart", to: 'item#remove/from/cart', as: "remove_from_cart"
+
 
   resources :categories, except: [:edit, :update, :destroy] do
     get '/items', to: 'items#index'

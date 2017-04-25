@@ -1,24 +1,59 @@
-<h6> YOUR CART</h6>
+
+<section>
+
 <% if @order_items != nil%>
+<p>
+<%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
+</p>
+<h6> YOUR CART</h6>
 Items in your cart:
-<ul>
+<table>
+    <thead>
+      <th>
+        Item
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
 
-  <% @order_items.each do |oi| %>
+      </th>
+      <th>
 
-  <li>
-  <%=  oi.item.name %>
-  </li>
-
-  <% end %>
-
-  </ul>
+      </th>
+    </thead>
+    <tbody>
+      <% @order_items.each do |oi| %>
+      <tr>
+        <td>
+          <%=  oi.item.name %>
+        </td>
+        <td>
+          <%= oi.item.price %>
+        </td>
+        <td>
+          <%= oi.quantity %>
+        </td>
+        <td>
+          update quantity
+        </td>
+        <td>
+          Delete<%#= link_to "Delete", item_path, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.item.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
 <% else %>
   Is Empty
 <% end %>
+
 <p>
 
 </p>
-<p>
 
-</p>
-<%# raise %>
+<% #raise %>
+
+</section>
