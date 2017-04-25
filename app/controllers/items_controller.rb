@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root]
 
   # Price must be a number
   # Price must be greater than 0
