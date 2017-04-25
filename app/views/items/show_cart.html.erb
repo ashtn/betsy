@@ -1,5 +1,6 @@
-<h1> YOUR CART</h1>
+<h6> YOUR CART</h6>
 <% if @order_items != nil%>
+Items in your cart:
 <ul>
 
   <% @order_items.each do |oi| %>
@@ -12,6 +13,12 @@
 
   </ul>
 <% else %>
-  Cart Empty
+  Is Empty
 <% end %>
+<p>
+
+</p>
+<p>
+
+</p>
 <%# raise %>
