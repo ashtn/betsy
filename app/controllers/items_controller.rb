@@ -143,9 +143,14 @@ class ItemsController < ApplicationController
 
   def update_cart
      order_item = OrderItem.find(params[:id])
-     order_item.quantity = params[:order_item][:quantity]
-     order_item.save!
-     redirect_to cart_path
+     if order_item.item.inventory >= params[:order_item][:quantity].to_i
+       order_item.quantity = params[:order_item][:quantity].to_i
+       order_item.save!
+       redirect_to cart_path
+     else
+       flash[:notice] = "Stock too Low!"
+       redirect_to cart_path
+     end
   end
 
 

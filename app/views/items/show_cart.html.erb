@@ -1,11 +1,9 @@
 
 <section>
-
 <% if @order_items != nil%>
 <p>
 <%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
 </p>
-<h6> YOUR CART</h6>
 Items in your cart:
 <table>
     <thead>
@@ -40,7 +38,7 @@ Items in your cart:
 
 <td>
 
-  <%= order_form.submit "Update"%>
+  <%= order_form.submit %>
 </td>
           <% end %>
 
