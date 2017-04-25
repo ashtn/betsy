@@ -1,17 +1,45 @@
 <h6> YOUR CART</h6>
 <% if @order_items != nil%>
 Items in your cart:
-<ul>
+<table>
+    <thead>
+      <th>
+        Item
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
 
-  <% @order_items.each do |oi| %>
+      </th>
+      <th>
 
-  <li>
-  <%=  oi.item.name %>
-  </li>
+      </th>
+    </thead>
+    <tbody>
+      <% @order_items.each do |oi| %>
+      <tr>
+        <td>
+          <%=  oi.item.name %>
+        </td>
+        <td>
+          <%= oi.item.price %>
+        </td>
+        <td>
+          <%= oi.quantity %>
+        </td>
+        <td>
 
-  <% end %>
-
-  </ul>
+        </td>
+        <td>
+          <%= link_to "remove from cart", delete %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
 <% else %>
   Is Empty
 <% end %>

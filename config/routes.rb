@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'payments/new'
-
   root 'items#index'
   get "items/cart", to: "items#show_cart", as: "cart"
   patch 'item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
@@ -32,8 +30,6 @@ Rails.application.routes.draw do
   resources :orders
   get '/orders/:id/pay', to: 'orders#pay', as: 'pay'
   post '/orders/:id/pay', to: 'orders#paid', as: 'paid'
-
-  get '/payments/:id/confirmation', to: 'payments#confirmation', as: 'confirmation'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
