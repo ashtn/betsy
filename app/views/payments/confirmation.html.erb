@@ -3,7 +3,7 @@
 
 <h3>
     <p>Order placed: <%= @order.created_at.to_date %></p>
-      <p>Order total: $<%= @order.total_cost %></p>
+      <p>Order total: $<%= @order.total_cost.round(2) %></p>
       <p>Order status: <%= @order.status %></p>
 </h3>
 <h4>
@@ -16,8 +16,5 @@
     <% end %>
 
 </h4>
-
-
-<p><%= link_to "Orders", orders_path %></p>
 
 <p><%= link_to "Home", root_path %></p>

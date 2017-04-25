@@ -1,7 +1,6 @@
 class Payment < ApplicationRecord
 
   validates :name_on_card, presence: true
-  validates :name_on_card, presence: true
   validates :email, presence: true
   validates :phone_num, presence: true
   validates :ship_address, presence: true

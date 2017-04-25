@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     @result_order = Order.find(params[:id])
+    @payment = Payment.create
   end
 
   def create
