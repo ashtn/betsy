@@ -9,8 +9,6 @@ class ItemsController < ApplicationController
     @featured_items = Item.all.sample(3)
   end
 
-
-
   def index
     if params[:category_id]
       # we are in the nested route
