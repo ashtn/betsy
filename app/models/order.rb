@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   has_many :order_items
 
     validates :status, presence: true, inclusion: { in: %w(pending paid complete cancelled), message: "%{value} is not a valid status" }
-    validates :session_id, presence: true, uniqueness: true
+    validates :session_id, presence: true
     validates :total, presence: true, numericality: { only_float: true, greater_than: -1 }
 
     def self.find_total(order_items)
