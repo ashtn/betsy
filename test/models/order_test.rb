@@ -17,7 +17,7 @@ describe Order do
       order.total = -1.45
 
       order.valid?.must_equal false
-      order.errors.messages[:total].must_equal ["must be greater than 0"]
+      order.errors.messages[:total].must_equal ["must be greater than -1"]
     end
 
     it "You can't create an order without a unique session_id" do

@@ -2,6 +2,13 @@ require "test_helper"
 
 describe OrdersController do
 
+  describe "new" do
+    it "should show the new order form" do
+      get new_order_path
+      must_respond_with :success
+    end
+  end
+
   describe "create" do
     it "should create an order given valid data" do
       Order.destroy_all
