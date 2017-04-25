@@ -13,7 +13,7 @@ class Order < ApplicationRecord
         item = Item.find_by_id(order_item.item_id)
         total += (item.price * order_item.quantity)
       end
-      return total
+      return total.round(2)
     end
 
     def self.change_status_to_paid(order_id) # "submit order" button on cart need to be linked to this method

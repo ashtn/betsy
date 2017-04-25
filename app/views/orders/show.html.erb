@@ -4,7 +4,7 @@
   <ul>
     <li>
       Order ID: <%= @result_order.id %>
-      Total: $<%= @result_order.total %>
+      Total: $<%= @result_order.total_cost %>
     </li>
   </ul>
 </h4>
@@ -30,4 +30,3 @@
 %>
 
 <p><%= link_to "Orders", orders_path %></p>
-<p><%= link_to "Home", root_path %></p>
