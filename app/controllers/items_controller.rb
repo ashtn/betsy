@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart]
+  skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart, :remove_from_cart]
 
   # Price must be a number
   # Price must be greater than 0
@@ -132,7 +132,11 @@ class ItemsController < ApplicationController
   end
 
   def remove_from_cart
-    OrderItem.destroy(params[:id])
+    # OrderItem.destroy(params[:id])
+    order_item = OrderItem.find(params[:id])
+    order_item.destroy
+    flash[:notice] = "Item Deleted"
+    redirect_to cart_path
   end
 
 
@@ -158,11 +162,14 @@ class ItemsController < ApplicationController
      end
   end
 
-  def delete_order_item
-    order_item = OrderItem.find(params[:id])
-    order_item.destroy
-  end
-
+  # def delete_order_item
+  #   order_item = OrderItem.find(params[:id])
+  #   raise
+  #   order_item.destroy
+  #   flash[:notice] = "Item Deleted"
+  #   redirect_to cart_path
+  # end
+  #
 
 
 
