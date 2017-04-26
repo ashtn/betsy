@@ -75,4 +75,23 @@ describe ItemsController do
     must_redirect_to items_path
   end
 
+  describe "Cart Features" do
+
+    it "should affect the model when adding an item to cart" do
+
+    end
+
+    it "should affect the model when removing an item from cart" do
+
+    end
+
+    it "update quantity when adding second of same item to cart" do
+
+    end
+
+    it "update quantity when submit qauantity change in  cart view" do
+
+    end
+  end
+
 end
