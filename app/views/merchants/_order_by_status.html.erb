@@ -1,6 +1,6 @@
 <section>
 
-  <h4> order_by_status: </h4>
+  <h4> Your <%= params[:status]  %> Orders </h4>
 
   <table>
     <thead>
@@ -30,3 +30,5 @@
     </tr>
   </table>
 </section>
+
+<%= link_to "Back", merchant_path(@merchant) %>

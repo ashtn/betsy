@@ -1,5 +1,5 @@
 <section>
-  <h3>testing order_items method:</h3>
+  <h3>Order Items</h3>
 <table>
   <thead>
     <th>
@@ -59,14 +59,11 @@
     </td>
     <td>
       <% if order_item.status.nil? %>
-      <%# raise %>
         <%= link_to 'ship', ship_order_path(order_item: order_item.id), method: :put %>
-        <%#= link_to "Ship", items_path %>
       <% else %>
         <%=  "✔︎" %>
         <% end %>
     </td>
-
     <%# if current_merchant %>
     <td>
       <%= link_to "⚙️", edit_item_path(order_item.item.id), method: :get %>

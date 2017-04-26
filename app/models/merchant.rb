@@ -28,8 +28,7 @@ class Merchant < ApplicationRecord
   def merchant_orders
     # TODO Self.orders?
     orders = order_items.map { |order_item| order_item.order }
-    #raise
-    return orders.uniq #array
+    return orders.uniq
   end
 
   def items_by_order(order_id)
@@ -38,44 +37,54 @@ class Merchant < ApplicationRecord
     return items
   end
 
+
   def revenue
-    total_revenue = 0
+    total_revenue = 0.01
     order_items.each {|order_item| total_revenue += subtotal(order_item)}
     return total_revenue
   end
 
   def revenue_by_status(status)
-    # TODO return float
-    merchant_orders
+    # TODO returns float
+    total = 0
+    orders_by_status(status).map do |order|
+      total += revenue_by_order(order)
+    end
+    return total.round(2)
   end
 
   def revenue_by_order(order)
-    # TODO return float
+    # TODO returns float
     total = 0
-    items_by_order(order).each {|order_item| total += subtotal(order_item)}
-    return total
+    items_by_order(order).map {|order_item| total += subtotal(order_item)}
+    return total.round(2)
   end
 
+
   def order_status
-    status = %w(paid pending complete canceled)
+    status = %w(pending paid complete canceled)
     return status
   end
 
   def orders_by_status(status)
     #TODO # retuns order objects
     orders = merchant_orders.select do |order|
-      order[:status] == status
-        #raise
+      order.status == status
     end
     return orders
   end
 
+  def items_by_status(status)
+    # TODO returns order_item objects
+    items = order_items.where(status: status)
+    return items
+  end
 
   def total_orders_by_status(status)
     # TODO # returns an integer
     return orders_by_status(status).length
   end
-  
+
 
   def subtotal(order_item)
     return order_item.item.price * order_item.quantity
