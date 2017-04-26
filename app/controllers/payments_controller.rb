@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  belongs_to :order
   skip_before_action :require_login, only: [:confirmation, :new]
 
   def confirmation

@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     @result_order = Order.find(params[:id])
-    @payment = Payment.create
+    @payment = Payment.where(order_id: params[:id]).first
   end
 
   def create
