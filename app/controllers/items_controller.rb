@@ -7,7 +7,11 @@ class ItemsController < ApplicationController
   before_action :find_categories, only: [:show, :edit]
 
   def roots
-    @featured_items = Item.all.sample(3)
+    if Item.all.count > 2
+      @featured_items = Item.all.sample(3)
+    else
+      redirect_to items_path
+    end
   end
 
   def index

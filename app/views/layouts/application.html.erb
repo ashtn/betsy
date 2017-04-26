@@ -24,7 +24,7 @@
     </div>
 
     <div class="dropdown">
-      <% if @merchants.empty? %>
+      <% if session[:merchant_id] == nil %>
         <button class="dropbtn">Shop by Category</button>
         <div class="dropdown-content">
           <%= link_to "Show all", categories_path %>

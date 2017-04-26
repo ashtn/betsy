@@ -4,15 +4,15 @@
 <%= form_for @review, method: form_method, url: item_path(@review.item_id) do |f| %>
 
   <%= f.radio_button(:rating, 1) %>
-  <%= f.label :rating, "1" %>
+  <%= f.label :rating, "★☆☆☆☆" %>
   <%= f.radio_button(:rating, 2) %>
-  <%= f.label :rating, "2" %>
+  <%= f.label :rating, "★★☆☆☆" %>
   <%= f.radio_button(:rating, 3) %>
-  <%= f.label :rating, "3" %>
+  <%= f.label :rating, "★★★☆☆" %>
   <%= f.radio_button(:rating, 4) %>
-  <%= f.label :rating, "4" %>
+  <%= f.label :rating, "★★★★☆" %>
   <%= f.radio_button(:rating, 5) %>
-  <%= f.label :rating, "5" %>
+  <%= f.label :rating, "★★★★★" %>
 
   <%= f.label :description %>
   <%= f.text_area :description %>
