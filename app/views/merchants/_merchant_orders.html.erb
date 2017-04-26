@@ -18,7 +18,7 @@
         <%=link_to "#{order.id}", order_path(order.id), method: :get%>
       </td>
       <td>
-        $<%= sprintf('%.2f', order.total)%>
+        $<%= sprintf('%.2f', @merchant.revenue_by_order(order))%>
       </td>
       <%end%>
     </tr>
