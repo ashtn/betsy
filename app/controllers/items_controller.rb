@@ -6,12 +6,8 @@ class ItemsController < ApplicationController
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
 
-  def roots
-    if Item.all.count > 2
-      @featured_items = Item.all.sample(3)
-    else
-      redirect_to items_path
-    end
+  def root
+    @featured_items = Item.all.sample(3)
   end
 
   def index
