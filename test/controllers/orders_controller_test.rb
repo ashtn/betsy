@@ -46,7 +46,7 @@ describe OrdersController do
       order_data = {
         order: {
           session_id: 1,
-          status: "paid",
+          status: "pending",
           total: 25.89}
         }
 
@@ -54,7 +54,7 @@ describe OrdersController do
 
         must_respond_with :redirect
 
-        Order.find_by_session_id(1).status.must_equal "paid"
+        Order.find_by_session_id(1).status.must_equal "pending"
     end
 
       it "shouldn't update an order given invalid data" do
@@ -64,6 +64,7 @@ describe OrdersController do
             status: "you",
             total: 25.89}
           }
+          
           put order_path(:id), params: order_data
 
           must_respond_with :success
