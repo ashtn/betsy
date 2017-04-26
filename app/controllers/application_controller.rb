@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
     if !session[:merchant_id]
       if !session[:id]
         if Order.all.length == 0
-          session[:current_user_id] = 1
+          @order = Order.new
+          session[:id] = 1
           @order.session_id = 1
         else
           session[:id] = Order.last.session_id + 1

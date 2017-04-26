@@ -79,7 +79,7 @@ class ItemsController < ApplicationController
 
   def add_to_cart
     # if OrderItem.find(params[:id])
-    if order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+    if OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       flash[:notice] = "Added to Cart!"
       redirect_to :back
     end
