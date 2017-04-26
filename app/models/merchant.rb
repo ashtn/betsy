@@ -8,12 +8,17 @@ class Merchant < ApplicationRecord
 
   def self.create_from_github(auth_hash)
     merchant = Merchant.new
+
+    if auth_hash["uid"] == nil || auth_hash["provider"] == nil || auth_hash["info"] == nil
+      return nil
+    end
+
     merchant.uid = auth_hash["uid"]
     merchant.provider = auth_hash["provider"]
     merchant.username = auth_hash["info"]["nickname"]
     merchant.email = auth_hash["info"]["email"]
 
-    merchant.save ? nickname : nil
+    merchant.save ? merchant : nil
 
   end
 
