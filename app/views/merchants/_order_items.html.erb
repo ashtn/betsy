@@ -58,11 +58,13 @@
       <%= order_item.updated_at.strftime('%r') %>
     </td>
     <td>
-      <%# if order_item.status.nil %>
-        <%#= link_to "Ship", ship_order_item_path(order_item) %>
-      <%# else %>
-        <%#=  "✔︎" %>
-        <%# end %>
+      <% if order_item.status.nil? %>
+      <%# raise %>
+        <%= link_to 'ship', ship_order_path(order_item: order_item.id), method: :put %>
+        <%#= link_to "Ship", items_path %>
+      <% else %>
+        <%=  "✔︎" %>
+        <% end %>
     </td>
 
     <%# if current_merchant %>
