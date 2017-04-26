@@ -1,0 +1,70 @@
+<h4>Totals by Status</h4>
+
+
+<table>
+  <thead>
+    <th>
+      <div class="dropdown">
+        <button class="dropbtn"> Status </button>
+        <div class="dropdown-content">
+          <% @merchant.order_status.each do |status| %>
+          <%= link_to status, order_by_status_path(@merchant.id, status: status)  %>
+          <% end %>
+        </div>
+      </div>
+    </th>
+    <th>
+      Orders
+    </th>
+    <th>
+      Revenue
+    </th>
+  </thead>
+
+  <tr>
+    <%# raise %>
+    <td>
+      Pending
+    </td>
+    <td>
+      <%= @merchant.total_orders_by_status("pending") %>
+    </td>
+    <td>
+      $<%= @merchant.revenue_by_status("pending") %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Paid
+    </td>
+    <td>
+      <%= @merchant.total_orders_by_status("paid") %>
+    </td>
+    <td>
+      $<%= @merchant.revenue_by_status("paid") %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Complete
+    </td>
+    <td>
+      <%= @merchant.total_orders_by_status("complete") %>
+    </td>
+    <td>
+      $<%= @merchant.revenue_by_status("complete") %>
+    </td>
+  </tr>
+</tr>
+<tr>
+  <td>
+    Canceled
+  </td>
+  <td>
+    <%= @merchant.total_orders_by_status("canceled") %>
+  </td>
+  <td>
+    $<%= @merchant.revenue_by_status("canceled") %>
+  </td>
+</tr>
+</table>

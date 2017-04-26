@@ -1,41 +1,16 @@
-<h1> Items by: <%= @merchant.username %>(Merchants#show)</h1>
+<h1> <%= @merchant.username %> Order Fulfillment</h1>
 
 <p>Find me in app/views/merchants/show.html.erb</p>
 
-
-
-============================================
-
 <section>
-  <h4>Total revenue:</h3>
-
+  <h4>Total Revenue:</h3>
   $<%= sprintf('%.2f', @merchant.revenue) %>
 </section>
 
-============================================
-
-<h4> Order by status </h4>
-
-<div class="dropdown">
-  <button class="dropbtn">Order By Status (#this is a drop down)</button>
-  <div class="dropdown-content">
-    <% @merchant.order_status.each do |status| %>
-    <%= link_to status, order_by_status_path(@merchant.id, status: status)  %>
-    <% end %>
-  </div>
-</div>
-============================================
-
-<%= render partial: "total_orders_by_status" %>
-
-============================================
+<%= render partial: "totals_by_status" %>
 
 <%= render partial: "merchant_orders" %>
 
-============================================
-
 <%= render partial: "order_items" %>
-
-
 
 <%= link_to "Add New Item", new_item_path, method: :get %>
