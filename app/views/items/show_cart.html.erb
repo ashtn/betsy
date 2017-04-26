@@ -1,6 +1,6 @@
 
 <section>
-<% if @order_items != nil%>
+<% if @order_items.length != 0 %>
 <p>
 <%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
 </p>
