@@ -57,7 +57,7 @@
 
       <div class="dropdown">
         <% if @login_form %>
-          <button class="dropbtn">Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
+          <button class="dropbtn">Logged in as <%= link_to "#{ find_merchant.username }", merchant_path(@login_merchant) %>
 
           </button>
         <% else %>

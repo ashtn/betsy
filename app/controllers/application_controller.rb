@@ -49,9 +49,7 @@ class ApplicationController < ActionController::Base
     render file: "#{ Rails.root }/public/404.html", status: 404
   end
 
-  private
-
-  def find_merchant
+  def current_merchant
     if session[:merchant_id]
       @login_merchant = Merchant.find_by(id: session[:merchant_id])
     end
