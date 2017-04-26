@@ -64,7 +64,7 @@ describe OrdersController do
             status: "you",
             total: 25.89}
           }
-          
+
           put order_path(:id), params: order_data
 
           must_respond_with :success
