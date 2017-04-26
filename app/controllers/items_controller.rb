@@ -23,9 +23,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find_by_id(params[:id])
-    @reviews = Review.where(item_id: @item.id)
     if !@item
       render_404
+    end
+    if @item
+    @reviews = Review.where(item_id: @item.id)
     end
   end
 
@@ -63,6 +65,7 @@ class ItemsController < ApplicationController
     @item.category_ids = params[:item][:category_ids]
     # raise
     if @item.update(item_params)
+
       redirect_to item_path(@item.id)
     else
       render "edit"
@@ -75,7 +78,7 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
-    order_item = OrderItem.create(order_id: session[:id], merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+    # if OrderItem.find(params[:id])
     if order_item = OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
       flash[:notice] = "Added to Cart!"
       redirect_to :back
@@ -99,7 +102,9 @@ class ItemsController < ApplicationController
      order_item = OrderItem.find(params[:id])
      if order_item.item.inventory >= params[:order_item][:quantity].to_i
        order_item.quantity = params[:order_item][:quantity].to_i
-       order_item.save!
+       if order_item.save
+         flash[:success] = "Quantity Updated"
+       end
        redirect_to cart_path
      else
        flash[:notice] = "Stock too Low!"
