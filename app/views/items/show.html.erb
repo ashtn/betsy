@@ -57,8 +57,9 @@
 <!-- Review section... temporary location, hopeing it will prevent merge conflicts -->
 <section>
 <h4>Reviews</h4>
-<% if @reviews.count > 0%>
-  <% @reviews.each do |review| %>
+
+<% if @item.reviews.length > 0 %>
+  <% @item.reviews.each do |review| %>
     <h4>Rating: <%= "#{review.rating}" %></h4>
     <h4><%= "#{review.description}" %></h4>
   <% end %>

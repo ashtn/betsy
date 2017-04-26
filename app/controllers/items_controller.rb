@@ -26,20 +26,17 @@ class ItemsController < ApplicationController
     if !@item
       render_404
     end
-    if @item
-    @reviews = Review.where(item_id: @item.id)
-    end
   end
 
   def new
     @item = Item.new
+
   end
 
   def create
     @item = Item.new item_params
     @item.merchant_id = find_merchant.id
     @item.category_ids = params[:item][:category_ids]
-
     @item.save
     unless @item.merchant_id == nil
       redirect_to items_path, flash: {success: "Item added successfully"}

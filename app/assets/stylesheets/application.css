@@ -19,7 +19,7 @@
 
  /*header {
    /*background-color: #a99ed8;*/
-   clear: both;
+   /*clear: both;*/
    /*color: white;*/
  /*}
 
@@ -91,6 +91,7 @@ input  {
  /* Show the dropdown menu on hover */
  .dropdown:hover .dropdown-content {
      display: block;
+   }
 
  /* Change the background color of the dropdown button when the dropdown content is shown */
  .dropdown:hover .dropbtn {
