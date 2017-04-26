@@ -24,12 +24,22 @@
     </div>
 
     <div class="dropdown">
-      <button class="dropbtn">Shop by Category</button>
-      <div class="dropdown-content">
-        <%= link_to "Show all", items_path %>
-        <% @categories.each do |category| %>
-        <%= link_to "#{category.name}", category_items_path(category.id) %>
-        <% end %>
+      <% if @merchants.empty? %>
+        <button class="dropbtn">Shop by Category</button>
+        <div class="dropdown-content">
+          <%= link_to "Show all", categories_path %>
+          <% @categories.each do |category| %>
+            <%= link_to "#{category.name}", category_items_path(category.id) %>
+          <% end %>
+      <% else %>
+        <button class="dropbtn">Categories</button>
+        <div class="dropdown-content">
+          <%= link_to "Add new category", new_category_path %>
+          <% @categories.each do |category| %>
+            <%= link_to "#{category.name}", category_items_path(category.id) %>
+          <% end %>
+      <% end %>
+      <%# raise %>
       </div>
     </div>
 

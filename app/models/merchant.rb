@@ -13,7 +13,7 @@ class Merchant < ApplicationRecord
     merchant.username = auth_hash["info"]["nickname"]
     merchant.email = auth_hash["info"]["email"]
 
-    merchant.save ? nickname : nil
+    merchant.save ? merchant : nil
 
   end
 
