@@ -1,24 +1,30 @@
 <section>
-  <h3>testing order_items method:</h3>
+  <h3>Order Items</h3>
 <table>
   <thead>
     <th>
       Item
     </th>
     <th>
-      Price
+      Subtotal
     </th>
     <th>
-      Qty in Stock
-    </th>
-    <th>
-      Average Rating
+      Quantity
     </th>
     <th>
       Order ID
     </th>
     <th>
       Status
+    </th>
+    <th>
+      Date
+    </th>
+    <th>
+      Time
+    </th>
+    <th>
+      Shipped
     </th>
     <th>
 
@@ -34,13 +40,10 @@
       <%=link_to "#{Item.find(order_item.item_id).name.capitalize}", item_path(order_item.item_id), method: :get%>
     </td>
     <td>
-      $<%= sprintf('%.2f', order_item.item.price )%>
+      $<%= sprintf('%.2f', @merchant.subtotal(order_item) )%>
     </td>
     <td>
-      <%= order_item.item.inventory%>
-    </td>
-    <td>
-      <%= order_item.item.average_rating %>
+      <%= order_item.quantity%>
     </td>
     <td>
       <%= link_to order_item.order_id, order_path(order_item.order_id) %>
@@ -48,16 +51,28 @@
     <td>
       <%= order_item.order.status %>
     </td>
-
+    <td>
+      <%= order_item.updated_at.strftime('%v') %>
+    </td>
+    <td>
+      <%= order_item.updated_at.strftime('%r') %>
+    </td>
+    <td>
+      <% if order_item.status.nil? %>
+        <%= link_to 'ship', ship_order_path(order_item: order_item.id), method: :put %>
+      <% else %>
+        <%=  "✔︎" %>
+        <% end %>
+    </td>
     <%# if current_merchant %>
     <td>
-      <%= link_to "Update", edit_item_path(order_item.item.id), method: :get %>
+      <%= link_to "⚙️", edit_item_path(order_item.item.id), method: :get %>
     </td>
     <td>
-      <%= link_to "Delete", item_path(order_item.item.id), method: :delete %>
+      <%= link_to "🗑", item_path(order_item.item.id), method: :delete %>
     </td>
     <td>
-      <%= link_to "Retire", item_path(Item.find(order_item.item_id)), method: :delete %>
+      <%= link_to "🔒", item_path(Item.find(order_item.item_id)), method: :delete %>
     </td>
     <%#end%>
   </tr>

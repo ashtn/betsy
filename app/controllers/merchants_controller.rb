@@ -39,13 +39,22 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
     #raise
   end
 
+  def ship
+
+    order_item = @merchant.order_items.find_by(id: params[:order_item])
+    #raise
+      order_item.status = "shipped"
+      order_item.save
+    render "show"
+  end
+
   private
 
   def merchant_params
     params.require(:merchant).permit(:username, :email)#, :uid, :provider)
   end
 
-  # def find_merchant
-  #   @merchant = Merchant.find_by_id(params[:id])
-  # end
+  def find_merchant
+    @merchant = Merchant.find_by_id(params[:id])
+  end
 end
