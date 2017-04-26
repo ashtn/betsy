@@ -51,7 +51,7 @@ describe ItemsController do
 
   it "should get update" do
     get edit_item_path(items(:chips).id)
-    must_respond_with :success
+    must_redirect_to items_path
   end
 
   it "should affect the model when creating an item" do
