@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     @result_order = Order.find(params[:id])
-    @payment = Payment.create
+    @payment = Payment.where(order_id: params[:id]).first
   end
 
   def create
@@ -57,16 +57,18 @@ class OrdersController < ApplicationController
   end
 
   def paid
-    @payment = Payment.create payment_params
-
-    @order = Order.find(params[:id])
-
-    Order.change_status_to_paid(params[:id])
-    Order.inventory_adjust(params[:id])
+     # The default column for payment is id, but id in this methods context is an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
+    actual_params = payment_params
+    actual_params[:order_id] = params[:id]
+    @payment = Payment.create actual_params
 
     if @payment.id != nil
       flash[:success] = "Payment successful!"
       order_id = params[:id] # to clarify that this is an order ID, not payment ID
+      @order = Order.find(params[:id])
+
+      Order.change_status_to_paid(params[:id])
+      Order.inventory_adjust(params[:id])
       redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"
@@ -82,7 +84,7 @@ class OrdersController < ApplicationController
   end
 
   def payment_params
-    params.require(:payment).permit(:name_on_card, :email, :phone_num, :ship_address, :bill_address, :card_number, :expiration_date, :CCV )
+    params.require(:payment).permit(:name_on_card, :email, :phone_num, :ship_address, :bill_address, :card_number, :expiration_date, :CCV, :order_id )
   end
 
 end
