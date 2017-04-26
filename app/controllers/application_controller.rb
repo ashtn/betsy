@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_merchant
   before_action :find_merchant
   before_action :require_login
+  before_action :require_user
 
 
   def add_header_text
@@ -15,6 +16,27 @@ class ApplicationController < ActionController::Base
     if !session[:merchant_id]
       flash[:warning] = "You must be logged in to view this page"
       redirect_to items_path
+    end
+  end
+
+  def require_user
+    if !session[:merchant_id]
+      if !session[:id]
+        if Order.all.length == 0
+          @order = Order.new
+          session[:id] = 1
+          @order.session_id = 1
+        else
+          session[:id] = Order.last.session_id + 1
+          @order = Order.new
+          @order.id = (Order.last.id + 1)
+          @order.status = "pending"
+          @order.session_id = session[:id]
+          @order.total = 0
+          @order.save
+          # raise
+        end
+      end
     end
   end
 

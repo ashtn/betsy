@@ -1,4 +1,5 @@
 class Payment < ApplicationRecord
+  belongs_to :order
 
   validates :name_on_card, presence: true
   validates :email, presence: true
@@ -11,6 +12,7 @@ class Payment < ApplicationRecord
   validates_length_of :expiration_date, :minimum => 4, :maximum => 4
   validates :CCV, presence: true
   validates_length_of :CCV, :minimum => 3, :maximum => 4
+  validates :order_id, presence: true
 
   def paid
   end

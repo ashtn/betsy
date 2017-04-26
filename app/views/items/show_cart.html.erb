@@ -1,9 +1,10 @@
 
 <section>
-<% if @order_items != nil%>
+<% if @order_items.length != 0 %>
 <p>
 <%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
 </p>
+
 Items in your cart:
 <table>
     <thead>
@@ -34,20 +35,14 @@ Items in your cart:
         </td>
         <td>
           <%= form_for oi do | order_form | %>
-           <%= order_form.number_field :quantity, min: 1, max: oi.item.inventory %>
-
+          <%= order_form.number_field :quantity, min: 1, max: oi.item.inventory %>
         <td>
-
           <%= order_form.submit %>
         </td>
           <% end %>
-
-
-
         </td>
-
         <td>
-          Delete<%#= link_to "Delete", item_path, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.item.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+        <%= link_to "Delete", remove_from_cart_path(oi.id), { data: { confirm: "Are you sure you wish to delete the product '#{oi.item.name}' from your cart?" }, method: :delete } %>
         </td>
       </tr>
       <% end %>

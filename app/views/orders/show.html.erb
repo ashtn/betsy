@@ -16,7 +16,7 @@
       <p>Customer name: <%= @payment.name_on_card %></p>
       <p>Email address: <%= @payment.email %></p>
       <p>Mailing address: <%= @payment.ship_address %></p>
-      <p>CC: <%= @payment.card_number %></p>
+      <p>CC: <%= @payment.card_number[-4..-1].to_i %></p>
       <p>CC expiration date: <%= @payment.expiration_date %></p>
 
   </ul>

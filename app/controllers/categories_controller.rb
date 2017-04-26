@@ -23,6 +23,9 @@ class CategoriesController < ApplicationController
 
   def show
     @items = Category.find_by(@item_category)
+    if !@items
+      render_404
+    end
   end
 
     #
