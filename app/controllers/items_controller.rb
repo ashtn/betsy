@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart, :remove_from_cart]
 
+
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
@@ -35,7 +36,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new item_params
-    @item.merchant_id = Merchant.find_by_id(params[:id])
+    @item.merchant_id = current_merchant.id
     @item.category_ids = params[:item][:category_ids]
     @item.save
     unless @item.merchant_id == nil
