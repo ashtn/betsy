@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    current_merchant
     @result_order = Order.find(params[:id])
     @payment = Payment.where(order_id: params[:id]).first
   end
