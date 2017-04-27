@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :order_items
   has_many :reviews, dependent: :destroy
+  accepts_nested_attributes_for :merchant
 
 
   validates :price, presence: true, numericality: { greater_than: 0 }
