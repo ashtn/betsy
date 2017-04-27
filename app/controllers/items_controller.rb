@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     if @item.nil?
       head :not_found
     else
-      params[:category] = @item.category
+      params[:category] = @item.categories
     end
   end
 
@@ -76,11 +76,27 @@ class ItemsController < ApplicationController
 
   def add_to_cart
     # if OrderItem.find(params[:id])
-    if OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+    # item = Item.find_by(id: params[:id])
+
+    if existing_order_item && sufficient_inventory
+      increase_quantity
       flash[:notice] = "Added to Cart!"
       redirect_to :back
+    elsif existing_order_item && !sufficient_inventory
+      flash[:notice] = "Not enough in stock!"
+      redirect_to :back
+    else
+    #  raise
+      if OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
+        flash[:notice] = "Added to Cart!"
+        redirect_to :back
+      else
+        flash[:notice] = "something went wrong"
+        redirect_to items_path
+      end
     end
   end
+
 
   def remove_from_cart
     # OrderItem.destroy(params[:id])
@@ -142,7 +158,38 @@ class ItemsController < ApplicationController
     # raise
     return @categories_names
   end
+
+  def sufficient_inventory
+    if @oi.length > 0
+      item = Item.find(@oi.last.item_id)
+      # raise
+      if @oi.last.quantity < item.inventory
+        return true
+      else
+        return false
+      end
+    else
+      return true
+    end
+  end
+
+  def existing_order_item
+     order = Order.find_by(session_id: session[:id])
+     @oi = OrderItem.where(item_id: params[:id], order_id: order.id)
+     if @oi.length > 0
+       return true
+     else
+       return false
+     end
+  end
+
+  def increase_quantity
+    @oi.last.quantity += 1
+    @oi.last.save
+  end
+
   def order_params
     params.require(:order).permit(:session_id, :status, :total)
   end
+
 end

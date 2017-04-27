@@ -3,12 +3,16 @@ class Merchant < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :items
-  #has_many :orders
-  has_many :orders, through: :items, source: :order_items
-  #has_many :ordered_items, through: :items, source: :order_items
+  has_many :order_items
+
 
   def self.create_from_github(auth_hash)
     merchant = Merchant.new
+
+    if auth_hash["uid"] == nil || auth_hash["provider"] == nil || auth_hash["info"] == nil
+      return nil
+    end
+
     merchant.uid = auth_hash["uid"]
     merchant.provider = auth_hash["provider"]
     merchant.username = auth_hash["info"]["nickname"]
@@ -18,12 +22,6 @@ class Merchant < ApplicationRecord
 
   end
 
-
-  def order_items
-    # TODO Self.order_items?
-    order_items = OrderItem.where(merchant_id: self.id)
-    return order_items #order item objects
-  end
 
   def merchant_orders
     # TODO Self.orders?
@@ -39,8 +37,8 @@ class Merchant < ApplicationRecord
 
 
   def revenue
-    total_revenue = 0.01
-    order_items.each {|order_item| total_revenue += subtotal(order_item)}
+    total_revenue = 0
+    self.order_items.each {|order_item| total_revenue += subtotal(order_item)}
     return total_revenue
   end
 
