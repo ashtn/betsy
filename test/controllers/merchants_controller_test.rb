@@ -83,7 +83,7 @@ describe MerchantsController do
       login_merchant(merchants(:kari))
     end
     it "should ship" do
-      put ship_order_path(merchants(:kari).id, order_items(:two).id )
+      put ship_order_path(merchants(:kari).id, order_items(:two).status )
       must_respond_with :success
     end
   end
