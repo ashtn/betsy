@@ -56,7 +56,6 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    @payment = Payment.new
 
     @order = Order.find(params[:id])
     render "pay_form"
