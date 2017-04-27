@@ -73,6 +73,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def retire
+    @item = Item.find_by(id: params[:id])
+    @item.inventory = nil
+    @item.save
+  end
+
   def destroy
     Item.destroy(params[:id])
     redirect_to items_path
