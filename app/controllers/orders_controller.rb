@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:pay, :paid, :show_user_order] # TODO: fix
+  skip_before_action :require_login, only: [:pay, :paid ] # TODO: fix
 
   def index
     @orders = Order.all
@@ -8,12 +8,6 @@ class OrdersController < ApplicationController
   def show
     current_merchant
     @result_order = Order.find(params[:id])
-    @payment = Payment.where(order_id: params[:id]).first
-  end
-
-  def show_user_order
-    @orders = Order.where(session_id: params[:id])
-    # raise
     @payment = Payment.where(order_id: params[:id]).first
   end
 

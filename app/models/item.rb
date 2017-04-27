@@ -7,7 +7,7 @@ class Item < ApplicationRecord
 
 
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :inventory, presence: true, numericality: { only_integer: true, greater_than: -1 }
+  validates :inventory, presence: true, numericality: { only_integer: true, greater_than: -1 }, :allow_nil => true
   validates :name, presence: true, uniqueness: true
   validates :photo, presence: true
 

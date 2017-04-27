@@ -15,9 +15,13 @@ class ItemsController < ApplicationController
     if params[:category_id]
       # we are in the nested route
       @items = Item.includes(:categories).where(categories: { id: params[:category_id]})
+      hide_retired
+      # raise
     else
       # we are in our 'regular' route
       @items = Item.all
+      hide_retired
+      # raise
     end
 
   end
@@ -35,12 +39,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new item_params
-# <<<<<<< HEAD
     @item.merchant_id = current_merchant.id
-# =======
-#     @item.merchant_id = params[:merchant][:merchant_id]
-#     # Merchant.find_by_id(params[:id])
-# >>>>>>> kms/testingcart
     @item.category_ids = params[:item][:category_ids]
     @item.save
     unless @item.merchant_id == nil
@@ -122,8 +121,8 @@ class ItemsController < ApplicationController
        order_item.quantity = params[:order_item][:quantity].to_i
        if order_item.save
          flash[:success] = "Quantity Updated"
-       end
        redirect_to cart_path
+       end
      else
        flash[:notice] = "Stock too Low!"
        redirect_to cart_path
@@ -197,4 +196,8 @@ class ItemsController < ApplicationController
     params.require(:order).permit(:session_id, :status, :total)
   end
 
+   def hide_retired
+    @items =  @items.where.not(inventory: nil)
+    return @items
+   end
 end
