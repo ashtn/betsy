@@ -31,12 +31,16 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-
   end
 
   def create
     @item = Item.new item_params
+# <<<<<<< HEAD
     @item.merchant_id = current_merchant.id
+# =======
+#     @item.merchant_id = params[:merchant][:merchant_id]
+#     # Merchant.find_by_id(params[:id])
+# >>>>>>> kms/testingcart
     @item.category_ids = params[:item][:category_ids]
     @item.save
     unless @item.merchant_id == nil

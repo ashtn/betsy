@@ -1,9 +1,9 @@
 class Merchant < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-
   has_many :items
   has_many :order_items
+  accepts_nested_attributes_for :items
 
 
   def self.create_from_github(auth_hash)
