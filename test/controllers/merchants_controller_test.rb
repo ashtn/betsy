@@ -18,14 +18,17 @@ describe MerchantsController do
 
   describe "create" do
     it "Model data increases after creating merchant" do
-      skip
       proc {
-        post merchants_path, params: {merchant:
+        post merchants_path, params:
+        { merchant:
           { username: "Test",
-            email: "test@test.com"
-        }}
-      }.must_change 'Merchant.count', 1
-    end
+            email: "test@test.com",
+            uid: 12345,
+            provider: "github"
+            }
+          }
+        }.must_change 'Merchant.count', 1
+      end
 
     it 'should redirect after creating merchant ' do
       skip

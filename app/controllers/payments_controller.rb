@@ -6,11 +6,6 @@ class PaymentsController < ApplicationController
     @order_items = OrderItem.where(:order_id => @order.id)
     item_ids = @order_items.map { |i| i.item_id }.uniq
     @items = Item.find(item_ids)
-
-
   end
 
-  def new
-    @payment = Payment.new
-  end
 end

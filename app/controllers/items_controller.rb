@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new item_params
-    @item.merchant_id = find_merchant.id
+    @item.merchant_id = Merchant.find_by_id(params[:id])
     @item.category_ids = params[:item][:category_ids]
     @item.save
     unless @item.merchant_id == nil
@@ -80,7 +80,7 @@ class ItemsController < ApplicationController
 
     if existing_order_item && sufficient_inventory
       increase_quantity
-      flash[:notice] = "Added to Cart!"
+      flash[:notice] = "Added to art!"
       redirect_to :back
     elsif existing_order_item && !sufficient_inventory
       flash[:notice] = "Not enough in stock!"
