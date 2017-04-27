@@ -47,7 +47,7 @@
       <%= link_to "Delete", item_path(item.id), method: :delete %>
     </td>
     <td>
-      <%= link_to "Retire", item_path(item.id), method: :delete %>
+      <%= link_to "Retire", retire_path(item.id), method: :patch %>
     </td>
     <%end%>
   </tr>
