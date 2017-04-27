@@ -4,10 +4,10 @@ one:
   username: TestUsername
   email: TestEmail
   uid: 1
-  provider: TestProvider
+  provider: github
 
 two:
   username: TestUsernameTwo
   email: TestEmailTwo
   uid: 2
-  provider: TestProviderTwo
+  provider: github
