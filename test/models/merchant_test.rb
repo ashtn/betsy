@@ -2,7 +2,29 @@ require "test_helper"
 
 describe Merchant do
 
-  # describe "Merchant Validations" do
+
+
+  describe "Merchant Validations" do
+
+
+    it "Can create a Merchant" do
+  #create a user
+  merchant = Merchant.new(username: "NewMerchant", uid: "999", provider: "github", email: "test@email.org")
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(merchant))
+  #try to log in
+  proc {
+    #get the callback path for github
+    #will call the 'create action' in 'SessionsController'
+    get auth_github_callback_path
+    #check for redirection
+    must_redirect_to root_path
+    #check that session was set
+    session[:user_id].must_equal User.find_by(name: "NewMerchant").id
+    #check that new user was created
+  }.must_change 'Merchant.count', 1
+  must_redirect_to root_path
+  flash[:success].must_equal "Logged in successfully!"
+end
   #
   #   describe "Username and email address presence" do
   #
@@ -52,7 +74,7 @@ describe Merchant do
   #       merchant.email.must_equal "TestEmailThree"
   #     end
   #   end
-  # end
+  end
 
   # =====
   describe "Merchant Relationships" do
