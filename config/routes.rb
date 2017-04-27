@@ -37,7 +37,6 @@ Rails.application.routes.draw do
 
   resources :orders
   get '/orders/:id/pay', to: 'orders#pay', as: 'pay'
-  get '/orders/:id/show', to: 'orders#show_user_order', as: 'user_order'
   post '/orders/:id/pay', to: 'orders#paid', as: 'paid'
 
   get '/payments/:id/confirmation', to: 'payments#confirmation', as: 'confirmation'
