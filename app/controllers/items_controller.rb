@@ -76,7 +76,10 @@ class ItemsController < ApplicationController
   def retire
     @item = Item.find_by(id: params[:id])
     @item.inventory = nil
-    @item.save
+    if @item.save
+      flash[:success] = "Item Succesfully Retired"
+      redirect_to items_path
+    end
   end
 
   def destroy
