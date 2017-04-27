@@ -16,20 +16,20 @@ class Order < ApplicationRecord
       return total.round(2)
     end
 
-    def self.change_status_to_paid(order_id) # "submit order" button on cart need to be linked to this method
+    def self.change_status_to_paid(order_id)
       order = Order.find_by_id(order_id)
       order.status = "paid"
       order.save
     end
 
-    def self.inventory_adjust(order_id)
+    def inventory_adjust
 
-      order_items = OrderItem.where(order_id: order_id)
 
-      order_items.each do | order_item |
+      self.order_items.each do | order_item |
         item = Item.find_by_id(order_item.item_id)
         if order_item.quantity <= item.inventory
           item.inventory -= order_item.quantity # reduce that items inventory by the quantity bought
+          puts item.merchant_id
           item.save
         else
           # TODO: handle cases where we don't have enough inventory
