@@ -1,0 +1,22 @@
+
+<h1>Order Confirmation</h1>
+
+<h3>
+    <p>Order placed: <%= @order.created_at.to_date %></p>
+    <p>Order total: $<%= @order.total_cost.round(2) %></p>
+</h3>
+<h5>
+    <p>Order status: <%= @order.status %></p>
+    <p>Order id: <%= @order.id %></p>
+</h5>
+
+<h4>
+    <% @items.each do | item | %>
+
+      <p>PIC HERE: <%=item.photo%></p>
+      <p><%=link_to item.description, item_path(item.id)%></p>
+      <p><%=quant = @order_items.where(item_id: item.id).map { |i| i.quantity }.sum%></p>
+      <p>Price: $<%=item.price * quant%></p>
+    <% end %>
+
+</h4>

@@ -1,0 +1,60 @@
+
+<section>
+<% if @order_items.length != 0 %>
+<p>
+<%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
+</p>
+
+Items in your cart:
+<table>
+    <thead>
+      <th>
+        Item
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+
+      </th>
+      <th>
+
+      </th>
+    </thead>
+    <tbody>
+      <% @order_items.each do |oi| %>
+      <tr>
+        <td>
+          <%=  oi.item.name %>
+        </td>
+        <td>
+          <%= oi.item.price %>
+        </td>
+        <td>
+          <%= form_for oi do | order_form | %>
+          <%= order_form.number_field :quantity, min: 1, max: oi.item.inventory %>
+        <td>
+          <%= order_form.submit %>
+        </td>
+          <% end %>
+        </td>
+        <td>
+        <%= link_to "Delete", remove_from_cart_path(oi.id), { data: { confirm: "Are you sure you wish to delete the product '#{oi.item.name}' from your cart?" }, method: :delete } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+<% else %>
+  Is Empty
+<% end %>
+
+<p>
+
+</p>
+
+<% #raise %>
+
+</section>

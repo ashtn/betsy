@@ -1,0 +1,25 @@
+<section>
+
+  <h4> Merchant Orders </h4>
+
+  <table>
+    <thead>
+      <th>
+        Order Id
+      </th>
+      <th>
+        order total
+      </th>
+    </thead>
+    <% @merchant.merchant_orders.each do |order| %>
+    <tr>
+      <td>
+        <%=link_to "#{order.id}", order_path(order.id), method: :get%>
+      </td>
+      <td>
+        $<%= sprintf('%.2f', @merchant.revenue_by_order(order))%>
+      </td>
+      <%end%>
+    </tr>
+  </table>
+</section>

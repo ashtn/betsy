@@ -2,7 +2,7 @@
 
 
 chips:
-  merchant_id: 1
+  merchant: kari
   name: chips
   description: tortilla
   price: 4
@@ -10,7 +10,7 @@ chips:
   photo: somestring
 
 item_two:
-  merchant_id: 1
+  merchant: kari
   name: potato
   description: idaho gold
   price: 1.5

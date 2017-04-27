@@ -21,3 +21,4 @@
 .env
 
 coverage
+#open coverage/index.html

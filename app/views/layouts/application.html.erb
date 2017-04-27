@@ -16,20 +16,30 @@
 
 
   <header>
-    <h1>Besty</h1>
+    <h1><%= link_to "Besty", root_path %></h1>
   <nav>
     <div class="dropdown">
-      <button class="dropbtn home">  <%= link_to "Home", items_path %></button>
+      <button class="dropbtn home">  <%= link_to "All Items", items_path %></button>
       <div class="dropdown-content"></div>
     </div>
 
     <div class="dropdown">
-      <button class="dropbtn">Shop by Category</button>
-      <div class="dropdown-content">
-        <%= link_to "Show all", items_path %>
-        <% @categories.each do |category| %>
-        <%= link_to "#{category.name}", category_items_path(category.id) %>
-        <% end %>
+      <% if session[:merchant_id] == nil %>
+        <button class="dropbtn">Shop by Category</button>
+        <div class="dropdown-content">
+          <%= link_to "Show all", categories_path %>
+          <% @categories.each do |category| %>
+            <%= link_to "#{category.name}", category_items_path(category.id) %>
+          <% end %>
+      <% else %>
+        <button class="dropbtn">Categories</button>
+        <div class="dropdown-content">
+          <%= link_to "Add new category", new_category_path %>
+          <% @categories.each do |category| %>
+            <%= link_to "#{category.name}", category_items_path(category.id) %>
+          <% end %>
+      <% end %>
+      <%# raise %>
       </div>
     </div>
 
@@ -47,18 +57,18 @@
 
       <div class="dropdown">
         <% if @login_form %>
-          <button class="dropbtn">Logged in as <%= link_to "#{ @login_merchant.username }", merchant_path(@login_merchant) %>
+          <button class="dropbtn">Logged in as <%= link_to "#{ find_merchant.username }", merchant_path(current_merchant) %>
 
           </button>
         <% else %>
           <button class="dropbtn">Merchant Account</button>
         <% end %>
         <div class="dropdown-content">
-        <% if @login_merchant %>
+        <% if current_merchant %>
           <p>
           </p>
           <%= link_to 'Logout', logout_path, method: :delete %>
-          <%= link_to "My Account", merchant_path(@login_merchant.id), method: :get%>
+          <%= link_to "My Account", merchant_path(current_merchant.id), method: :get%>
         <% else %>
             <%= link_to 'Login using GitHub!', '/auth/github' %>
             <%= link_to 'Create new', new_merchant_path, method: :get%>
@@ -67,8 +77,8 @@
 
       </div>
     </div>
-    <div class="">
-      <button class=" cart">  <%= link_to "My Cart", items_path %></button>
+    <div class="cart">
+      <button class="cart">  <%= link_to "My Cart", cart_path %></button>
     </div>
 
   </header>
@@ -85,7 +95,13 @@
 </body>
 </html>
   <div id = "footer">
-  <footer>&copy; 2017 Besties</footer>
+  <footer>
+    <section>
+      <article>&copy; 2017 Besties</article>
+      <article>Disclaimer: This is a fake site. As much as we would love to take
+        your money, please don't enter any real information.</article>
+    </section>
+  </footer>
   </div>
 </div>
 </html>

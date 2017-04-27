@@ -27,16 +27,18 @@ describe ItemsController do
   end
 
   it "should get create" do
-    get new_item_path
+    post new_item_path
     must_respond_with :success
+    must_redirect_to items_path
   end
 
-  it "should redirect to list after adding item" do
+  it "should redirect to list after creating item" do
     post items_path params: {item:
       { name: "Salsa",
         merchant_id: merchants(:one).id,
         description: "Yummy",
         price: 5,
+        photo: "www.url.com",
         inventory: 22
       } }
     must_redirect_to items_path
@@ -49,25 +51,47 @@ describe ItemsController do
 
   it "should get update" do
     get edit_item_path(items(:chips).id)
-    must_respond_with :success
+    must_redirect_to items_path
   end
 
   it "should affect the model when creating an item" do
     proc {
-      post items_path params: {item:
-        { name: "Salsa",
+      post item_path params: {item:
+        {
+          name: "Salsa",
           merchant_id: merchants(:one).id,
           description: "Yums",
           price: 5,
+          photo: "someurl.com",
           inventory: 22
-        } }
+        }
+      }
     }.must_change 'Item.count', 1
 
   end
 
   it "should delete an iten and redirect to items list" do
-  delete item_path(items(:chips).id)
-  must_redirect_to items_path
-end
+    delete item_path(items(:chips).id)
+    must_redirect_to items_path
+  end
+
+  describe "Cart Features" do
+
+    it "should affect the model when adding an item to cart" do
+
+    end
+
+    it "should affect the model when removing an item from cart" do
+
+    end
+
+    it "update quantity when adding second of same item to cart" do
+
+    end
+
+    it "update quantity when submit qauantity change in  cart view" do
+
+    end
+  end
 
 end
