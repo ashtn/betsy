@@ -25,6 +25,11 @@
 <%= f.label :photo %></br>
 <%= f.text_field :photo %>
 
+
+<%= form_for :merchant, :merchant_id => @merchant do |f| %>
+<%= f.text_field :merchant_id, :value => session[:merchant_id] %>
+<% end %>
+
 <%= f.label :categories %></br>
 <%= f.select :category_ids, options_for_select(@categories.collect { | category | [category.name, category.id] }), { :prompt => "Please select"}, { :multiple => true} %>
 <%# raise %>

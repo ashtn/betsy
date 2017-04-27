@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get "/items/cart", to: "items#show_cart", as: "cart"
   patch '/item/cart/update_cart/:id', to: 'items#update_cart', as: "order_item"
   patch '/item/:id/add_to_cart', to: 'items#add_to_cart', as: 'add_to_cart'
-
   # get '/login', to: 'sessions#login_form'
   # post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout'
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
 
   resources :orders
   get '/orders/:id/pay', to: 'orders#pay', as: 'pay'
+  get '/orders/:id/show', to: 'orders#show_user_order', as: 'user_order'
   post '/orders/:id/pay', to: 'orders#paid', as: 'paid'
 
   get '/payments/:id/confirmation', to: 'payments#confirmation', as: 'confirmation'

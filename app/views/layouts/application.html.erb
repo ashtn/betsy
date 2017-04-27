@@ -19,7 +19,8 @@
     <h1><%= link_to "Besty", root_path %></h1>
   <nav>
     <div class="dropdown">
-      <button class="dropbtn home">  <%= link_to "All Items", items_path %></button>
+      <button class="dropbtn home">  <%= link_to "All Items", items_path %>
+      </button>
       <div class="dropdown-content"></div>
     </div>
 
@@ -61,7 +62,7 @@
 
           </button>
         <% else %>
-          <button class="dropbtn">Merchant Account</button>
+          <button class="dropbtn">My Account</button>
         <% end %>
         <div class="dropdown-content">
         <% if current_merchant %>
@@ -70,6 +71,7 @@
           <%= link_to 'Logout', logout_path, method: :delete %>
           <%= link_to "My Account", merchant_path(current_merchant.id), method: :get%>
         <% else %>
+            <%= link_to "My Orders", user_order_path(session[:id]), method: :get%>
             <%= link_to 'Login using GitHub!', '/auth/github' %>
             <%= link_to 'Create new', new_merchant_path, method: :get%>
         <% end %>
@@ -78,7 +80,9 @@
       </div>
     </div>
     <div class="cart">
+      <% if session[:merchant_id] == nil %>
       <button class="cart">  <%= link_to "My Cart", cart_path %></button>
+      <% end %>
     </div>
 
   </header>
