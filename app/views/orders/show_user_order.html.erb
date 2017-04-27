@@ -1,0 +1,16 @@
+MY ORDERS Go HERE
+<h1>Selected orders</h1>
+
+<h4>
+<%  @orders.each do |order| %>
+<% if order.order_items.length > 1 %>
+  <ul>
+    <li>
+      Order ID: <%= order.id %>
+      Total: $<%= order.total_cost %>
+    </li>
+  </ul>
+  <% end %>
+  <% end %>
+
+</h4>

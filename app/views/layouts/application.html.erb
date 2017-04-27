@@ -62,7 +62,7 @@
 
           </button>
         <% else %>
-          <button class="dropbtn">Merchant Account</button>
+          <button class="dropbtn">My Account</button>
         <% end %>
         <div class="dropdown-content">
         <% if current_merchant %>
@@ -70,8 +70,8 @@
           </p>
           <%= link_to 'Logout', logout_path, method: :delete %>
           <%= link_to "My Account", merchant_path(current_merchant.id), method: :get%>
-          <%= link_to "Orders", orders_path(current_merchant.id), method: :get%>
         <% else %>
+            <%= link_to "My Orders", user_order_path(session[:id]), method: :get%>
             <%= link_to 'Login using GitHub!', '/auth/github' %>
             <%= link_to 'Create new', new_merchant_path, method: :get%>
         <% end %>
