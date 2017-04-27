@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   skip_before_action :require_login, only: [:index, :show, :add_to_cart, :show_cart, :root, :update_cart, :remove_from_cart]
 
+
   # Price must be a number
   # Price must be greater than 0
   before_action :find_categories, only: [:show, :edit]
@@ -80,7 +81,7 @@ class ItemsController < ApplicationController
 
     if existing_order_item && sufficient_inventory
       increase_quantity
-      flash[:notice] = "Added to Cart!"
+      flash[:notice] = "Added to art!"
       redirect_to :back
     elsif existing_order_item && !sufficient_inventory
       flash[:notice] = "Not enough in stock!"
