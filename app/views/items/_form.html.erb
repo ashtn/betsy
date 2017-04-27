@@ -25,7 +25,10 @@
 <%= f.label :photo %></br>
 <%= f.text_field :photo %>
 
-<%= f.hidden_field :merchant_id %></br>
+
+<%= form_for :merchant, :merchant_id => @merchant do |f| %>
+<%= f.text_field :merchant_id, :value => session[:merchant_id] %>
+<% end %>
 
 
 <%= f.label :categories %></br>
