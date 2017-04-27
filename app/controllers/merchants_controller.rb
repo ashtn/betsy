@@ -1,5 +1,7 @@
 class MerchantsController < ApplicationController
 skip_before_action :require_login, only: [:index, :new, :create, :merchant_items]
+# before_action :find_book, only: [:show, :order_by_status]
+
   def index
     @merchants = Merchant.all
   end
@@ -9,19 +11,20 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
   end
 
   def create
-    @merchant = Merchant.new(merchant_params)
-    if @merchant.save
-      flash[:success] = "Successfuly created new Merchant"
-      redirect_to merchants_path
-    else
-      flash.now[:error] = "Merchant could not be created"
-      @merchant.errors.messages
-      render 'new'
-    end
+    # @merchant = Merchant.new(merchant_params)
+    # if @merchant.save
+    #   flash[:success] = "Successfuly created new Merchant"
+    #   redirect_to merchants_path
+    # else
+    #   flash.now[:error] = "Merchant could not be created"
+    #   @merchant.errors.messages
+    #   render 'new'
+    # end
   end
 
   def show
-    @merchant = Merchant.find_by_id(params[:id])
+    find_merchant
+    # @merchant = Merchant.find_by_id(params[:id])
     if !@merchant
       render_404 #find me in ApplicationController
     end
@@ -33,7 +36,8 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
   end
 
   def order_by_status
-    @merchant = Merchant.find_by_id(params[:id])
+    find_merchant
+    # @merchant = Merchant.find_by_id(params[:id])
     # @merchant.orders_by_status.where(status: params[:status])
     render '_order_by_status'
     #raise
@@ -51,7 +55,7 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
   private
 
   def merchant_params
-    params.require(:merchant).permit(:username, :email)#, :uid, :provider)
+    params.require(:merchant).permit(:username, :email, :uid, :provider)
   end
 
   def find_merchant
