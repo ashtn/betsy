@@ -24,7 +24,7 @@
     </div>
 
     <div class="dropdown">
-      <% if session[:merchant_id] == nil %>
+      <% if current_merchant == nil %>
         <button class="dropbtn">Shop by Category</button>
         <div class="dropdown-content">
           <%= link_to "Show all", categories_path %>
@@ -57,7 +57,7 @@
 
       <div class="dropdown">
         <% if @login_form %>
-          <button class="dropbtn">Logged in as <%= link_to "#{ find_merchant.username }", merchant_path(current_merchant) %>
+          <button class="dropbtn">Logged in as <%= link_to "#{ current_merchant.username }", merchant_path(current_merchant) %>
 
           </button>
         <% else %>

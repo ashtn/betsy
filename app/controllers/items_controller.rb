@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new item_params
-    @item.merchant_id = find_merchant.id
+    @item.merchant_id = current_merchant.id
     @item.category_ids = params[:item][:category_ids]
     @item.save
     unless @item.merchant_id == nil
