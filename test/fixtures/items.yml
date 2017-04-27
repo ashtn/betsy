@@ -11,7 +11,7 @@ item_one:
   photo: somestring
 
 item_two:
-  merchant: kari
+  merchant: dan
   name: potato
   description: idaho gold
   price: 1.5

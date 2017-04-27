@@ -4,14 +4,21 @@ one:
   item: item_one
   order: one
   quantity: 4
-
+  merchant_id: 756141187
 
 two:
   item: item_two
   order: one
   quantity: 1
+  merchant_id: 756141187
 
 three:
   item: item_two
   order: two
   quantity: 1
+
+four:
+  item: item_two
+  order: two
+  quantity: 1
+  merchant_id: 756141187

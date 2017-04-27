@@ -1,9 +1,9 @@
 class Merchant < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-
   has_many :items
   has_many :order_items
+  accepts_nested_attributes_for :items
 
 
   def self.create_from_github(auth_hash)
@@ -38,8 +38,9 @@ class Merchant < ApplicationRecord
 
   def revenue
     total_revenue = 0
-    self.order_items.each {|order_item| total_revenue += subtotal(order_item)}
-    return total_revenue
+    orders_by_status('paid').each {|order| total_revenue += revenue_by_order(order)}
+    orders_by_status('complete').each {|order| total_revenue += revenue_by_order(order)}
+    return total_revenue.round(2)
   end
 
   def revenue_by_status(status)
@@ -72,11 +73,11 @@ class Merchant < ApplicationRecord
     return orders
   end
 
-  def items_by_status(status)
-    # TODO returns order_item objects
-    items = order_items.where(status: status)
-    return items
-  end
+  # def items_by_status(status)
+  #   # TODO returns order_item objects
+  #   items = order_items.where(status: status)
+  #   return items
+  # end
 
   def total_orders_by_status(status)
     # TODO # returns an integer
