@@ -19,19 +19,15 @@ describe OrdersController do
   describe "create" do
     it "should create an order given valid data" do
       Order.destroy_all
-
-      
-
       order_data = {
         order: {
-          session_id: merchants(:one).id,
+          session_id: merchants(:kari).id,
           status: "paid",
           total: 25.89}
         }
         post orders_path, params: order_data
 
         must_respond_with :redirect
-        puts "Orders:  #{Order.all[0]}"
 
         Order.all.length.must_equal 1
     end
@@ -107,4 +103,6 @@ describe OrdersController do
       must_respond_with :redirect
     end
   end
+
+
 end

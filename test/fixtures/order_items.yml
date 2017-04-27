@@ -9,3 +9,8 @@ two:
   item: item_two
   order: one
   quantity: 1
+
+three:
+  item: item_two
+  order: two
+  quantity: 1

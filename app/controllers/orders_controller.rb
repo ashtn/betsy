@@ -11,9 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    puts "========="
-    puts "in CREATE"
-    puts "========="
 
     @order = Order.create order_params
     puts "error: #{@order.errors.messages}"

@@ -9,3 +9,8 @@ two:
   session_id: 2
   status: "paid"
   total: 25.59
+
+three:
+  session_id: 3
+  status: "paid"
+  total: 10.0
