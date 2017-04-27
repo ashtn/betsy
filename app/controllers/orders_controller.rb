@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:pay, :paid] # TODO: fix
+  skip_before_action :require_login, only: [:pay, :paid, :create]
 
   def index
     @orders = Order.all
@@ -43,11 +43,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  def destroy
-    Order.destroy(params[:id])
-
-    redirect_to orders_path
-  end
+  # def destroy
+  #   Order.destroy(params[:id])
+  #
+  #   redirect_to orders_path
+  # end
 
   def new
     @order = Order.new
@@ -61,7 +61,8 @@ class OrdersController < ApplicationController
   end
 
   def paid
-     # The default column for payment is id, but id in this methods context is an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
+     # The default column for payment is id, but id in this methods context is
+     # an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
     actual_params = payment_params
     actual_params[:order_id] = params[:id]
     @payment = Payment.create actual_params

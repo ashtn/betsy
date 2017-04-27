@@ -42,7 +42,7 @@ describe OrdersController do
           }
           post orders_path, params: order_data
 
-          must_respond_with :redirect
+          must_respond_with :success
 
           Order.all.must_equal []
       end
@@ -87,15 +87,15 @@ describe OrdersController do
       end
   end
 
-  describe "destroy" do
-
-    it "should delete an order and redirect to order list" do
-        delete order_path(orders(:one).id)
-        must_redirect_to orders_path
-
-        Order.all.must_equal []
-      end
-  end
+  # describe "destroy" do
+  #
+  #   it "should delete an order and redirect to order list" do
+  #       delete order_path(orders(:one).id)
+  #       must_redirect_to orders_path
+  #
+  #       Order.all.must_equal []
+  #     end
+  # end
 
   describe "new" do
     it "should show the new order form" do
@@ -104,5 +104,43 @@ describe OrdersController do
     end
   end
 
+  describe "pay" do
+    it "should show the pay form" do
+      get pay_path(orders(:one).id)
+      must_respond_with :success
+    end
+  end
+
+  describe "paid" do
+    it "should create an order given valid data" do
+      Order.destroy_all
+      order_data = {
+        order: {
+          session_id: merchants(:kari).id,
+          status: "paid",
+          total: 25.89}
+        }
+        post orders_path, params: order_data
+
+        must_respond_with :redirect
+
+        Order.all.length.must_equal 1
+    end
+
+      it "shouldn't create an order given invalid data" do
+        Order.destroy_all
+        order_data = {
+          order: {
+            session_id: 1,
+            status: "you",
+            total: 25.89}
+          }
+          post orders_path, params: order_data
+
+          must_respond_with :success
+
+          Order.all.must_equal []
+      end
+  end
 
 end
