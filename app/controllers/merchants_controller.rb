@@ -44,7 +44,7 @@ skip_before_action :require_login, only: [:index, :new, :create, :merchant_items
   end
 
   def ship
-
+    find_merchant
     order_item = @merchant.order_items.find_by(id: params[:order_item])
     #raise
       order_item.status = "shipped"

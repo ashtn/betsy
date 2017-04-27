@@ -25,12 +25,9 @@
 <%= f.label :photo %></br>
 <%= f.text_field :photo %>
 
-<%= f.hidden_field :merchant_id %></br>
-
-
 <%= f.label :categories %></br>
 <%= f.select :category_ids, options_for_select(@categories.collect { | category | [category.name, category.id] }), { :prompt => "Please select"}, { :multiple => true} %>
-
+<%# raise %>
 <%= f.submit action_name, :class => "button" %>
 
 <% end %>

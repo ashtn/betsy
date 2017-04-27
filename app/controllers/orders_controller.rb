@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
 
       Order.change_status_to_paid(params[:id])
-      Order.inventory_adjust(params[:id])
+      @order.inventory_adjust
       redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"

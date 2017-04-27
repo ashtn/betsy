@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :add_header_text
+  before_action :add_header_text
   helper_method :current_merchant
   before_action :require_login, :require_user
 

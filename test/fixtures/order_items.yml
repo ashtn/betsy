@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  item: chips
+  item: item_one
   order: one
   quantity: 4
+
 
 two:
   item: item_two

@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_action :require_login
+
   def new
     @review = Review.new
     @review.item_id = params[:item_id]
@@ -7,12 +8,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @item = Item.find(params[:id])
-    @review.item_id = @item.id
+    @review.item_id = (params[:id])
     if @review.save
-      # flash isn't working atm
-      flash.now[:success] = "Review added successfully"
-      redirect_to item_path(@item)
+      # flash is working - ks
+      flash[:success] = "Review added successfully"
+      redirect_to item_path(params[:id])
     else
       flash.now[:error] = "Please select a rating."
       render :new
@@ -21,6 +21,6 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:rating, :description, :item_id)
+    params.permit(:rating, :description, :item_id)
   end
 end
