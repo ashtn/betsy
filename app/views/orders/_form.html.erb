@@ -1,9 +1,9 @@
 
-<ul>
+<ul class="errors">
 
   <% @order.errors.each do
     |field, msg| %>
-    <li class="errors">
+    <li>
       <%= field %> <%= msg %>
     </li>
     <% end %>

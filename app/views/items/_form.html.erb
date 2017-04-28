@@ -1,8 +1,8 @@
 <% if !@item.nil? %>
-<ul>
+<ul class="errors">
 
   <% @item.errors.each do |field, message| %>
-  <li class="errors">
+  <li>
     <%= field %> <%= message %>
   </li>
   <% end %>
