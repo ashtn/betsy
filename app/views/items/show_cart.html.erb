@@ -1,9 +1,9 @@
 
 <% if @order_items.length != 0 %>
 
-<div class="button">
+<button>
   <%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
-</div>
+</button>
 
 
 

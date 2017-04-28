@@ -28,22 +28,22 @@
   <!-- add to cart goes nowhere right now -->
   <% if !session[:merchant_id] %>
 
-  <div class="button">
+<button>
     <%= link_to "Add to Cart", add_to_cart_path(@item.id), method: :patch%>
-  </div>
+</button>
 
-  <div class="button">
+<button>
     <%= link_to "Review this item", new_item_review_path(@item.id), method: :get %>
-  </div>
+</button>
 
   <% end %>
   <% if session[:merchant_id] %>
-  <div class="button">
+<button>
     <%= link_to "Update", edit_item_path(@item.id), method: :get %>
-  </div>
-  <div class="button">
+</button>
+  <button>
     <%= link_to "Retire", retire_path(@item.id), method: :patch %>
-  </div>
+</button>
   <% end %>
 </section>
 
