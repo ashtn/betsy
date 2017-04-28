@@ -13,16 +13,12 @@ class OrdersController < ApplicationController
   end
 
   def create
-
     @order = Order.create order_params
     puts "error: #{@order.errors.messages}"
-
     if @order.id != nil
       flash[:success] = "Order added successfully!"
       redirect_to orders_path
     else
-
-
       flash.now[:error] = "Error has occured!"
       render "edit"
     end
@@ -33,9 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-
     @order = Order.find_by_id(params[:id])
-
     @order.status = order_params[:status]
     if @order.save
       redirect_to order_path
@@ -45,18 +39,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   Order.destroy(params[:id])
-  #
-  #   redirect_to orders_path
-  # end
+  def destroy
+    Order.destroy(params[:id])
+    redirect_to orders_path
+  end
 
   def new
     @order = Order.new
   end
 
   def pay
-
+    @payment = Payment.new
     @order = Order.find(params[:id])
     render "pay_form"
   end
