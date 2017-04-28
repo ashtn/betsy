@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
           @order.session_id = 1
         else
           @order = Order.new
-          @order.id = (Order.last.id + 1)
           session[:id] = Order.last.session_id + 1
+          @order.id = (Order.last.id + 1)
           @order.status = "pending"
           @order.session_id = session[:id]
           @order.total = 0

@@ -37,6 +37,6 @@ bad_data:
   merchant: kari
   name: MyString
   description: MyString
-  price: 1.5
+  price: qwe
   inventory: none
   photo: MyString
