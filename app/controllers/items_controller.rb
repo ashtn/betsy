@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
       # we are in the nested route
       @items = Item.includes(:categories).where(categories: { id: params[:category_id]})
       hide_retired
+      if current_merchant
+        @items = @items.where(merchant_id: current_merchant.id)
+      end
       # raise
     else
       # we are in our 'regular' route
