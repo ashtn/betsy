@@ -1,5 +1,12 @@
 <h1>Package of the day!</h1>
 
+<div class="row product-grid" data-equalizer data-equalize-on="medium" id="test-eq">
 <% @featured_items.each do |item| %>
-  <%= link_to image_tag(item.photo, :alt => "item photo"), item_path(item.id) %>
+<article class="column small-12 medium-6 large-4">
+    <div class="callout" data-equalizer-watch>
+      <h3><%= link_to item.name, item_path(item.id) %></h3>
+      <%= link_to image_tag(item.photo, :size => "200x300", :alt => "item photo #{item.name}"), item_path(item.id) %>
+    </div>
+</article>
 <% end %>
+</div>
