@@ -16,32 +16,6 @@ describe MerchantsController do
     end
   end
 
-  describe "create" do
-    # Logging into git hub creates a merchant tough... is there need to test it here too?
-
-    it "Model data increases after creating merchant" do
-      skip
-      proc {
-        post merchants_path, params:
-        { merchant:
-          { username: "Test",
-            email: "test@test.com",
-            uid: "12345",
-            provider: "github"
-            }
-          }
-        }.must_change 'Merchant.count', 1
-      end
-
-    it 'should redirect after creating merchant ' do
-      skip
-      post merchants_path, params: { merchant:
-        { username: "Test", email: "test@test.com"
-        }}
-      must_respond_with :redirect
-    end
-  end
-
   describe "show" do
     before do
       login_merchant(merchants(:dan))
@@ -83,7 +57,8 @@ describe MerchantsController do
       login_merchant(merchants(:kari))
     end
     it "should ship" do
-      put ship_order_path(merchants(:kari).id, order_items(:two).status )
+      #  ship_order PUT    /merchants/:id/ship/:order_item(.:format)  merchants#ship
+      put ship_order_path(merchants(:kari).id, order_items(:two).id )
       must_respond_with :success
     end
   end
