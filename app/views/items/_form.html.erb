@@ -1,6 +1,5 @@
 <% if !@item.nil? %>
 <ul class="errors">
-
   <% @item.errors.each do |field, message| %>
   <li>
     <%= field %> <%= message %>
@@ -27,7 +26,6 @@
 
 <%= f.label :categories %></br>
 <%= f.select :category_ids, options_for_select(@categories.collect { | category | [category.name, category.id] }), { :prompt => "Please select"}, { :multiple => true} %>
-<%# raise %>
 <%= f.submit action_name, :class => "button" %>
 
 <% end %>
