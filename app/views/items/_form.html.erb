@@ -2,7 +2,7 @@
 <ul>
 
   <% @item.errors.each do |field, message| %>
-  <li>
+  <li class="errors">
     <%= field %> <%= message %>
   </li>
   <% end %>
