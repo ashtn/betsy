@@ -20,9 +20,8 @@
     <h1><%= link_to "Besty", root_path %></h1>
     <div class="cart">
       <% if session[:merchant_id] == nil %>
-      <button>  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
-
       <p class = "cart_quantity"><strong><%=  @cart_quantity %></strong></p>
+      <button class="button">  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
       <% end %>
     </div>
   <nav>
