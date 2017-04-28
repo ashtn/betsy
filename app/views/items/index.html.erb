@@ -1,72 +1,29 @@
-
-
 <% if @items.count > 0 %>
 
-<table>
-  <thead>
-    <th>
-      Item
-    </th>
-    <th>
-      Price
-    </th>
-    <th>
-      Qty in Stock
-    </th>
-    <th>
-      Average Rating
-    </th>
-    <th>
-
-    </th>
-    <th>
-
-    </th>
-    <th>
-
-    </th>
-  </thead>
+<div class="row product-grid" data-equalizer data-equalize-on="medium" id="test-eq">
 <% @items.sort.each do |item| %>
-  <tr>
-    <td>
-      <%=link_to "#{item.name.capitalize}", item_path(item.id), method: :get%>
-    </td>
-    <td>
-      <%= "#{item.price}"%>
-    </td>
-    <td>
-      <%= "#{item.inventory}"%>
-    </td>
-    <td>
-      <%= "#{item.average_rating}" %>
-    </td>
-    <% if !session[:merchant_id] %>
-    <td>
-        <%= link_to "Cart", add_to_cart_path(item.id),  method: :patch%>
-    </td>
-    <%end%>
-    <% if session[:merchant_id] %>
-    <td>
-      <%= link_to "⚙️", edit_item_path(item.id), method: :get %>
-    </td>
-    <td>
-      <%= link_to "🗑", item_path(item.id), method: :delete %>
-    </td>
-    <td>
-      <%= link_to "🔒", retire_path(item.id), method: :patch %>
-    </td>
-    <%end%>
-  </tr>
-  <%end%>
-
-</table>
-
+  <article class="column small-12 medium-4 large-4">
+    <div class="callout" data-equalizer-watch>
+      <h3><%=link_to "#{item.name.capitalize}", item_path(item.id), method: :get%></h3>
+      <%= link_to image_tag(item.photo, :size => "200x300", :alt => "item photo #{item.name}"), item_path(item.id) %>
+      <h5>Average Rating: <%= "#{item.average_rating}" %></h5>
+      <h5>Price: $<%= "#{item.price}"%></h5>
+      <% if !session[:merchant_id] %>
+        <h5><%= link_to "Add to Cart", add_to_cart_path(item.id),  method: :patch%></h5>
+      <% end %>
+      <% if session[:merchant_id] %>
+        <%= link_to "⚙️", edit_item_path(item.id), method: :get %>
+        <%= link_to "🔒", retire_path(item.id), method: :patch %>
+      <% end %>
+  </div>
+  </article>
+<% end %>
+</div>
 <% else %>
 <h3>
 <%= "Coming Soon!" %>
 </h3>
 <% end %>
-
 
 <% if session[:merchant_id] %>
 <%= link_to "Add New Item", new_item_path, method: :get %>
