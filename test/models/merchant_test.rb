@@ -2,59 +2,7 @@ require "test_helper"
 
 describe Merchant do
 
-  # describe "Merchant Validations" do
-  #
-  #   describe "Username and email address presence" do
-  #
-  #     it " Does not create Merchant when no name or email is present " do
-  #       merchant = Merchant.new
-  #       merchant.valid?.must_equal false
-  #     end
-  #
-  #     it " Does not create Merchant when name and no email is present " do
-  #       merchant = Merchant.new ({username: "Username"})
-  #       merchant.valid?.must_equal false
-  #     end
-  #
-  #     it " Does not create Merchant when email and no name is present " do
-  #       merchant = Merchant.new ({email: "Email"})
-  #       merchant.valid?.must_equal false
-  #     end
-  #
-  #     it " Creates Merchant " do
-  #       merchant = Merchant.new ({username: "Username", email: "Email"})
-  #       merchant.valid?.must_equal true
-  #       merchant.save
-  #       merchant.id?.must_equal true
-  #       merchant.username.must_equal "Username"
-  #       merchant.email.must_equal "Email"
-  #     end
-  #   end
-  #
-  #   describe "Username and email address are unique" do
-  #
-  #     it " Does not create Merchant when given an identical username" do
-  #       merchant = Merchant.new ({username: "TestUsername", email: "email"})
-  #       merchant.valid?.must_equal false
-  #     end
-  #
-  #     it " Does not create Merchant when given an identical email address" do
-  #       merchant = Merchant.new ({username: "Username", email: "TestEmail"})
-  #       merchant.valid?.must_equal false
-  #     end
-  #
-  #     it " Creates Merchant When name and email are present" do
-  #       merchant = Merchant.new ({username: "TestUsernameThree", email: "TestEmailThree"})
-  #       merchant.valid?.must_equal true
-  #       merchant.save
-  #       merchant.id?.must_equal true
-  #       merchant.username.must_equal "TestUsernameThree"
-  #       merchant.email.must_equal "TestEmailThree"
-  #     end
-  #   end
-  # end
 
-  # =====
   describe "Merchant Relationships" do
     let(:m) { merchants(:kari) }
 
@@ -91,14 +39,25 @@ describe Merchant do
     describe "Revenue methods" do
       it "can find total merchant revenue" do
         m.revenue.must_be :>, 0
+        m.revenue.must_be_instance_of Float
+        m.revenue.must_equal
       end
 
       it " can find revenue by status" do
-        m.revenue_by_status(orders(:one).status).must_be :>, 0
+        m.revenue_by_status(orders(:four).status).must_be :>, 0
       end
 
-      it " items by can find revenue by order" do
-        m.revenue_by_order(orders(:one)).must_be :>, 0
+      it "can find revenue by order" do
+        order = orders(:four)
+        order_item = order_items(:five)
+
+        m.revenue_by_order(order).must_be :>, 0
+        m.revenue_by_order(order).must_equal order_item.item.price * order_item.quantity
+      end
+
+      it "Does not calculate revenue from other merchant order_items" do
+        order = orders(:four)
+        m.revenue_by_order(order).must_be :<, order.total
       end
 
     end
