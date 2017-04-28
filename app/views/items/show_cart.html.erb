@@ -25,7 +25,7 @@ Items in your cart:
       </th>
     </thead>
     <tbody>
-      <% @order_items.each do |oi| %>
+      <% @order_items.sort.each do |oi| %>
       <tr>
         <td>
           <%=  oi.item.name %>

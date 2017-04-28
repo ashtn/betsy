@@ -18,6 +18,12 @@ item_two:
   inventory: 1
   photo: MyString
 
+no_stock:
+  merchant: dan
+  name: potato
+  description: idaho gold
+  price: 1.5
+  inventory: 0
 
 three:
   merchant: kari
