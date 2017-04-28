@@ -41,8 +41,8 @@ class ItemsController < ApplicationController
     @item = Item.new item_params
     @item.merchant_id = current_merchant.id
     @item.category_ids = params[:item][:category_ids]
-    @item.save
-    unless @item.merchant_id == nil
+    if @item.save
+      # @item.merchant_id == nil
       redirect_to items_path, flash: {success: "Item added successfully"}
     else
       flash.now[:error] = "Error has occured"
@@ -83,13 +83,18 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.destroy(params[:id])
-    redirect_to items_path
+    if Item.destroy(params[:id])
+      flash[:success] = "Item Succesfully Deleted"
+      redirect_to items_path
+    else
+      flash[:success] = "Unable to Delete "
+      redirect_to items_path
+    end
   end
 
   def add_to_cart
     # if OrderItem.find(params[:id])
-    # item = Item.find_by(id: params[:id])
+    # item = Item.find_by(id: params[:id]
 
     if existing_order_item && sufficient_inventory
       increase_quantity
@@ -175,11 +180,13 @@ class ItemsController < ApplicationController
   def sufficient_inventory
     if @oi.length > 0
       item = Item.find(@oi.last.item_id)
-      # raise
-      if @oi.last.quantity < item.inventory
-        return true
-      else
-        return false
+      if item.inventory > 0
+        # raise
+        if @oi.last.quantity < item.inventory
+          return true
+        else
+          return false
+        end
       end
     else
       return true
