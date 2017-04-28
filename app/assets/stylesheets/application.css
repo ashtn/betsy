@@ -111,6 +111,13 @@ input  {
 
  }
 
+ .cart_quantity {
+  display: inline-block;
+ }
+
+.cart {
+  height: 2em;
+}
  /* Show the dropdown menu on hover */
  .dropdown:hover .dropdown-content {
      display: block;

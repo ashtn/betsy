@@ -34,10 +34,17 @@
   <% end %>
 </h5>
 
+<button>
 <%= link_to "Edit", edit_order_path(@result_order.id) %>
+</button>
+
+<button>
 <%= link_to "Delete", order_path(@result_order.id),
   data: {confirm: "Are you sure you want to delete this order?"},
   method: :delete
 %>
+</button>
 
+<button>
 <p><%= link_to "Orders", orders_path %></p>
+</button>

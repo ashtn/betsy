@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :add_header_text
   helper_method :current_merchant
   before_action :require_login, :require_user
+  before_action :cart_quantity
 
 
 
@@ -38,6 +39,12 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def cart_quantity
+    order = Order.where(session_id: session[:id])
+    order_items = OrderItem.where(order_id: order.ids.last)
+    @cart_quantity = order_items.length
   end
 
   def render_404

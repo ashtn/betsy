@@ -18,6 +18,12 @@
 
   <header>
     <h1><%= link_to "Besty", root_path %></h1>
+    <div class="cart">
+      <% if session[:merchant_id] == nil %>
+      <p class = "cart_quantity"><strong><%=  @cart_quantity %></strong></p>
+      <button>  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
+      <% end %>
+    </div>
   <nav>
     <div class="dropdown">
       <% if current_merchant == nil %>
@@ -82,11 +88,6 @@
 
 
       </div>
-    </div>
-    <div class="cart">
-      <% if session[:merchant_id] == nil %>
-      <button class="cart">  <%= link_to "My Cart", cart_path %></button>
-      <% end %>
     </div>
 
   </header>

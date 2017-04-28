@@ -1,68 +1,62 @@
 <h1><%= @item.name %></h1>
+
 <section>
+  <!-- image here -->
+  <p>
+    <% unless @item.photo == nil %>
+      <%= image_tag(@item.photo, :size => "300x400", :alt => "item photo") %>
+    <% end %>
+  </p>
 
+  <h3>Description</h3>
+  <p class="description">
+    <%= @item.description %>
+  </p>
+  <p class="price">
+    $<%= @item.price%>
+  </p>
 
-<!-- image here -->
-<p>
-<% unless @item.photo == nil %>
-  <%= image_tag(@item.photo, :size => "300x400", :alt => "item photo") %>
-<% end %>
-</p>
-
-<h3>Description</h3>
-<p>
-  <%= @item.description %>
-</p>
-<p>
-
-  $<%= @item.price%>
-</p>
-
-<ul>
-  <% @item.categories.each do |category| %>
-  <li><%= category.name %></li>
-  <% end %>
-
-</ul>
-
-
+  <ul>
+    <% @item.categories.each do |category| %>
+    <li><%= category.name %></li>
+    <% end %>
+  </ul>
 </section>
 
+
 <section>
-
-
   <!-- add to cart goes nowhere right now -->
   <% if !session[:merchant_id] %>
 
-  <p>
-  <%= link_to "Add to Cart", add_to_cart_path(@item.id), method: :patch%>
-    </p>
-    <p>
+<button>
+    <%= link_to "Add to Cart", add_to_cart_path(@item.id), method: :patch%>
+</button>
 
-  <%= link_to "Review this item", new_item_review_path(@item.id), method: :get %>
-    </p>
-    <% end %>
+<button>
+    <%= link_to "Review this item", new_item_review_path(@item.id), method: :get %>
+</button>
+
+  <% end %>
   <% if session[:merchant_id] %>
-    <p>
-  <%= link_to "Update", edit_item_path(@item.id), method: :get %>
-
-    </p>
-    <p>
-  <%= link_to "Retire", retire_path(@item.id), method: :patch %>
-    </p>
-    <% end %>
+<button>
+    <%= link_to "Update", edit_item_path(@item.id), method: :get %>
+</button>
+  <button>
+    <%= link_to "Retire", retire_path(@item.id), method: :patch %>
+</button>
+  <% end %>
 </section>
 
-<!-- Review section... temporary location, hopeing it will prevent merge conflicts -->
-<section>
-<h4>Reviews</h4>
 
-<% if @item.reviews.length > 0 %>
+<section id="reviews">
+  <h4>Reviews</h4>
+
+  <% if @item.reviews.length > 0 %>
   <% @item.reviews.each do |review| %>
-    <h4>Rating: <%= "#{review.rating}" %></h4>
-    <h4><%= "#{review.description}" %></h4>
+  <h4>Rating: <%= "#{review.rating}" %></h4>
+  <h4><%= "#{review.description}" %></h4>
   <% end %>
-<% else %>
-    <p>Sorry, no reviews</p>
-<% end %>
+  <% else %>
+  <p>Sorry, no reviews</p>
+  <% end %>
 </section>
