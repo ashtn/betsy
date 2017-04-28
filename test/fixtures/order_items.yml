@@ -19,12 +19,12 @@ three:
 
 four:
   item: item_two
-  order: two
-  quantity: 1
-  merchant_id: 756141187
+  order: four
+  quantity: 2
+  merchant_id: dan
 
 five:
   item: item_one
-  order: no_pymt
-  quantity: 1
+  order: four
+  quantity: 4
   merchant_id: 756141187

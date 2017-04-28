@@ -19,3 +19,8 @@ no_pymt:
   session_id: 4
   status: "pending"
   total: 50.82
+
+four:
+  session_id: 5
+  status: "paid"
+  total: 19

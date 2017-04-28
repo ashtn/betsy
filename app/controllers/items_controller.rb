@@ -93,7 +93,7 @@ class ItemsController < ApplicationController
 
     if existing_order_item && sufficient_inventory
       increase_quantity
-      flash[:notice] = "Added to art!"
+      flash[:notice] = "Added to cart!"
       redirect_to :back
     elsif existing_order_item && !sufficient_inventory
       flash[:notice] = "Not enough in stock!"
