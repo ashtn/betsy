@@ -56,10 +56,14 @@ header h1 {
    font-family: 'Give You Glory', cursive;
  }
 
-header h1 {
+header h1 a {
   font-size: 70px;
   color: #CCD0C9;
 
+}
+
+h1.package{
+  text-shadow: 0 2px 2px #000;
 }
 
  nav {
@@ -157,4 +161,10 @@ h5.main_page {
 
 footer {
   text-shadow: 0 2px 2px #000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow:hidden;
 }
