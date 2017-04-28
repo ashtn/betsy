@@ -9,19 +9,22 @@ describe ReviewsController do
   end
 
   describe "create" do
+    before do
+
+    end
     it "should effect the model when creating a review with a rating" do
+      item = items(:item_two)
       Review.destroy_all
       review_data = {
         review: {
-          item_id: items(:item_one).id,
-          rating:3,
+          item_id: item.id,
+          rating: 3,
           description: "yay"
         }
       }
-      post item_reviews_path(items), params: review_data
-      must_respond_with :success
+      post item_reviews_path, params: review_data
+      must_respond_with :redirect
       Review.all.length.must_equal 1
-
     end
     it "should not effect the model when creating a review without a rating" do
       proc{

@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find_by_id(params[:id])
+
     if !@item
       render_404
     end

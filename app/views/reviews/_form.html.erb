@@ -1,7 +1,7 @@
 <div class="row">
   <fieldset class="large-6 columns">
 
-<%= form_for @review, method: form_method, url: item_path(@review.item_id) do |f| %>
+<%= form_for @review, method: form_method, url: item_reviews_path do |f| %>
 
   <%= f.radio_button(:rating, 1) %>
   <%= f.label :rating, "★☆☆☆☆" %>
@@ -17,7 +17,7 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
 
-  <%= f.hidden_field :item_id, value: @review.item_id %>
+  <%= f.hidden_field :item_id, value: params[:id] %>
 
   <%= f.submit action_name, :class => "button" %>
 

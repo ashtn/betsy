@@ -1,4 +1,4 @@
 <h2>New Review</h2>
-<h4>Review <%= Item.find(@review.item_id).name %></h3>
+<h4>Review <%#= Item.find(params[:id]).name %></h3>
 
-<%= render partial: "form", locals: { action_name: "Add item", form_method: :post }%>
+<%= render partial: "form", locals: { action_name: "Add Review", form_method: :post }%>
