@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
       if !session[:id]
         if Order.all.length == 0
           @order = Order.new
+          @order.save
           session[:id] = 1
           @order.session_id = 1
         else

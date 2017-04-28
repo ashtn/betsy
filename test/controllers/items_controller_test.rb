@@ -144,28 +144,37 @@ end
         patch add_to_cart_path(items(:item_two)), {}, {'HTTP_REFERER' => 'http://foo.com'}
       }.must_change 'OrderItem.count', 0
     end
-
-    it "updates cart quantity should redirect" do
-      order_item = {
-        oi: {
-          item_id: (items(:item_one)),
-          order_id: (orders(:one)),
-          merchant_id: merchants(:kari).id,
-          quantity: 1,
-          status: "pending",
-          total: 25.89
-          }
-        }
-        patch order_item_path(id: order_item[:oi][:id])
-        # must_redirect_to items_path
-        #what else can we test here?
-    end
+   #
+  #  it "updates cart quantity should redirect" do
+  #     order_item = {
+  #       oi: {
+  #         item_id: (items(:item_one)),
+  #         order_id: (orders(:one)),
+  #         merchant_id: merchants(:kari).id,
+  #         quantity: 1,
+  #         status: "pending",
+  #         total: 25.89
+  #         }
+  #       }
+  #       patch order_item_path(id: order_item[:oi][:id])
+  #       # must_redirect_to items_path
+  #       #what else can we test here?
+  #   end
 
     it "does not create order item if inventory is zero" do
 
       proc {
         patch add_to_cart_path(items(:no_stock)), {}, {'HTTP_REFERER' => 'http://foo.com'}
       }.must_change 'OrderItem.count', 0
+
+      # must_redirect_to :back
+    end
+
+    it "does not create order item if invalid data" do
+
+      patch add_to_cart_path(items(:bad_data)), {}, {'HTTP_REFERER' => 'http://foo.com'}
+      must_respond_with :redirect
+      flash[:notice].must_equal "something went wrong"
 
       # must_redirect_to :back
     end
