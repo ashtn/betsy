@@ -29,9 +29,20 @@
    margin: 0px;
  }
 
- */nav {
+ */
+
+ html * {
+   font-family: 'Give You Glory', cursive;
+ }
+
+header h1 {
+  font-size: 70px;
+}
+
+ nav {
    text-align: center;
  }/*
+
 
 input  {
   /*background-color: #f9f9ff;*/
@@ -46,7 +57,7 @@ input  {
      /*background-color: lightgrey;*/
      /*color: white;*/
      padding: 16px;
-     font-size: 16px;
+     font-size: 25px;
      border: none;
      cursor: pointer;
     }
