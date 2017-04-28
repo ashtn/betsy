@@ -37,6 +37,10 @@
    background: rgba(240,230,220, .6);
  }
 
+ .callout:hover {
+    background: rgba(240,230,220, .8);
+  }
+
 header h1 {
   text-shadow: 0 2px 2px #000;
 }
@@ -48,7 +52,7 @@ header h1 {
  li a {
    color: #CCD0C9;
    font-size: 2em;
-     text-shadow: 0 2px 2px #000;
+   text-shadow: 0 2px 2px #000;
  }
 
 
@@ -60,6 +64,12 @@ header h1 a {
   font-size: 70px;
   color: #CCD0C9;
 
+}
+
+header h1 a:hover {
+  font-size: 70px;
+  color: #CCD0C9;
+  text-shadow: 0 10px 10px #000;
 }
 
 h1.package{
@@ -89,12 +99,15 @@ input  {
      border: none;
      cursor: pointer;
      color: #CCD0C9;
+
     }
 
  /* The container <div> - needed to position the dropdown content */
  nav div.dropdown {
      position: relative;
      display: inline-block;
+     background-color: none;
+
  }
 
  /* Dropdown Content (Hidden by Default) */
@@ -119,12 +132,21 @@ input  {
  .dropbtn a {
    color: #CCD0C9;
    text-decoration: none;
+
  }
+ .dropbtn a:hover {
+   color: #CCD0C9;
+   text-decoration: none;
+   text-shadow: 0 4px 4px #000;
+   background-color: none;
+ }
+
 
  /* Change color of dropdown links on hover */
  .dropdown-content a:hover {
    background-color: #233B64;
    color: #CCD0C9;
+
 
  }
 
@@ -143,6 +165,7 @@ input  {
  /* Change the background color of the dropdown button when the dropdown content is shown */
  .dropdown:hover .dropbtn {
      background-color: #233B64;
+
  }
 
 
@@ -154,6 +177,10 @@ input  {
   color: #CCD0C9;
 }*/
 
+
+.button a {
+  color: #CCD0C9;
+}
 
 h5.main_page {
   color: #233B64;
