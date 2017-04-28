@@ -186,7 +186,7 @@ h5.main_page {
   color: #233B64;
 }
 
-footer {
+/*footer {
   text-shadow: 0 2px 2px #000;
   position: absolute;
   left: 0;
@@ -194,4 +194,26 @@ footer {
   height: 100px;
   width: 100%;
   overflow:hidden;
+}*/
+
+footer {
+  padding-top: 10em;
+    bottom: 0;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
