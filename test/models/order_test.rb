@@ -57,8 +57,8 @@ describe Order do
         order = Order.find(orders(:one).id)
         order.inventory_adjust
 
-        Item.find_by_id(items(:chips).id).inventory.must_equal 16 # this locates the items in our fixtures and checks their inventory
-        Item.find_by_id(items(:item_two).id).inventory.must_equal 0
+        Item.find_by_id(items(:item_one).id).inventory.must_equal 16 # this locates the items in our fixtures and checks their inventory
+        Item.find_by_id(items(:no_stock).id).inventory.must_equal 0
 
       end
     end

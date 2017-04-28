@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
       # we are in the nested route
       @items = Item.includes(:categories).where(categories: { id: params[:category_id]})
       hide_retired
+      if current_merchant
+        @items = @items.where(merchant_id: current_merchant.id)
+      end
       # raise
     else
       # we are in our 'regular' route
@@ -103,7 +106,11 @@ class ItemsController < ApplicationController
     elsif existing_order_item && !sufficient_inventory
       flash[:notice] = "Not enough in stock!"
       redirect_to :back
+    elsif !existing_order_item && !sufficient_inventory
+      flash[:notice] = "Not enough in stock!"
+      redirect_to :back
     else
+
     #  raise
       if OrderItem.create(order_id: Order.last.id, merchant_id: Item.find(params[:id]).merchant_id, item_id: params[:id], quantity: 1 )
         flash[:notice] = "Added to Cart!"

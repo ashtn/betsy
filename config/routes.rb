@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   post "/items/:id", to: "reviews#create"
 
 
-  resources :categories, except: [:edit, :update, :destroy] do
+  resources :categories, except: [:edit, :update, :destroy, :show] do
     get '/items', to: 'items#index'
   end
 

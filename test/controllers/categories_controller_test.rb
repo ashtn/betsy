@@ -41,13 +41,13 @@ let(:need_login) { login_merchant(merchants(:kari)) }
     must_respond_with :success
   end
 
-  it " Should get show" do
-    get category_path(Category.first)
+  it " Should get a list of items for a secific category" do
+    get category_items_path(Category.first.id)
     must_respond_with :success
   end
 
-  it " Should render 404 if category could not be found" do
-      get category_path(Category.last.id + 1)
+  it "  Should render 404 if category could not be found" do
+      get category_items_path(Category.last.id + 1)
       assert :must_render_template
   end
 end

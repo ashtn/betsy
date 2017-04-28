@@ -24,15 +24,12 @@ class ApplicationController < ActionController::Base
         if Order.all.length == 0
           session[:id] = 1
           @order = Order.new
-          @order.id = 1
-          @order.session_id = 1
-          @order.status = "pending"
-          @order.total = 0
           @order.save
+          @order.session_id = 1
         else
-          session[:id] = Order.last.session_id + 1
           @order = Order.new
-          @order.id = (Order.last.session_id + 1)
+          session[:id] = Order.last.session_id + 1
+          @order.id = (Order.last.id + 1)
           @order.status = "pending"
           @order.session_id = session[:id]
           @order.total = 0

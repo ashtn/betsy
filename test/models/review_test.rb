@@ -37,15 +37,20 @@ describe Review do
       review.errors.messages[:rating].must_equal []
     end
     it "Review will be created if rating is present and an integer" do
+      item = Item.new
+      item.name = "Coconut oil"
+      item.price = 4.30
+      item.photo = "pic"
+      item.merchant_id = merchants(:kari).id
+      item.inventory = 5
+      item.save
+      review = Review.new
       review.rating = 4
-      review.review = "Great product"
-      item = Item.new name: "Coconut oil", price: 4.30
-      review.item = item
+      review.description = "Great product"
+      review.item_id = item.id
+      review.save
+
       review.valid?.must_equal true
     end
-  end
-
-  describe "Review Custom Methods" do
-    # No custom methods needed for this yet
   end
 end
