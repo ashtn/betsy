@@ -4,7 +4,7 @@
   <!-- image here -->
   <p>
     <% unless @item.photo == nil %>
-    <%= image_tag(@item.photo, :alt => "item photo") %>
+      <%= image_tag(@item.photo, :size => "300x400", :alt => "item photo") %>
     <% end %>
   </p>
 
