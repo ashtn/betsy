@@ -44,7 +44,6 @@
   color: #CCD0C9;
 }
 
-
  #test-eq {
  	/*Opacity start*/
    	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
@@ -53,6 +52,19 @@
    	-khtml-opacity: 0.9;
    	opacity: 0.9;
    /*Opacity end*/
+ }
+
+ footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow:hidden;
+ }
+
+ a:hover {
+   color: #727B8B;
  }
 
 a {
