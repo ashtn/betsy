@@ -1,5 +1,5 @@
 <div class="row">
-  <fieldset class="large-6 columns">
+  <fieldset class="column small-12 medium-12 large-12">
 
     <ul class="errors">
       <% @review.errors.each do
@@ -13,15 +13,15 @@
       <%= form_for @review, method: form_method, url: item_path(@review.item_id) do |f| %>
 
       <%= f.radio_button(:rating, 1) %>
-      <%= f.label :rating, "★☆☆☆☆" %>
+      <%= f.label :rating, "💛♡♡♡♡" %>
       <%= f.radio_button(:rating, 2) %>
-      <%= f.label :rating, "★★☆☆☆" %>
+      <%= f.label :rating, "💛💛♡♡♡" %>
       <%= f.radio_button(:rating, 3) %>
-      <%= f.label :rating, "★★★☆☆" %>
+      <%= f.label :rating, "💛💛💛♡♡" %>
       <%= f.radio_button(:rating, 4) %>
-      <%= f.label :rating, "★★★★☆" %>
+      <%= f.label :rating, "💛💛💛💛♡" %>
       <%= f.radio_button(:rating, 5) %>
-      <%= f.label :rating, "★★★★★" %>
+      <%= f.label :rating, "💛💛💛💛💛" %>
 
       <%= f.label :description %>
       <%= f.text_area :description %>
