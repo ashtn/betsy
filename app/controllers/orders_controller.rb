@@ -24,9 +24,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-    @order = Order.find(params[:id])
-  end
+  # def edit
+  #   @order = Order.find(params[:id])
+  # end
 
   def update
     @order = Order.find_by_id(params[:id])
@@ -68,8 +68,8 @@ class OrdersController < ApplicationController
 
       Order.change_status_to_paid(params[:id])
       @order.inventory_adjust
-      redirect_to confirmation_path(order_id)
       session[:id] = nil
+      redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"
       @order = Order.find(params[:id])

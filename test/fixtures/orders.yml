@@ -14,3 +14,8 @@ three:
   session_id: 3
   status: "paid"
   total: 10.0
+
+no_pymt:
+  session_id: 4
+  status: "pending"
+  total: 50.82
