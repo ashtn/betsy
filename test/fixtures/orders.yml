@@ -24,3 +24,8 @@ four:
   session_id: 5
   status: "paid"
   total: 19
+
+five:
+  session_id: 6
+  status: "paid"
+  total: 19
