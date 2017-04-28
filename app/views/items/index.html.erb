@@ -20,7 +20,7 @@
 
     </th>
   </thead>
-<% @items.each do |item| %>
+<% @items.sort.each do |item| %>
   <tr>
     <td>
       <%=link_to "#{item.name.capitalize}", item_path(item.id), method: :get%>

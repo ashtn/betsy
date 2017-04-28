@@ -135,7 +135,7 @@ class ItemsController < ApplicationController
        order_item.quantity = params[:order_item][:quantity].to_i
        if order_item.save
          flash[:success] = "Quantity Updated"
-       redirect_to cart_path
+         redirect_to cart_path
        end
      else
        flash[:notice] = "Stock too Low!"
