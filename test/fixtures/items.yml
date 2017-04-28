@@ -24,4 +24,11 @@ no_stock:
   description: idaho gold
   price: 1.5
   inventory: 0
+
+three:
+  merchant: kari
+  name: MyString
+  description: MyString
+  price: 5.5
+  inventory: 2
   photo: MyString
