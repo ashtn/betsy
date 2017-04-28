@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= favicon_link_tag %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Betsy</title>
@@ -8,8 +9,6 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
-
 
 
   <div id = "container" >
@@ -100,6 +99,7 @@
 
 <body>
   <%= yield %>
+  <link href="https://fonts.googleapis.com/css?family=Give+You+Glory" rel="stylesheet">
 </body>
 </html>
   <div id = "footer">
