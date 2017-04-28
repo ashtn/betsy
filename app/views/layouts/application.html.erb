@@ -21,7 +21,7 @@
     <div class="cart">
       <% if session[:merchant_id] == nil %>
       <p class = "cart_quantity"><strong><%=  @cart_quantity %></strong></p>
-      <button class="button">  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
+      <button>  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
       <% end %>
     </div>
   <nav>
