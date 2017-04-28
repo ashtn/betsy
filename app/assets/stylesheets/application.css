@@ -30,14 +30,9 @@
  }
 
  */
- #test-eq {
- 	/*Opacity start*/
-   	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
-   	filter: alpha(opacity=90);
-   	-moz-opacity: 0.90;
-   	-khtml-opacity: 0.9;
-   	opacity: 0.9;
-   /*Opacity end*/
+
+ .callout {
+   background: rgba(240,230,220, .6);
  }
 
 
@@ -126,5 +121,9 @@ input  {
  /* Change the background color of the dropdown button when the dropdown content is shown */
  .dropdown:hover .dropbtn {
      background-color: #233B64;
-
  }
+
+
+h5.main_page {
+  color: #233B64;
+}

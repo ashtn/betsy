@@ -6,8 +6,8 @@
     <div class="callout" data-equalizer-watch>
       <h3><%=link_to "#{item.name.capitalize}", item_path(item.id), method: :get%></h3>
       <%= link_to image_tag(item.photo, :size => "200x300", :alt => "item photo #{item.name}"), item_path(item.id) %>
-      <h5>Average Rating: <%= "#{item.average_rating}" %></h5>
-      <h5>Price: $<%= "#{item.price}"%></h5>
+      <h5 class="main_page">Average Rating: <%= "#{item.average_rating}" %></h5>
+      <h5 class="main_page">Price: $<%= "#{item.price}"%></h5>
       <% if !session[:merchant_id] %>
         <h5><%= link_to "Add to Cart", add_to_cart_path(item.id),  method: :patch%></h5>
       <% end %>
