@@ -33,7 +33,7 @@
 
 
 
- .callout {
+.callout {
    background: rgba(240,230,220, .6);
  }
 
@@ -142,13 +142,13 @@ input  {
  }
 
 
-.button {
+/*.button {
   padding: 16px;
   font-size: 25px;
   border: 1px;
   cursor: pointer;
   color: #CCD0C9;
-}
+}*/
 
 
 h5.main_page {
