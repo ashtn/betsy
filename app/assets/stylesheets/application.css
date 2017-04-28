@@ -146,3 +146,11 @@ input  {
      background-color: #233B64;
 
  }
+
+.button {
+  padding: 16px;
+  font-size: 25px;
+  border: 1px;
+  cursor: pointer;
+  color: #CCD0C9;
+}
