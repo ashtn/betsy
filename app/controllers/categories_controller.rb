@@ -21,12 +21,12 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
-  def show
-    @items = Category.find_by(@item_category)
-    if !@items
-      render_404
-    end
-  end
+  # def show
+  #   @items = Category.find_by(@item_category)
+  #   if !@items
+  #     render_404
+  #   end
+  # end
 
     #
     # @category = Category.find_by_id(params[:id])

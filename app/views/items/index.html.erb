@@ -1,4 +1,6 @@
 
+<% if @items.count > 0 %>
+
 <table>
   <thead>
     <th>
@@ -55,7 +57,11 @@
 
 </table>
 
-
+<% else %>
+<h3>
+<%= "Coming Soon!" %>
+</h3>
+<% end %>
 
 
 <% if session[:merchant_id] %>
