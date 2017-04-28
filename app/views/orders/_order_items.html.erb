@@ -27,13 +27,14 @@
       Shipped
     </th>
   </thead>
-<% @merchant.order_items.each do |order_item| %>
+
+<% @login_merchant.items_by_order(@result_order.id).each do |order_item| %>
   <tr>
     <td>
       <%=link_to "#{Item.find(order_item.item_id).name.capitalize}", item_path(order_item.item_id), method: :get%>
     </td>
     <td>
-      $<%= sprintf('%.2f', @merchant.subtotal(order_item) )%>
+      $<%= sprintf('%.2f', @login_merchant.subtotal(order_item) )%>
     </td>
     <td>
       <%= order_item.quantity%>

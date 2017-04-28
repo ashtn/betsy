@@ -10,6 +10,17 @@
 </h4>
 
 <h5>
+  <ul>
+    <li>
+      Subtotal for <%= link_to current_merchant.username.capitalize, merchant_path(current_merchant) %> :
+      $<%= current_merchant.revenue_by_order(@result_order) %>
+    </li>
+  </ul>
+</h5>
+
+<%= render partial: "order_items" %>
+
+<h5>
   <% if @payment != nil %>
   <ul>
 

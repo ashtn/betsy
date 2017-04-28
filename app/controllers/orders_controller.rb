@@ -1,39 +1,35 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:pay, :paid] # TODO: fix
+
+  skip_before_action :require_login, only: [:pay, :paid, :create]
 
   def index
     @orders = Order.all
   end
 
   def show
+    current_merchant
     @result_order = Order.find(params[:id])
     @payment = Payment.where(order_id: params[:id]).first
   end
 
   def create
-
     @order = Order.create order_params
     puts "error: #{@order.errors.messages}"
-
     if @order.id != nil
       flash[:success] = "Order added successfully!"
       redirect_to orders_path
     else
-
-
       flash.now[:error] = "Error has occured!"
       render "edit"
     end
   end
 
-  def edit
-    @order = Order.find(params[:id])
-  end
+  # def edit
+  #   @order = Order.find(params[:id])
+  # end
 
   def update
-
     @order = Order.find_by_id(params[:id])
-
     @order.status = order_params[:status]
     if @order.save
       redirect_to order_path
@@ -45,7 +41,6 @@ class OrdersController < ApplicationController
 
   def destroy
     Order.destroy(params[:id])
-
     redirect_to orders_path
   end
 
@@ -55,13 +50,13 @@ class OrdersController < ApplicationController
 
   def pay
     @payment = Payment.new
-
     @order = Order.find(params[:id])
     render "pay_form"
   end
 
   def paid
-     # The default column for payment is id, but id in this methods context is an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
+     # The default column for payment is id, but id in this methods context is
+     # an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
     actual_params = payment_params
     actual_params[:order_id] = params[:id]
     @payment = Payment.create actual_params
@@ -73,6 +68,7 @@ class OrdersController < ApplicationController
 
       Order.change_status_to_paid(params[:id])
       @order.inventory_adjust
+      session[:id] = nil
       redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"

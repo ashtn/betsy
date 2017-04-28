@@ -58,7 +58,7 @@ describe ItemsController do
 
   it "should affect the model when creating an item" do
     proc {
-      post item_path(items(:item_one))
+      post new_item_path(items(:item_one))
     }.must_change 'Item.count', 1
 
   end
@@ -89,7 +89,7 @@ end
 
     end
 
-    it "not create addition order_item when adding second of same item to cart" do
+    it "does not create addition order_item when adding second of same item to cart" do
       proc {
         patch add_to_cart_path(items(:item_one)), {}, {'HTTP_REFERER' => 'http://foo.com'}
         patch add_to_cart_path(items(:item_one)), {}, {'HTTP_REFERER' => 'http://foo.com'}
