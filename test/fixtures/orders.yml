@@ -14,3 +14,18 @@ three:
   session_id: 3
   status: "paid"
   total: 10.0
+
+no_pymt:
+  session_id: 4
+  status: "pending"
+  total: 50.82
+
+four:
+  session_id: 5
+  status: "paid"
+  total: 19
+
+five:
+  session_id: 6
+  status: "paid"
+  total: 19

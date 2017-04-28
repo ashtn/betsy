@@ -20,10 +20,10 @@ class Order < ApplicationRecord
       order = Order.find_by_id(order_id)
       order.status = "paid"
       order.save
+
     end
 
     def inventory_adjust
-
 
       self.order_items.each do | order_item |
         item = Item.find_by_id(order_item.item_id)
@@ -31,8 +31,6 @@ class Order < ApplicationRecord
           item.inventory -= order_item.quantity # reduce that items inventory by the quantity bought
           puts item.merchant_id
           item.save
-        else
-          # TODO: handle cases where we don't have enough inventory
         end
       end
     end

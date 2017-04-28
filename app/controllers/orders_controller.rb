@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:pay, :paid ] # TODO: fix
+
+  skip_before_action :require_login, only: [:pay, :paid, :create]
 
   def index
     @orders = Order.all
@@ -23,9 +24,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-    @order = Order.find(params[:id])
-  end
+  # def edit
+  #   @order = Order.find(params[:id])
+  # end
 
   def update
     @order = Order.find_by_id(params[:id])
@@ -54,7 +55,8 @@ class OrdersController < ApplicationController
   end
 
   def paid
-     # The default column for payment is id, but id in this methods context is an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
+     # The default column for payment is id, but id in this methods context is
+     # an order_id, so we need to reassign it, so it stores the order_id in the correct column name.
     actual_params = payment_params
     actual_params[:order_id] = params[:id]
     @payment = Payment.create actual_params
@@ -66,8 +68,8 @@ class OrdersController < ApplicationController
 
       Order.change_status_to_paid(params[:id])
       @order.inventory_adjust
-      redirect_to confirmation_path(order_id)
       session[:id] = nil
+      redirect_to confirmation_path(order_id)
     else
       flash.now[:error] = "Error has occured!"
       @order = Order.find(params[:id])

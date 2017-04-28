@@ -17,3 +17,12 @@ item_two:
   price: 1.5
   inventory: 1
   photo: MyString
+
+
+three:
+  merchant: kari
+  name: MyString
+  description: MyString
+  price: 5.5
+  inventory: 2
+  photo: MyString
