@@ -19,9 +19,14 @@
     <h1><%= link_to "Besty", root_path %></h1>
   <nav>
     <div class="dropdown">
+      <% if current_merchant == nil %>
       <button class="dropbtn home">  <%= link_to "All Items", items_path %>
       </button>
       <div class="dropdown-content"></div>
+      <% else %>
+      <button class="dropbtn home">   <%= link_to "All Items", merchant_items_path(current_merchant) %></button>
+      <div class="dropdown-content"></div>
+      <% end %>
     </div>
 
     <div class="dropdown">
