@@ -1,5 +1,5 @@
 
-<ul>
+<ul class="errors">
 
   <% @order.errors.each do
     |field, msg| %>
@@ -24,6 +24,6 @@
 
 <% end %>
 
-<p>
+<button id="home">
   <%= link_to "Home", orders_path %>
-</p>
+</button>

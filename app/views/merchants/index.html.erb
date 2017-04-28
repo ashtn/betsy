@@ -1,6 +1,6 @@
 
 
-<ul>
+<ul class="merchants">
   <% @merchants.each do |merchant| %>
   <li>
     <%= link_to merchant.username, merchant_path(merchant.id)%>

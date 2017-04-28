@@ -2,6 +2,8 @@
 <html>
   <head>
     <%= favicon_link_tag %>
+    <link rel="shortcut icon" type="image/png" href="/flower.png"/>
+    <link rel="shortcut icon" type="image/png" href="http://eg.com/favicon.png"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Betsy</title>
@@ -16,13 +18,13 @@
 
   <header>
     <h1><%= link_to "Besty", root_path %></h1>
-  <nav>
     <div class="cart">
       <% if session[:merchant_id] == nil %>
-      <button>  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
       <p class = "cart_quantity"><strong><%=  @cart_quantity %></strong></p>
+      <button>  <%= link_to image_tag("cart.png", :class => "cart"), cart_path %></button>
       <% end %>
     </div>
+  <nav>
     <div class="dropdown">
       <% if current_merchant == nil %>
       <button class="dropbtn home">  <%= link_to "All Items", items_path %>
