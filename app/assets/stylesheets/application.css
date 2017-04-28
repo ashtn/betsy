@@ -33,6 +33,10 @@
 
  */
 
+
+ .callout {
+   background: rgba(240,230,220, .6);
+
 /*#footer {
   text-align: center;
   display: flex;
@@ -53,6 +57,7 @@
    	-khtml-opacity: 0.9;
    	opacity: 0.9;
    /*Opacity end*/
+>>>>>>> e909ce96f6596d4689641b426427d16d14a8e9a2
  }
 
 a {
@@ -144,8 +149,8 @@ input  {
  /* Change the background color of the dropdown button when the dropdown content is shown */
  .dropdown:hover .dropbtn {
      background-color: #233B64;
-
  }
+
 
 .button {
   padding: 16px;
@@ -153,4 +158,8 @@ input  {
   border: 1px;
   cursor: pointer;
   color: #CCD0C9;
+
+
+h5.main_page {
+  color: #233B64;
 }

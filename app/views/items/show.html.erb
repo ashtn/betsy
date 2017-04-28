@@ -50,12 +50,26 @@
 
 <section id="reviews">
   <h4>Reviews</h4>
-
   <% if @item.reviews.length > 0 %>
-  <% @item.reviews.each do |review| %>
-  <h4>Rating: <%= "#{review.rating}" %></h4>
-  <h4><%= "#{review.description}" %></h4>
-  <% end %>
+    <% @item.reviews.each do |review| %>
+    <section>
+      <h4>
+        Rating:
+        <% if review.rating == 1 %>
+          <%= "💛♡♡♡♡" %>
+        <% elsif review.rating == 2 %>
+          <%= "💛💛♡♡♡" %>
+        <% elsif review.rating == 3 %>
+          <%= "💛💛💛♡♡" %>
+        <% elsif review.rating == 4 %>
+          <%= "💛💛💛💛♡" %>
+        <% else %>
+          <%= "💛💛💛💛💛" %>
+        <% end %>
+      </h4>
+      <h4><%= "#{review.description}" %></h4>
+    </section>
+    <% end %>
   <% else %>
   <p>Sorry, no reviews</p>
   <% end %>
