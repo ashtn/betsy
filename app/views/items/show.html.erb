@@ -48,8 +48,7 @@
 
     </p>
     <p>
-  <%= link_to "Retire", edit_item_path(@item.id), method: :get %>
-<!-- no path  -->
+  <%= link_to "Retire", retire_path(@item.id), method: :patch %>
     </p>
     <% end %>
 </section>
