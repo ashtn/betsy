@@ -1,12 +1,15 @@
 
-<section>
 <% if @order_items.length != 0 %>
+<p>
+
+</p>
 <p>
 <%= link_to "Checkout", pay_path(@order_items.first.order_id) %>
 </p>
 
+
 Items in your cart:
-<table>
+<table class="item in cart">
     <thead>
       <th>
         Item
@@ -42,19 +45,23 @@ Items in your cart:
           <% end %>
         </td>
         <td>
-        <%= link_to "Delete", remove_from_cart_path(oi.id), { data: { confirm: "Are you sure you wish to delete the product '#{oi.item.name}' from your cart?" }, method: :delete } %>
+        <%= link_to "Remove", remove_from_cart_path(oi.id), { data: { confirm: "Are you sure you wish to delete the product '#{oi.item.name}' from your cart?" }, method: :delete } %>
         </td>
       </tr>
       <% end %>
     </tbody>
 <% else %>
   Is Empty
+  <p>
+
+  </p>
+  <p>
+
+  </p>
+  <p>
+
+  </p>
+  <p>
+
+  </p>
 <% end %>
-
-<p>
-
-</p>
-
-<% #raise %>
-
-</section>

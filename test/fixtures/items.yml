@@ -32,3 +32,11 @@ three:
   price: 5.5
   inventory: 2
   photo: MyString
+
+bad_data:
+  merchant: kari
+  name: MyString
+  description: MyString
+  price: qwe
+  inventory: none
+  photo: MyString
