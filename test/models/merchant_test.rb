@@ -17,7 +17,7 @@ describe Merchant do
     let(:m) { merchants(:kari) }
 
     it " has items" do
-      m.items.length.must_equal 2
+      m.items.length.must_equal 3
       m.items.first.name.must_equal items(:item_one).name
       m.items.first.price.must_equal items(:item_one).price
     end
