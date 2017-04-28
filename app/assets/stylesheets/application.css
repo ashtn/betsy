@@ -29,7 +29,22 @@
    margin: 0px;
  }
 
+
+
  */
+
+/*#footer {
+  text-align: center;
+  display: flex;
+ flex-direction: column;
+ min-height: 100%;
+}*/
+
+#totals_by_status {
+  color: #CCD0C9;
+}
+
+
  #test-eq {
  	/*Opacity start*/
    	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
@@ -40,6 +55,9 @@
    /*Opacity end*/
  }
 
+a {
+  color: #CCD0C9;
+}
 
  html * {
    font-family: 'Give You Glory', cursive;
